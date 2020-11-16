@@ -11,6 +11,12 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        // Add any options here
+      },
+    },
+    {
       resolve: 'gatsby-plugin-root-import',
       options: {
         components: path.join(__dirname, 'src/components'),
@@ -36,6 +42,10 @@ module.exports = {
           failOnError: false,
         },
       },
+    },
+    {
+      resolve: '@danbruegge/gatsby-plugin-stylelint',
+      options: { files: ['**/*.{js,jsx}'] },
     },
     // {
     //   resolve: `gatsby-plugin-manifest`,
