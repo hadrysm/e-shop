@@ -1,12 +1,12 @@
-import React from "react"
+import React from 'react';
 
-import SEO from "../components/seo"
+import SEO from '../components/seo';
 
 const IndexPage = () => (
   <>
     <SEO title="Home" />
     <h1>Hi shop</h1>
   </>
-)
+);
 
-export default IndexPage
+export default IndexPage;
