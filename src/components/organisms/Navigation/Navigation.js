@@ -1,11 +1,12 @@
 import React from 'react';
 
 import Logo from 'components/atoms/Logo/Logo';
+import Burger from 'components/atoms/Burger/Burger';
 
 const Navigation = () => {
   return (
     <header>
-      <button type="button">burger</button>
+      <Burger />
       <Logo />
       <nav>
         <ul>
