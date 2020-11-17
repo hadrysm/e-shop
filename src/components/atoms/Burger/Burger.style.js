@@ -7,6 +7,8 @@ export const BurgerButton = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+  position: relative;
+  z-index: ${({ theme }) => theme.zIndex.level8};
 `;
 
 export const Lines = styled.span`

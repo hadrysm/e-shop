@@ -12,7 +12,7 @@ export const theme = {
     black: '#000000',
     white: '#ffffff',
     background: '#ffffff',
-    primary: '#f0efeb',
+    primary: '#000e22',
     green100: '#007947',
     grey100: '#313942',
   },
