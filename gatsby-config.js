@@ -10,16 +10,11 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-styled-components`,
     {
       resolve: 'gatsby-plugin-transition-link',
       options: {
         layout: require.resolve(`./src/templates/MainTemplate/MainTemplate.js`),
-      },
-    },
-    {
-      resolve: `gatsby-plugin-styled-components`,
-      options: {
-        // Add any options here
       },
     },
     {
@@ -54,6 +49,20 @@ module.exports = {
       resolve: '@danbruegge/gatsby-plugin-stylelint',
       options: { files: ['**/*.{js,jsx}'] },
     },
+    {
+      resolve: `gatsby-plugin-webfonts`,
+      options: {
+        fonts: {
+          google: [
+            {
+              family: 'Source Sans Pro',
+              variants: ['300', '400', '500'],
+            },
+          ],
+        },
+      },
+    },
+
     // {
     //   resolve: `gatsby-plugin-manifest`,
     //   options: {
