@@ -13,13 +13,15 @@
     "gatsby-plugin-react-helmet": "^3.3.14",
     "gatsby-plugin-sharp": "^2.7.1",
     "gatsby-plugin-styled-components": "^3.4.0",
+    "gatsby-plugin-transition-link": "^1.20.5",
     "gatsby-source-filesystem": "^2.4.2",
     "gatsby-transformer-sharp": "^2.5.21",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.1.0",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "styled-normalize": "^8.0.5-prev"
   },
   "devDependencies": {
     "@danbruegge/gatsby-plugin-stylelint": "^4.1.0",
@@ -67,7 +69,6 @@
   },
   "lint-staged": {
     "*.js": [
-      "stylelint --fix",
       "prettier --config .prettierrc --write",
       "eslint --fix",
       "git add"
