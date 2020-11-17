@@ -16,7 +16,7 @@ export const theme = {
   },
   font: {
     family: {
-      primary: ``,
+      primary: `arial`,
     },
     weight: {
       regular: 400,
