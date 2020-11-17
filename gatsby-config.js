@@ -11,6 +11,12 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
+      resolve: 'gatsby-plugin-transition-link',
+      options: {
+        layout: require.resolve(`./src/templates/MainTemplate/MainTemplate.js`),
+      },
+    },
+    {
       resolve: `gatsby-plugin-styled-components`,
       options: {
         // Add any options here
@@ -20,6 +26,7 @@ module.exports = {
       resolve: 'gatsby-plugin-root-import',
       options: {
         components: path.join(__dirname, 'src/components'),
+        templates: path.join(__dirname, 'src/templates'),
         pages: path.join(__dirname, 'src/pages'),
         assets: path.join(__dirname, 'src/assets'),
       },
