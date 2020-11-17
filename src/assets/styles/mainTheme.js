@@ -13,11 +13,12 @@ export const theme = {
     white: '#ffffff',
     background: '#ffffff',
     primary: '#f0efeb',
+    green100: '#007947',
+    grey100: '#313942',
   },
   font: {
     family: {
       primary: `'Source Sans Pro', sans-serif`,
-      // primary: `'Roboto', sans-serif`,
     },
     weight: {
       regular: 400,

@@ -4,7 +4,7 @@ import { BurgerButton, Lines } from './Burger.style';
 
 const Burger = () => {
   return (
-    <BurgerButton>
+    <BurgerButton type="button">
       <Lines />
     </BurgerButton>
   );

@@ -4,5 +4,7 @@ export const StyledLogo = styled.span`
   text-transform: uppercase;
   font-size: ${({ theme }) => theme.font.size.xs};
   font-weight: ${({ theme }) => theme.font.weight.bold};
-  letter-spacing: 3px;
+  letter-spacing: 7px;
+  color: ${({ theme }) => theme.colors.white};
+  padding: 1rem 2rem;
 `;

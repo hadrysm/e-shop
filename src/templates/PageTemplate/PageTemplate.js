@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 
 import Navigation from 'components/organisms/Navigation/Navigation';
 
+import { Main } from './PageTemplate.style';
+
 const PageTemplate = ({ children }) => {
   return (
-    <div>
+    <>
       <Navigation />
-      <main>{children}</main>
-    </div>
+      <Main>{children}</Main>
+    </>
   );
 };
 

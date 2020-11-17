@@ -14,7 +14,7 @@ export const Lines = styled.span`
   position: relative;
   width: 100%;
   height: 2px;
-  background-color: ${({ theme }) => theme.colors.black};
+  background-color: ${({ theme }) => theme.colors.white};
 
   ::after,
   ::before {
@@ -22,7 +22,7 @@ export const Lines = styled.span`
     position: absolute;
     width: 100%;
     height: 2px;
-    background-color: ${({ theme }) => theme.colors.black};
+    background-color: ${({ theme }) => theme.colors.white};
     left: 0;
   }
 
