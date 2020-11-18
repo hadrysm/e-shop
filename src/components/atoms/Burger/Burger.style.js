@@ -9,30 +9,16 @@ export const BurgerButton = styled.button`
   cursor: pointer;
   position: relative;
   z-index: ${({ theme }) => theme.zIndex.level8};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 `;
 
-export const Lines = styled.span`
+export const Line = styled.span`
   display: block;
   position: relative;
   width: 100%;
   height: 2px;
   background-color: ${({ theme }) => theme.colors.white};
-
-  ::after,
-  ::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background-color: ${({ theme }) => theme.colors.white};
-    left: 0;
-  }
-
-  ::before {
-    top: -200%;
-  }
-
-  ::after {
-    top: 200%;
-  }
 `;

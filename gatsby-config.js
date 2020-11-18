@@ -25,6 +25,8 @@ module.exports = {
         pages: path.join(__dirname, 'src/pages'),
         assets: path.join(__dirname, 'src/assets'),
         routes: path.join(__dirname, 'src/routes'),
+        providers: path.join(__dirname, 'src/providers'),
+        animations: path.join(__dirname, 'src/animations'),
       },
     },
     {

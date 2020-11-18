@@ -4,7 +4,7 @@ import { rgba } from 'polished';
 export const Wrapper = styled.div`
   position: fixed;
   top: 0;
-  left: 0;
+  left: -100%;
   width: 100vw;
   height: 100vh; /* Fallback for browsers that do not support Custom Properties */
   height: calc(var(--vh, 1vh) * 100);

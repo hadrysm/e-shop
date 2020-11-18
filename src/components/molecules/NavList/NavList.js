@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 
 import CTA from 'components/atoms/CTA/CTA';
 
 import routes from 'routes';
+import { toggleMenuAnimation } from 'animations';
 import { Wrapper, InnerWrapper, Nav, List, Item } from './NavList.style';
 
 const sections = [
@@ -16,12 +18,22 @@ const sections = [
   { label: 'Dodatki', path: routes.additives },
 ];
 
-const NavList = () => {
+const NavList = ({ isMenuOpen }) => {
+  const wrapper = useRef(null);
+  const listContainer = useRef(null);
+
+  useEffect(() => {
+    const container = wrapper.current;
+    const listItems = listContainer.current.children;
+
+    toggleMenuAnimation([container, listItems], isMenuOpen);
+  }, [wrapper, listContainer, isMenuOpen]);
+
   return (
-    <Wrapper>
+    <Wrapper ref={wrapper}>
       <InnerWrapper>
         <Nav>
-          <List>
+          <List ref={listContainer}>
             {sections.map(({ label, path }) => (
               <Item key={path}>
                 <CTA to={path}>{label}</CTA>
@@ -32,6 +44,14 @@ const NavList = () => {
       </InnerWrapper>
     </Wrapper>
   );
+};
+
+NavList.propTypes = {
+  isMenuOpen: PropTypes.bool,
+};
+
+NavList.defaultProps = {
+  isMenuOpen: false,
 };
 
 export default NavList;
