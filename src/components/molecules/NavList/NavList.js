@@ -2,18 +2,18 @@ import React from 'react';
 
 import CTA from 'components/atoms/CTA/CTA';
 
+import routes from 'routes';
 import { Wrapper, InnerWrapper, Nav, List, Item } from './NavList.style';
 
-// change this
 const sections = [
-  { product: 'T-shirty', id: 'tshirts' },
-  { product: 'Koszule & Bluzki', id: 'shirts' },
-  { product: 'Spodnie', id: 'pants' },
-  { product: 'Bluzy', id: 'hoodies' },
-  { product: 'Sukienki & Spódnice', id: 'skirts' },
-  { product: 'Kurtki & Marynarki', id: 'jackets' },
-  { product: 'Torby', id: 'bags' },
-  { product: 'Dodatki', id: 'additives' },
+  { label: 'T-shirty', path: routes.tshirts },
+  { label: 'Koszule & Bluzki', path: routes.shirts },
+  { label: 'Spodnie', path: routes.pants },
+  { label: 'Bluzy', path: routes.hoodies },
+  { label: 'Sukienki & Spódnice', path: routes.skirts },
+  { label: 'Kurtki & Marynarki', path: routes.jackets },
+  { label: 'Torby', path: routes.bags },
+  { label: 'Dodatki', path: routes.additives },
 ];
 
 const NavList = () => {
@@ -22,9 +22,9 @@ const NavList = () => {
       <InnerWrapper>
         <Nav>
           <List>
-            {sections.map(link => (
-              <Item key={link.product}>
-                <CTA>{link.product}</CTA>
+            {sections.map(({ label, path }) => (
+              <Item key={path}>
+                <CTA to={path}>{label}</CTA>
               </Item>
             ))}
           </List>
