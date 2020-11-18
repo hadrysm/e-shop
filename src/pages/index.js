@@ -1,11 +1,12 @@
 import React from 'react';
 
 import SEO from 'components/utilities/SEO/SEO';
+import Hero from 'components/molecules/Hero/Hero';
 
 const IndexPage = () => (
   <>
     <SEO title="Home" />
-    <h1>Hi husky</h1>
+    <Hero />
   </>
 );
 

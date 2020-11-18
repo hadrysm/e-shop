@@ -9,8 +9,8 @@ import { theme } from 'assets/styles/mainTheme';
 
 const MainTemplate = ({ children, location }) => {
   // change this
-  const vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
+  // const vh = window.innerHeight * 0.01;
+  // document.documentElement.style.setProperty('--vh', `${vh}px`);
 
   return (
     <NavigationStateProvider location={location}>

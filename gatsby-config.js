@@ -61,6 +61,10 @@ module.exports = {
               family: 'Source Sans Pro',
               variants: ['300', '400', '500'],
             },
+            {
+              family: 'ZCOOL QingKe HuangYou',
+              variants: ['400'],
+            },
           ],
         },
       },
