@@ -6,5 +6,7 @@ export const StyledLogo = styled.span`
   font-weight: ${({ theme }) => theme.font.weight.bold};
   letter-spacing: 7px;
   color: ${({ theme }) => theme.colors.white};
-  padding: 1rem 2rem;
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
 `;

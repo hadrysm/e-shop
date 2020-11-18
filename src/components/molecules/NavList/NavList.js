@@ -14,8 +14,6 @@ const sections = [
   { label: 'Bluzy', path: routes.hoodies },
   { label: 'Sukienki & Spódnice', path: routes.skirts },
   { label: 'Kurtki & Marynarki', path: routes.jackets },
-  { label: 'Torby', path: routes.bags },
-  { label: 'Dodatki', path: routes.additives },
 ];
 
 const NavList = ({ isMenuOpen }) => {

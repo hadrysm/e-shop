@@ -6,7 +6,7 @@ import Burger from 'components/atoms/Burger/Burger';
 import ShoppingButton from 'components/atoms/ShoppingButton/ShoppingButton';
 
 import { NavigationStateContext } from 'providers/NavigationStateProvider/NavigationStateProvider';
-import { Wrapper, Header } from './Navigation.style';
+import { Wrapper, Header, InnerWrapper } from './Navigation.style';
 
 const Navigation = () => {
   const { toggleMenuVisibility, isMenuOpen } = useContext(NavigationStateContext);
@@ -14,10 +14,13 @@ const Navigation = () => {
   return (
     <Wrapper>
       <Header>
-        <Burger onClick={toggleMenuVisibility} isMenuOpen={isMenuOpen} />
-        <Logo />
+        <InnerWrapper>
+          <Burger onClick={toggleMenuVisibility} isMenuOpen={isMenuOpen} />
+          <Logo />
+          <ShoppingButton />
+        </InnerWrapper>
+
         <NavList isMenuOpen={isMenuOpen} />
-        <ShoppingButton />
       </Header>
     </Wrapper>
   );

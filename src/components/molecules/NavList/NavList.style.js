@@ -9,6 +9,11 @@ export const Wrapper = styled.div`
   height: 100vh; /* Fallback for browsers that do not support Custom Properties */
   height: calc(var(--vh, 1vh) * 100);
   z-index: ${({ theme }) => theme.zIndex.level7};
+
+  ${({ theme }) => theme.mq.bigTablet} {
+    position: static;
+    height: auto;
+  }
 `;
 
 export const InnerWrapper = styled.div`
@@ -17,6 +22,13 @@ export const InnerWrapper = styled.div`
   background-color: ${({ theme }) => rgba(theme.colors.primary, 0.9)};
   box-shadow: ${({ theme }) => rgba(theme.colors.black, 0.3)} 1px 0px 5px 2px;
   position: relative;
+
+  ${({ theme }) => theme.mq.bigTablet} {
+    background-color: transparent;
+    box-shadow: none;
+    width: 100%;
+    height: auto;
+  }
 `;
 
 export const Nav = styled.nav`
@@ -26,6 +38,10 @@ export const Nav = styled.nav`
   bottom: 0;
   width: 100%;
   display: flex;
+
+  ${({ theme }) => theme.mq.bigTablet} {
+    position: static;
+  }
 `;
 
 export const List = styled.ul`
@@ -35,6 +51,13 @@ export const List = styled.ul`
   align-items: center;
   justify-content: center;
   margin-top: 1rem;
+
+  ${({ theme }) => theme.mq.bigTablet} {
+    flex-direction: row;
+    justify-content: center;
+    padding: 2rem 0;
+    margin: 0 auto;
+  }
 `;
 
 export const Item = styled.li`
@@ -45,16 +68,25 @@ export const Item = styled.li`
   overflow: hidden;
   cursor: pointer;
 
+  ${({ theme }) => theme.mq.bigTablet} {
+    margin: 0;
+  }
+
   ::after {
     content: '';
     position: absolute;
     height: 1px;
-    bottom: 0;
+    bottom: 0px;
     left: 0;
     right: 0;
-    background-color: white;
-    transform: translateX(-110%);
+    background-color: ${({ theme }) => theme.colors.white};
+    transform: translateX(-120%);
     transition: transform 0.25s ease-in-out;
+
+    ${({ theme }) => theme.mq.bigTablet} {
+      left: 1rem;
+      right: 1rem;
+    }
   }
 
   :hover ::after {

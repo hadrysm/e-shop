@@ -13,6 +13,10 @@ export const BurgerButton = styled.button`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+
+  ${({ theme }) => theme.mq.bigTablet} {
+    display: none;
+  }
 `;
 
 export const Line = styled.span`
