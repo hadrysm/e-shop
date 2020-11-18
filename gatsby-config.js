@@ -10,18 +10,23 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-styled-components`,
     {
-      resolve: `gatsby-plugin-styled-components`,
+      resolve: 'gatsby-plugin-transition-link',
       options: {
-        // Add any options here
+        layout: require.resolve(`./src/templates/MainTemplate/MainTemplate.js`),
       },
     },
     {
       resolve: 'gatsby-plugin-root-import',
       options: {
         components: path.join(__dirname, 'src/components'),
+        templates: path.join(__dirname, 'src/templates'),
         pages: path.join(__dirname, 'src/pages'),
         assets: path.join(__dirname, 'src/assets'),
+        routes: path.join(__dirname, 'src/routes'),
+        providers: path.join(__dirname, 'src/providers'),
+        animations: path.join(__dirname, 'src/animations'),
       },
     },
     {
@@ -47,6 +52,20 @@ module.exports = {
       resolve: '@danbruegge/gatsby-plugin-stylelint',
       options: { files: ['**/*.{js,jsx}'] },
     },
+    {
+      resolve: `gatsby-plugin-webfonts`,
+      options: {
+        fonts: {
+          google: [
+            {
+              family: 'Source Sans Pro',
+              variants: ['300', '400', '500'],
+            },
+          ],
+        },
+      },
+    },
+
     // {
     //   resolve: `gatsby-plugin-manifest`,
     //   options: {
