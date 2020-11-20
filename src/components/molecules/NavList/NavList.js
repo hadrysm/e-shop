@@ -39,7 +39,7 @@ const NavList = ({ isMenuOpen }) => {
           <List ref={listContainer}>
             {categoryItems.map(({ id, slug, displayName }) => (
               <Item key={id}>
-                <CTA to={slug}>{displayName}</CTA>
+                <CTA to={`/${slug}`}>{displayName}</CTA>
               </Item>
             ))}
           </List>
