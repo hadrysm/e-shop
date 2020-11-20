@@ -1,22 +1,27 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+import { useStaticQuery, graphql } from 'gatsby';
 
 import CTA from 'components/atoms/CTA/CTA';
 
-import routes from 'routes';
 import { toggleMenuAnimation } from 'animations';
 import { Wrapper, InnerWrapper, Nav, List, Item } from './NavList.style';
 
-const sections = [
-  { label: 'T-shirty', path: routes.tshirts },
-  { label: 'Koszule & Bluzki', path: routes.shirts },
-  { label: 'Spodnie', path: routes.pants },
-  { label: 'Bluzy', path: routes.hoodies },
-  { label: 'Sukienki & Spódnice', path: routes.skirts },
-  { label: 'Kurtki & Marynarki', path: routes.jackets },
-];
-
 const NavList = ({ isMenuOpen }) => {
+  const {
+    allDatoCmsCategory: { nodes: categoryItems },
+  } = useStaticQuery(graphql`
+    query CATEGORY_ITEMS {
+      allDatoCmsCategory {
+        nodes {
+          id
+          slug
+          displayName
+        }
+      }
+    }
+  `);
+
   const wrapper = useRef(null);
   const listContainer = useRef(null);
 
@@ -32,9 +37,9 @@ const NavList = ({ isMenuOpen }) => {
       <InnerWrapper>
         <Nav>
           <List ref={listContainer}>
-            {sections.map(({ label, path }) => (
-              <Item key={path}>
-                <CTA to={path}>{label}</CTA>
+            {categoryItems.map(({ id, slug, displayName }) => (
+              <Item key={id}>
+                <CTA to={slug}>{displayName}</CTA>
               </Item>
             ))}
           </List>
