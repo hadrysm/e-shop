@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
 `;
 
 export const InnerWrapper = styled.div`
-  width: 90%;
+  width: 80%;
   height: 100%;
   background-color: ${({ theme }) => rgba(theme.colors.primary, 0.9)};
   box-shadow: ${({ theme }) => rgba(theme.colors.black, 0.3)} 1px 0px 5px 2px;
@@ -62,8 +62,10 @@ export const List = styled.ul`
 
 export const Item = styled.li`
   margin-bottom: 3rem;
-  padding-bottom: 0.5rem;
+  padding: 1rem 2rem;
   font-size: ${({ theme }) => theme.font.size.xs};
+  color: ${({ theme }) => theme.colors.white};
+  letter-spacing: 3px;
   position: relative;
   overflow: hidden;
   cursor: pointer;
