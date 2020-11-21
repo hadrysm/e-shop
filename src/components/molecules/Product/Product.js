@@ -13,10 +13,12 @@ import {
   Price,
 } from './Product.style';
 
-const Product = ({ id, image: { fluid }, name, price }) => {
+const Product = ({ id, image: { fluid }, name, price, discountPrice, slug }) => {
+  console.log(discountPrice);
+
   return (
     <Wrapper key={id}>
-      <CTA to={name}>
+      <CTA to={`/products/${slug}`}>
         <InnerWrapper>
           <ImgWrapper>
             <StyledImage fluid={fluid} alt={name} title={name} />
@@ -38,6 +40,12 @@ Product.propTypes = {
   }).isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+  discountPrice: PropTypes.string,
+};
+
+Product.defaultProps = {
+  discountPrice: null,
 };
 
 export default Product;

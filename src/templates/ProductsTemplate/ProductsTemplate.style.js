@@ -7,6 +7,7 @@ export const Wrapper = styled.section`
 
   ${({ theme }) => theme.mq.bigTablet} {
     margin-top: 18rem;
+    padding: 0 3rem;
   }
 `;
 

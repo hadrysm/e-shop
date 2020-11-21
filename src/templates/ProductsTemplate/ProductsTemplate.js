@@ -5,34 +5,36 @@ import { graphql } from 'gatsby';
 import ProductGrid from 'components/organisms/ProductGrid/ProductGrid';
 import { Wrapper, Headline, Hr } from './ProductsTemplate.style';
 
-const ProductsTemplate = ({ data: { allDatoCmsProduct, datoCmsCategory } }) => {
-  const { displayName: categoryName } = datoCmsCategory;
-  const { nodes: products } = allDatoCmsProduct;
+const ProductsTemplate = ({ data: { products, category } }) => {
+  const { displayName: categoryName } = category;
+  const { nodes: productsItems } = products;
 
   return (
     <Wrapper>
       <Headline>{categoryName}</Headline>
       <Hr />
-      <ProductGrid products={products} />
+      <ProductGrid products={productsItems} />
     </Wrapper>
   );
 };
 
 export const query = graphql`
   query MyQuery($id: String!) {
-    allDatoCmsProduct(filter: { category: { elemMatch: { id: { eq: $id } } } }) {
+    products: allDatoCmsProduct(filter: { category: { elemMatch: { id: { eq: $id } } } }) {
       nodes {
+        slug
         id
         name
         price
+        discountPrice
         image {
-          fluid(maxWidth: 400) {
+          fluid(maxWidth: 560) {
             ...GatsbyDatoCmsFluid_tracedSVG
           }
         }
       }
     }
-    datoCmsCategory(id: { eq: $id }) {
+    category: datoCmsCategory(id: { eq: $id }) {
       displayName
     }
   }
@@ -40,10 +42,10 @@ export const query = graphql`
 
 ProductsTemplate.propTypes = {
   data: PropTypes.shape({
-    allDatoCmsProduct: PropTypes.shape({
+    products: PropTypes.shape({
       nodes: PropTypes.arrayOf(PropTypes.object),
     }),
-    datoCmsCategory: PropTypes.shape({
+    category: PropTypes.shape({
       displayName: PropTypes.string,
     }),
   }).isRequired,

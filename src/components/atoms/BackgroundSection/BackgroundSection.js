@@ -5,7 +5,7 @@ import { StyledBackgroundImage, InnerWrapper } from './BackgroundSection.style';
 
 const BackgroundSection = ({ fluid, label }) => {
   return (
-    <StyledBackgroundImage fluid={fluid}>
+    <StyledBackgroundImage fluid={fluid} alt="" title="">
       <InnerWrapper>
         <h1>{label}</h1>
       </InnerWrapper>

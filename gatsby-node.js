@@ -2,12 +2,19 @@ const path = require('path');
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-  const productsTemplate = path.resolve(`src/templates/ProductsTemplate/ProductsTemplate.js`);
 
-  const result = await graphql(
+  const {
+    data: { categories, products },
+  } = await graphql(
     `
       {
-        allDatoCmsCategory {
+        categories: allDatoCmsCategory {
+          nodes {
+            slug
+            id
+          }
+        }
+        products: allDatoCmsProduct {
           nodes {
             slug
             id
@@ -17,14 +24,27 @@ exports.createPages = async ({ graphql, actions }) => {
     `,
   );
 
-  // Create products pages.
-  result.data.allDatoCmsCategory.nodes.forEach(({ slug, id }) => {
-    createPage({
-      path: `/${slug}`,
-      component: productsTemplate,
-      context: {
-        id,
-      },
+  if (categories) {
+    categories.nodes.forEach(({ slug, id }) => {
+      createPage({
+        path: `/categories/${slug}`,
+        component: path.resolve(`src/templates/ProductsTemplate/ProductsTemplate.js`),
+        context: {
+          id,
+        },
+      });
     });
-  });
+  }
+
+  if (products) {
+    products.nodes.forEach(({ slug, id }) => {
+      createPage({
+        path: `/products/${slug}`,
+        component: path.resolve(`src/templates/ProductTemplate/ProductTemplate.js`),
+        context: {
+          id,
+        },
+      });
+    });
+  }
 };

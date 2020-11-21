@@ -40,10 +40,12 @@ export const ContentWrapper = styled.div`
 
 export const Name = styled.p`
   margin-bottom: 1rem;
+  font-size: ${({ theme }) => theme.font.size.m};
   font-weight: ${({ theme }) => theme.font.weight.bold};
   letter-spacing: 1px;
 `;
 
 export const Price = styled.p`
+  font-size: ${({ theme }) => theme.font.size.s};
   color: ${({ theme }) => theme.colors.grey200};
 `;
