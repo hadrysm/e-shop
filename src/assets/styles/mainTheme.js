@@ -13,12 +13,17 @@ export const theme = {
     white: '#ffffff',
     background: '#ffffff',
     primary: '#000e22',
+    secondary: '#120078',
     green100: '#007947',
     grey100: '#313942',
+    grey200: '#6a6a6a',
+    grey300: '#e2e2e2',
+    grey400: '#f5f5f5',
   },
   font: {
     family: {
       primary: `'Source Sans Pro', sans-serif`,
+      secondary: `'ZCOOL QingKe HuangYou', cursive`,
     },
     weight: {
       regular: 400,
@@ -30,8 +35,8 @@ export const theme = {
       xs: '1.5rem',
       s: '1.8rem',
       m: '2rem',
-      l: '5.2rem',
-      xl: '10.2rem',
+      l: '4.2rem',
+      xl: '8.2rem',
     },
   },
 

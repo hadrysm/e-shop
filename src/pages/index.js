@@ -1,11 +1,14 @@
 import React from 'react';
 
 import SEO from 'components/utilities/SEO/SEO';
+import Hero from 'components/molecules/Hero/Hero';
+import Categories from 'components/organisms/Categories/Categories';
 
 const IndexPage = () => (
   <>
     <SEO title="Home" />
-    <h1>Hi husky</h1>
+    <Hero />
+    <Categories />
   </>
 );
 

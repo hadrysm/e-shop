@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'gatsby';
+
+import CTA from 'components/atoms/CTA/CTA';
 
 import routes from 'routes';
 import { StyledLogo } from './Logo.styles';
@@ -7,7 +8,7 @@ import { StyledLogo } from './Logo.styles';
 const Logo = () => {
   return (
     <StyledLogo>
-      <Link to={routes.home}>e-shop</Link>
+      <CTA to={routes.home}>e-shop</CTA>
     </StyledLogo>
   );
 };

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const path = require('path');
 
 module.exports = {
@@ -15,6 +16,12 @@ module.exports = {
       resolve: 'gatsby-plugin-transition-link',
       options: {
         layout: require.resolve(`./src/templates/MainTemplate/MainTemplate.js`),
+      },
+    },
+    {
+      resolve: `gatsby-source-datocms`,
+      options: {
+        apiToken: process.env.DATOCMS_API_KEY,
       },
     },
     {
@@ -60,6 +67,10 @@ module.exports = {
             {
               family: 'Source Sans Pro',
               variants: ['300', '400', '500'],
+            },
+            {
+              family: 'ZCOOL QingKe HuangYou',
+              variants: ['400'],
             },
           ],
         },

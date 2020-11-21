@@ -6,7 +6,7 @@ export const toggleMenuAnimation = ([container, listItems], isOpen) => {
   });
 
   if (isOpen) {
-    tl.to(container, { duration: 0.4, x: '100%' }).fromTo(
+    tl.to(container, { duration: 0.4, x: '98%' }).fromTo(
       listItems,
       { x: -10, autoAlpha: 0 },
       { x: 0, autoAlpha: 1, stagger: 0.15 },

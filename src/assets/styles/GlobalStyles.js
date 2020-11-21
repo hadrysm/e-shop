@@ -42,6 +42,10 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.tl-edges{
+  overflow: hidden;
+}
 `;
 
 export default GlobalStyled;
