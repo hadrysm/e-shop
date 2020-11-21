@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import CTA from 'components/atoms/CTA/CTA';
 import { Wrapper, StyledImage, CategoryName, InnerWrapper } from './CategoryBox.style';
 
-const CategoryBox = ({ slug, displayName, fluid }) => {
+const CategoryBox = ({ slug, displayName, image: { fluid, alt } }) => {
   return (
     <>
       <Wrapper as={CTA} to={slug}>
         <InnerWrapper>
-          <StyledImage fluid={fluid} />
+          <StyledImage fluid={fluid} alt={alt} />
         </InnerWrapper>
         <InnerWrapper>
           <CategoryName>{displayName}</CategoryName>
@@ -22,7 +22,10 @@ const CategoryBox = ({ slug, displayName, fluid }) => {
 CategoryBox.propTypes = {
   displayName: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
-  fluid: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
+  image: PropTypes.shape({
+    fluid: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+    alt: PropTypes.string,
+  }).isRequired,
 };
 
 export default CategoryBox;

@@ -2,16 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 
+import ProductGrid from 'components/organisms/ProductGrid/ProductGrid';
+import { Wrapper, Headline, Hr } from './ProductsTemplate.style';
+
 const ProductsTemplate = ({ data: { allDatoCmsProduct, datoCmsCategory } }) => {
   const { displayName: categoryName } = datoCmsCategory;
   const { nodes: products } = allDatoCmsProduct;
 
-  console.log(products);
-
   return (
-    <div>
-      <h1>{categoryName}</h1>
-    </div>
+    <Wrapper>
+      <Headline>{categoryName}</Headline>
+      <Hr />
+      <ProductGrid products={products} />
+    </Wrapper>
   );
 };
 
@@ -22,9 +25,8 @@ export const query = graphql`
         id
         name
         price
-        slug
         image {
-          fluid(maxWidth: 1000) {
+          fluid(maxWidth: 400) {
             ...GatsbyDatoCmsFluid_tracedSVG
           }
         }

@@ -11,11 +11,14 @@ export const theme = {
   colors: {
     black: '#000000',
     white: '#ffffff',
-    background: '#f1f3f5',
+    background: '#ffffff',
     primary: '#000e22',
+    secondary: '#120078',
     green100: '#007947',
     grey100: '#313942',
     grey200: '#6a6a6a',
+    grey300: '#e2e2e2',
+    grey400: '#f5f5f5',
   },
   font: {
     family: {

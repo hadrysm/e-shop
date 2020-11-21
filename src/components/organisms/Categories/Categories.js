@@ -15,6 +15,7 @@ const Categories = () => {
           slug
           displayName
           image {
+            alt
             fluid(maxWidth: 600) {
               ...GatsbyDatoCmsFluid_tracedSVG
             }
@@ -25,8 +26,8 @@ const Categories = () => {
   `);
   return (
     <Wrapper>
-      {categoryItems.map(({ id, slug, displayName, image: { fluid } }) => (
-        <CategoryBox key={id} slug={slug} displayName={displayName} fluid={fluid} />
+      {categoryItems.map(({ id, slug, displayName, image }) => (
+        <CategoryBox key={id} slug={slug} displayName={displayName} image={image} />
       ))}
     </Wrapper>
   );
