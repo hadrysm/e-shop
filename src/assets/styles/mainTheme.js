@@ -47,7 +47,7 @@ export const theme = {
   }, {}),
 
   layout: {
-    maxContainerWidth: '140.4rem',
+    maxContainerWidth: '120.4rem',
     mainSpacing: '2rem',
   },
 

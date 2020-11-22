@@ -21,7 +21,7 @@ const Product = ({ id, image: { fluid }, name, price, discountPrice, slug }) => 
       <CTA to={`/products/${slug}`}>
         <InnerWrapper>
           <ImgWrapper>
-            <StyledImage fluid={fluid} alt={name} title={name} />
+            <StyledImage fluid={fluid} alt={name} title={name} style={{ height: '100%' }} />
           </ImgWrapper>
           <ContentWrapper>
             <Name>{name}</Name>
