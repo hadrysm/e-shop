@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.section`
   margin: 10rem auto 0;
@@ -46,6 +46,15 @@ export const Box = styled.div`
 
 export const Price = styled.p`
   font-size: ${({ theme }) => theme.font.size.m};
+  margin: 1rem 0;
+
+  ${({ isPromotion }) =>
+    isPromotion &&
+    css`
+      font-size: ${({ theme }) => theme.font.size.xs};
+      color: ${({ theme }) => theme.colors.grey200};
+      text-decoration: line-through;
+    `}
 `;
 
 export const Description = styled.p`

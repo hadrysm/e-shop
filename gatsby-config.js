@@ -31,7 +31,7 @@ module.exports = {
         templates: path.join(__dirname, 'src/templates'),
         pages: path.join(__dirname, 'src/pages'),
         assets: path.join(__dirname, 'src/assets'),
-        routes: path.join(__dirname, 'src/routes'),
+        helpers: path.join(__dirname, 'src/helpers'),
         providers: path.join(__dirname, 'src/providers'),
         animations: path.join(__dirname, 'src/animations'),
       },

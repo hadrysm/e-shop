@@ -14,8 +14,6 @@ import {
 } from './Product.style';
 
 const Product = ({ id, image: { fluid }, name, price, discountPrice, slug }) => {
-  console.log(discountPrice);
-
   return (
     <Wrapper key={id}>
       <CTA to={`/products/${slug}`}>
@@ -25,7 +23,14 @@ const Product = ({ id, image: { fluid }, name, price, discountPrice, slug }) => 
           </ImgWrapper>
           <ContentWrapper>
             <Name>{name}</Name>
-            <Price>{price} zł</Price>
+            {discountPrice ? (
+              <>
+                <Price isPromotion>{price} zł</Price>
+                <Price as="span">{discountPrice} zł</Price>
+              </>
+            ) : (
+              <Price>{price} zł</Price>
+            )}
           </ContentWrapper>
         </InnerWrapper>
       </CTA>

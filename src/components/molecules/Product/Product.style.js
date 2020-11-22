@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Image from 'gatsby-image';
 
 export const Wrapper = styled.article`
@@ -48,4 +48,12 @@ export const Name = styled.p`
 export const Price = styled.p`
   font-size: ${({ theme }) => theme.font.size.s};
   color: ${({ theme }) => theme.colors.grey200};
+
+  ${({ isPromotion }) =>
+    isPromotion &&
+    css`
+      font-size: ${({ theme }) => theme.font.size.xs};
+      color: ${({ theme }) => theme.colors.grey200};
+      text-decoration: line-through;
+    `}
 `;

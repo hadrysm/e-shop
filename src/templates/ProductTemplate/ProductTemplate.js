@@ -6,6 +6,8 @@ import Image from 'gatsby-image';
 import Select from 'components/atoms/Select/Select';
 import CTA from 'components/atoms/CTA/CTA';
 
+import { getQuantityOptions, getSizeOptions } from 'helpers';
+
 import {
   Wrapper,
   InnerWrapper,
@@ -21,35 +23,15 @@ const ProductTemplate = ({
   data: {
     product: {
       discountPrice,
-      id,
       name,
       productDescription,
       price,
+      quantity,
       size: sizeArr,
       image: { fluid },
     },
   },
 }) => {
-  const sizeOptions = sizeArr.reduce((acc, { size }) => {
-    acc.push({
-      value: size,
-      displayValue: size,
-    });
-
-    return acc;
-  }, []);
-
-  const quantityOptions = [1, 2, 3, 4, 5].reduce((acc, item) => {
-    acc.push({
-      value: item,
-      displayValue: item,
-    });
-
-    return acc;
-  }, []);
-
-  console.log(id, discountPrice);
-
   return (
     <Wrapper>
       <InnerWrapper>
@@ -61,7 +43,14 @@ const ProductTemplate = ({
       <InnerWrapper>
         <ProductName>{name}</ProductName>
         <Box>
-          <Price>{price} zł</Price>
+          {discountPrice ? (
+            <>
+              <Price isPromotion={discountPrice}>{price} zł</Price>
+              <Price>{discountPrice} zł</Price>
+            </>
+          ) : (
+            <Price>{price} zł</Price>
+          )}
         </Box>
 
         <Box>
@@ -73,7 +62,7 @@ const ProductTemplate = ({
             <Select
               name="size"
               label="rozmiar"
-              options={sizeOptions}
+              options={getSizeOptions(sizeArr)}
               onChange={({ target: { value } }) => console.log(value)}
             />
           </Box>
@@ -81,7 +70,7 @@ const ProductTemplate = ({
             <Select
               name="size"
               label="ilość"
-              options={quantityOptions}
+              options={getQuantityOptions(quantity)}
               onChange={({ target: { value } }) => console.log(value)}
             />
           </Box>
@@ -98,10 +87,10 @@ const ProductTemplate = ({
 export const query = graphql`
   query ProductQuery($id: String!) {
     product: datoCmsProduct(id: { eq: $id }) {
-      id
       name
       productDescription
       price
+      quantity
       size {
         size
       }
@@ -117,9 +106,15 @@ export const query = graphql`
 
 ProductTemplate.propTypes = {
   data: PropTypes.shape({
-    product: PropTypes.objectOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.objectOf]),
-    ),
+    product: PropTypes.shape({
+      discountPrice: PropTypes.number,
+      name: PropTypes.string,
+      productDescription: PropTypes.string,
+      price: PropTypes.number,
+      quantity: PropTypes.number,
+      size: PropTypes.arrayOf(PropTypes.object),
+      image: PropTypes.objectOf(PropTypes.object),
+    }),
   }).isRequired,
 };
 
