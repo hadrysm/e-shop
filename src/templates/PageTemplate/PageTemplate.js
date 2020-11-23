@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Navigation from 'components/organisms/Navigation/Navigation';
+import Footer from 'components/organisms/Footer/Footer';
 
 import { Main } from './PageTemplate.style';
 
@@ -10,6 +11,7 @@ const PageTemplate = ({ children }) => {
     <>
       <Navigation />
       <Main>{children}</Main>
+      <Footer />
     </>
   );
 };

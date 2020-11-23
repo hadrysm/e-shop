@@ -1,14 +1,14 @@
 import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.section`
-  margin: 10rem auto 0;
-  padding: 0 1rem;
   max-width: ${({ theme }) => theme.layout.maxContainerWidth};
   max-height: 100%;
+  margin: 10rem auto 0;
 
   ${({ theme }) => theme.mq.tablet} {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 50rem;
     margin-top: 18rem;
     padding: 0 3rem;
   }
@@ -21,12 +21,11 @@ export const InnerWrapper = styled.div`
 
   ${({ theme }) => theme.mq.tablet} {
     width: 90%;
+    height: 100%;
   }
 `;
 
 export const ImgWrapper = styled.div`
-  max-height: 100%;
-  max-width: 100%;
   width: 100%;
   height: 100%;
   margin: 0 auto;

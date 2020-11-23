@@ -11,6 +11,7 @@ import {
   ContentWrapper,
   Name,
   Price,
+  Box,
 } from './Product.style';
 
 const Product = ({ id, image: { fluid }, name, price, discountPrice, slug }) => {
@@ -24,10 +25,10 @@ const Product = ({ id, image: { fluid }, name, price, discountPrice, slug }) => 
           <ContentWrapper>
             <Name>{name}</Name>
             {discountPrice ? (
-              <>
+              <Box>
                 <Price isPromotion>{price} zł</Price>
                 <Price as="span">{discountPrice} zł</Price>
-              </>
+              </Box>
             ) : (
               <Price>{price} zł</Price>
             )}

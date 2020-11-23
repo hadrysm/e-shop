@@ -21,5 +21,7 @@ export const Headline = styled.h1`
 export const Hr = styled.hr`
   width: 10%;
   margin-bottom: 3rem;
-  border-color: ${({ theme }) => theme.colors.secondary};
+  height: 3px;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.secondary};
 `;
