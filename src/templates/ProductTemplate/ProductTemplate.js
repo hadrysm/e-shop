@@ -5,6 +5,7 @@ import Image from 'gatsby-image';
 
 import Select from 'components/atoms/Select/Select';
 import CTA from 'components/atoms/CTA/CTA';
+import Headline from 'components/atoms/Headline/Headline';
 
 import { getQuantityOptions, getSizeOptions } from 'helpers';
 
@@ -12,7 +13,6 @@ import {
   Wrapper,
   InnerWrapper,
   ImgWrapper,
-  ProductName,
   Box,
   Price,
   Description,
@@ -41,7 +41,7 @@ const ProductTemplate = ({
       </InnerWrapper>
 
       <InnerWrapper>
-        <ProductName>{name}</ProductName>
+        <Headline text={name} />
         <Box>
           {discountPrice ? (
             <>

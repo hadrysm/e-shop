@@ -10,18 +10,3 @@ export const Wrapper = styled.section`
     padding: 0 3rem;
   }
 `;
-
-export const Headline = styled.h1`
-  text-transform: uppercase;
-  font-size: ${({ theme }) => theme.font.size.m};
-  letter-spacing: 3px;
-  color: ${({ theme }) => theme.colors.secondary};
-`;
-
-export const Hr = styled.hr`
-  width: 10%;
-  margin-bottom: 3rem;
-  height: 3px;
-  border: none;
-  background-color: ${({ theme }) => theme.colors.secondary};
-`;

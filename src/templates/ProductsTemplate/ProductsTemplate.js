@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 
 import ProductGrid from 'components/organisms/ProductGrid/ProductGrid';
-import { Wrapper, Headline, Hr } from './ProductsTemplate.style';
+import Headline from 'components/atoms/Headline/Headline';
+
+import { Wrapper } from './ProductsTemplate.style';
 
 const ProductsTemplate = ({ data: { products, category } }) => {
   const { displayName: categoryName } = category;
@@ -11,8 +13,7 @@ const ProductsTemplate = ({ data: { products, category } }) => {
 
   return (
     <Wrapper>
-      <Headline>{categoryName}</Headline>
-      <Hr />
+      <Headline text={categoryName} />
       <ProductGrid products={productsItems} />
     </Wrapper>
   );

@@ -33,12 +33,6 @@ export const ImgWrapper = styled.div`
   overflow: hidden;
 `;
 
-export const ProductName = styled.h1`
-  color: ${({ theme }) => theme.colors.secondary};
-  font-weight: ${({ theme }) => theme.font.weight.bold};
-  margin: 0 0 1rem;
-`;
-
 export const Box = styled.div`
   margin-bottom: 2rem;
 `;
