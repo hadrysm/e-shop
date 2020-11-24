@@ -3,11 +3,8 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Image from 'gatsby-image';
 
-import Select from 'components/atoms/Select/Select';
-import CTA from 'components/atoms/CTA/CTA';
 import Headline from 'components/atoms/Headline/Headline';
-
-import { getQuantityOptions, getSizeOptions } from 'helpers';
+import ProductForm from 'components/organisms/ProductForm/ProductForm';
 
 import {
   Wrapper,
@@ -16,12 +13,12 @@ import {
   Box,
   Price,
   Description,
-  Form,
 } from './ProductTemplate.style';
 
 const ProductTemplate = ({
   data: {
     product: {
+      id,
       discountPrice,
       name,
       productDescription,
@@ -57,28 +54,18 @@ const ProductTemplate = ({
           <Description>{productDescription}</Description>
         </Box>
 
-        <Form>
-          <Box>
-            <Select
-              name="size"
-              label="rozmiar"
-              options={getSizeOptions(sizeArr)}
-              onChange={({ target: { value } }) => console.log(value)}
-            />
-          </Box>
-          <Box>
-            <Select
-              name="size"
-              label="ilość"
-              options={getQuantityOptions(quantity)}
-              onChange={({ target: { value } }) => console.log(value)}
-            />
-          </Box>
-
-          <CTA type="submit" isButton>
-            Dodaj do koszyka
-          </CTA>
-        </Form>
+        <ProductForm
+          product={{
+            id,
+            discountPrice,
+            name,
+            productDescription,
+            price,
+            quantity,
+            sizeArr,
+            image: fluid,
+          }}
+        />
       </InnerWrapper>
     </Wrapper>
   );
@@ -87,6 +74,7 @@ const ProductTemplate = ({
 export const query = graphql`
   query ProductQuery($id: String!) {
     product: datoCmsProduct(id: { eq: $id }) {
+      id
       name
       productDescription
       price
@@ -107,6 +95,7 @@ export const query = graphql`
 ProductTemplate.propTypes = {
   data: PropTypes.shape({
     product: PropTypes.shape({
+      id: PropTypes.string,
       discountPrice: PropTypes.number,
       name: PropTypes.string,
       productDescription: PropTypes.string,

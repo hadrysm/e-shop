@@ -40,14 +40,14 @@ const CartItem = ({ id, price, discountPrice, image, name }) => {
   console.log(image);
   return (
     <Wrapper key={id}>
-      <InnerWrapper grow={3}>
+      <InnerWrapper grow={4}>
         <ImageWrapper>
           <StyledImage fluid={fluid} alt={name} title={name} />
         </ImageWrapper>
         <ProductName>{name}</ProductName>
       </InnerWrapper>
 
-      <InnerWrapper grow={1.5}>
+      <InnerWrapper grow={2}>
         <Box>
           <CTA as={Button} isButton>
             <FontAwesomeIcon icon={faMinus} />

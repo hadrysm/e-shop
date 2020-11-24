@@ -4,6 +4,8 @@ import { ThemeProvider } from 'styled-components';
 
 import PageTemplate from 'templates/PageTemplate/PageTemplate';
 import NavigationStateProvider from 'providers/NavigationStateProvider/NavigationStateProvider';
+import CartProvider from 'providers/CartProvider/CartProvider';
+
 import GlobalStyled from 'assets/styles/GlobalStyles';
 import { theme } from 'assets/styles/mainTheme';
 
@@ -13,12 +15,14 @@ const MainTemplate = ({ children, location }) => {
   // document.documentElement.style.setProperty('--vh', `${vh}px`);
 
   return (
-    <NavigationStateProvider location={location}>
-      <ThemeProvider theme={theme}>
-        <GlobalStyled />
-        <PageTemplate>{children}</PageTemplate>
-      </ThemeProvider>
-    </NavigationStateProvider>
+    <CartProvider>
+      <NavigationStateProvider location={location}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyled />
+          <PageTemplate>{children}</PageTemplate>
+        </ThemeProvider>
+      </NavigationStateProvider>
+    </CartProvider>
   );
 };
 

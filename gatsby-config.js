@@ -34,6 +34,7 @@ module.exports = {
         helpers: path.join(__dirname, 'src/helpers'),
         providers: path.join(__dirname, 'src/providers'),
         animations: path.join(__dirname, 'src/animations'),
+        hooks: path.join(__dirname, 'src/hooks'),
       },
     },
     {

@@ -55,11 +55,3 @@ export const Description = styled.p`
   line-height: 1.5;
   letter-spacing: 0.5px;
 `;
-
-export const Form = styled.form`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 3rem 0 5rem;
-`;

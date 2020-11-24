@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   padding: 1rem;
   margin-bottom: 2rem;
   border-radius: 1rem;
-  background-color: ${({ theme }) => theme.colors.grey300};
+  background-color: ${({ theme }) => theme.colors.grey400};
   position: relative;
 
   ${({ theme }) => theme.mq.tablet} {
@@ -80,6 +80,6 @@ export const Button = styled.button`
       position: absolute;
       top: -1rem;
       right: 0;
-      background-color: ${({ theme }) => theme.colors.grey300};
+      background-color: ${({ theme }) => theme.colors.grey400};
     `}
 `;
