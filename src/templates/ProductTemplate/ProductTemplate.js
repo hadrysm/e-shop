@@ -6,6 +6,8 @@ import Image from 'gatsby-image';
 import Headline from 'components/atoms/Headline/Headline';
 import ProductForm from 'components/organisms/ProductForm/ProductForm';
 
+import { getQuantityOptions, getSizeOptions } from 'helpers';
+
 import {
   Wrapper,
   InnerWrapper,
@@ -61,8 +63,8 @@ const ProductTemplate = ({
             name,
             productDescription,
             price,
-            quantity,
-            sizeArr,
+            quantity: getQuantityOptions(quantity),
+            size: getSizeOptions(sizeArr),
             image: fluid,
           }}
         />
