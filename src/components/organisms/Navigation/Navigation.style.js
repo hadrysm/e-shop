@@ -11,7 +11,6 @@ export const Wrapper = styled.div`
 
 export const Header = styled.header`
   min-height: 7rem;
-  max-width: ${({ theme }) => theme.layout.maxContainerWidth};
   margin: 0 auto;
   display: flex;
   justify-content: space-between;

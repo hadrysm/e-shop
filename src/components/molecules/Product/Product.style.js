@@ -1,12 +1,14 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Image from 'gatsby-image';
 
 export const Wrapper = styled.article`
-  padding: 1.5rem;
+  padding: 1.5rem 1rem;
   width: 100%;
+  height: 100%;
 `;
 
 export const InnerWrapper = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
   border-radius: 1rem;
@@ -48,4 +50,21 @@ export const Name = styled.p`
 export const Price = styled.p`
   font-size: ${({ theme }) => theme.font.size.s};
   color: ${({ theme }) => theme.colors.grey200};
+  font-weight: ${({ theme }) => theme.font.weight.semiBold};
+  margin-right: 2rem;
+
+  ${({ isPromotion }) =>
+    isPromotion &&
+    css`
+      font-size: ${({ theme }) => theme.font.size.xs};
+      color: ${({ theme }) => theme.colors.grey200};
+      text-decoration: line-through;
+      font-weight: ${({ theme }) => theme.font.weight.regular};
+    `}
+`;
+
+export const Box = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Button = styled.button`
+export const Box = styled.span`
   width: 5rem;
   height: 5rem;
   padding: 1rem;

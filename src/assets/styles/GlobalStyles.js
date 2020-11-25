@@ -13,10 +13,12 @@ const GlobalStyled = createGlobalStyle`
 }
 
 html {
+  height: 100%;
   font-size: 62.5%;
 }
 
 body {
+  height: 100%;
   font-size: 1.6rem;
   font-family: ${({ theme }) => theme.font.family.primary};
   background-color: ${({ theme }) => theme.colors.background};
@@ -43,8 +45,14 @@ a {
   text-decoration: none;
 }
 
-.tl-edges{
-  overflow: hidden;
+#___gatsby{
+  height: 100%;
+
+}
+
+#gatsby-focus-wrapper {
+ 
+  height: 100%;
 }
 `;
 

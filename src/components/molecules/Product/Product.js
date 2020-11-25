@@ -11,21 +11,27 @@ import {
   ContentWrapper,
   Name,
   Price,
+  Box,
 } from './Product.style';
 
 const Product = ({ id, image: { fluid }, name, price, discountPrice, slug }) => {
-  console.log(discountPrice);
-
   return (
     <Wrapper key={id}>
       <CTA to={`/products/${slug}`}>
         <InnerWrapper>
           <ImgWrapper>
-            <StyledImage fluid={fluid} alt={name} title={name} />
+            <StyledImage fluid={fluid} alt={name} title={name} style={{ height: '100%' }} />
           </ImgWrapper>
           <ContentWrapper>
             <Name>{name}</Name>
-            <Price>{price} zł</Price>
+            {discountPrice ? (
+              <Box>
+                <Price isPromotion>{price} zł</Price>
+                <Price as="span">{discountPrice} zł</Price>
+              </Box>
+            ) : (
+              <Price>{price} zł</Price>
+            )}
           </ContentWrapper>
         </InnerWrapper>
       </CTA>
