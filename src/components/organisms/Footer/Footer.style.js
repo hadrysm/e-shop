@@ -3,20 +3,21 @@ import styled, { css } from 'styled-components';
 export const Wrapper = styled.footer`
   padding: 2rem;
   margin: 1rem auto 0;
+  width: 100%;
   background-color: ${({ theme }) => theme.colors.grey100};
 
   ${({ theme }) => theme.mq.tablet} {
-    margin-top: 4rem;
+    margin-top: 5rem;
   }
 `;
 
 export const InnerWrapper = styled.div`
+  max-width: ${({ theme }) => theme.layout.maxContainerWidth};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  max-width: ${({ theme }) => theme.layout.maxContainerWidth};
   margin: 0 auto;
 `;
 

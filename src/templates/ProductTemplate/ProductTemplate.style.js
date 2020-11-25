@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.section`
-  max-width: ${({ theme }) => theme.layout.maxContainerWidth};
   max-height: 100%;
   margin: 10rem auto 0;
+  max-width: ${({ theme }) => theme.layout.maxContainerWidth};
 
   ${({ theme }) => theme.mq.tablet} {
     display: grid;

@@ -4,9 +4,11 @@ import Image from 'gatsby-image';
 export const Wrapper = styled.article`
   padding: 1.5rem 1rem;
   width: 100%;
+  height: 100%;
 `;
 
 export const InnerWrapper = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
   border-radius: 1rem;

@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 import Navigation from 'components/organisms/Navigation/Navigation';
 import Footer from 'components/organisms/Footer/Footer';
 
-import { Main } from './PageTemplate.style';
+import { Wrapper, Main } from './PageTemplate.style';
 
 const PageTemplate = ({ children }) => {
   return (
-    <>
+    <Wrapper>
       <Navigation />
       <Main>{children}</Main>
       <Footer />
-    </>
+    </Wrapper>
   );
 };
 

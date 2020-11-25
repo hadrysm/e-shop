@@ -5,41 +5,49 @@ import { useFormik } from 'formik';
 import Select from 'components/atoms/Select/Select';
 import CTA from 'components/atoms/CTA/CTA';
 
-// import { useShoppingCart } from 'hooks/useShoppingCart';
+import { useShoppingCart } from 'hooks/useShoppingCart';
 
 import { Form, Box } from './ProductForm.style';
 
-const ProductForm = ({ product }) => {
-  // const { addItem } = useShoppingCart();
+const ProductForm = ({ product: { id, name, price, discountPrice, sizes, quantity, image } }) => {
+  const { addItem } = useShoppingCart();
 
-  const fromik = useFormik({
+  const { values, handleChange, handleSubmit } = useFormik({
     initialValues: {
-      size: product.size[0].value,
-      quantity: product.quantity[0].value,
+      size: sizes[0].value,
+      quantity: quantity[0].value,
     },
-    onSubmit: data => {
-      console.log(data);
+    onSubmit: ({ size, quantity: quant }) => {
+      const product = {
+        id,
+        name,
+        price: discountPrice || price,
+        size,
+        quantity: quant,
+        image,
+      };
+      addItem(product);
     },
   });
 
   return (
-    <Form onSubmit={fromik.handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Box>
         <Select
           name="size"
           label="rozmiar"
-          value={fromik.values.size}
-          options={product.size}
-          onChange={fromik.handleChange}
+          value={values.size}
+          options={sizes}
+          onChange={handleChange}
         />
       </Box>
       <Box>
         <Select
           name="quantity"
           label="ilość"
-          value={fromik.values.quantity}
-          options={product.quantity}
-          onChange={fromik.handleChange}
+          value={values.quantity}
+          options={quantity}
+          onChange={handleChange}
         />
       </Box>
 
@@ -53,12 +61,11 @@ const ProductForm = ({ product }) => {
 ProductForm.propTypes = {
   product: PropTypes.shape({
     id: PropTypes.string,
-    discountPrice: PropTypes.number,
     name: PropTypes.string,
-    productDescription: PropTypes.string,
     price: PropTypes.number,
+    discountPrice: PropTypes.number,
+    sizes: PropTypes.arrayOf(PropTypes.object),
     quantity: PropTypes.arrayOf(PropTypes.object),
-    size: PropTypes.arrayOf(PropTypes.object),
     image: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   }).isRequired,
 };

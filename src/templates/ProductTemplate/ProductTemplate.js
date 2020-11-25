@@ -64,7 +64,7 @@ const ProductTemplate = ({
             productDescription,
             price,
             quantity: getQuantityOptions(quantity),
-            size: getSizeOptions(sizeArr),
+            sizes: getSizeOptions(sizeArr),
             image: fluid,
           }}
         />

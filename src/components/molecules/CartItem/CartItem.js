@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql, useStaticQuery } from 'gatsby';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,40 +10,25 @@ import {
   InnerWrapper,
   StyledImage,
   ImageWrapper,
-  ProductName,
+  Paragraph,
   Quantity,
   Box,
   Price,
   Button,
 } from './CartItem.style';
 
-const CartItem = ({ id, price, discountPrice, image, name }) => {
-  //  letter from props
-
-  const {
-    file: {
-      childImageSharp: { fluid },
-    },
-  } = useStaticQuery(graphql`
-    {
-      file(name: { eq: "hero" }) {
-        childImageSharp {
-          fluid(maxWidth: 1920) {
-            ...GatsbyImageSharpFluid_noBase64
-          }
-        }
-      }
-    }
-  `);
-
-  console.log(image);
+const CartItem = ({ id, name, price, size, quantity, image: fluid }) => {
   return (
     <Wrapper key={id}>
       <InnerWrapper grow={4}>
         <ImageWrapper>
           <StyledImage fluid={fluid} alt={name} title={name} />
         </ImageWrapper>
-        <ProductName>{name}</ProductName>
+        <Box>
+          <Paragraph>{name}</Paragraph>
+          <span>|</span>
+          <Paragraph>{size}</Paragraph>
+        </Box>
       </InnerWrapper>
 
       <InnerWrapper grow={2}>
@@ -52,13 +36,13 @@ const CartItem = ({ id, price, discountPrice, image, name }) => {
           <CTA as={Button} isButton>
             <FontAwesomeIcon icon={faMinus} />
           </CTA>
-          <Quantity>2</Quantity>
+          <Quantity>{quantity}</Quantity>
           <CTA as={Button} isButton>
             <FontAwesomeIcon icon={faPlus} />
           </CTA>
         </Box>
 
-        <Price>{discountPrice || price} zł</Price>
+        <Price>{price} zł</Price>
       </InnerWrapper>
 
       <CTA isButton as={Button} isRemove onClick={() => {}}>
@@ -68,14 +52,13 @@ const CartItem = ({ id, price, discountPrice, image, name }) => {
   );
 };
 
-//  change !!
-
 CartItem.propTypes = {
   id: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
-  discountPrice: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  quantity: PropTypes.string.isRequired,
+  size: PropTypes.string.isRequired,
 };
 
 export default CartItem;

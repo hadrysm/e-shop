@@ -30,6 +30,7 @@ export const Box = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: auto;
 `;
 
 export const ImageWrapper = styled.div`
@@ -40,10 +41,10 @@ export const ImageWrapper = styled.div`
   margin-right: 1rem;
 `;
 
-export const ProductName = styled.p`
-  margin-right: auto;
+export const Paragraph = styled.p`
   font-size: ${({ theme }) => theme.font.size.xs};
   font-weight: ${({ theme }) => theme.font.weight.bold};
+  padding: 1rem;
 `;
 
 export const StyledImage = styled(Image)`
@@ -71,7 +72,7 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   color: ${({ theme }) => theme.colors.grey200};
-  background-color: ${({ theme }) => theme.colors.grey400};
+  background-color: ${({ theme }) => theme.colors.grey300};
   font-size: ${({ theme }) => theme.font.size.xxs};
 
   ${({ isRemove }) =>
