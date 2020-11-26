@@ -6,6 +6,7 @@ import { faTimes, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import CTA from 'components/atoms/CTA/CTA';
 
 import { useShoppingCart } from 'hooks/useShoppingCart';
+import { getFormatCurrency } from 'helpers/cart';
 import {
   Wrapper,
   InnerWrapper,
@@ -20,7 +21,8 @@ import {
 
 const CartItem = ({ id, name, price, size, quantity, image: fluid }) => {
   const { decrementItem, removeItem, incrementItem } = useShoppingCart();
-  const totalPrice = price * quantity;
+  const totalPrice = getFormatCurrency(price * quantity);
+  const formatedPrice = getFormatCurrency(price);
 
   return (
     <Wrapper key={id}>
@@ -47,8 +49,8 @@ const CartItem = ({ id, name, price, size, quantity, image: fluid }) => {
         </Box>
 
         <Box isColumn>
-          <Price>{totalPrice} zł</Price>
-          {quantity > 1 && <Price isSmall>{price} zł x1</Price>}
+          <Price>{totalPrice}</Price>
+          {quantity > 1 && <Price isSmall>{formatedPrice} x1</Price>}
         </Box>
       </InnerWrapper>
 

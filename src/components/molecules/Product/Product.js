@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import CTA from 'components/atoms/CTA/CTA';
 
+import { getFormatCurrency } from 'helpers/cart';
+
 import {
   Wrapper,
   InnerWrapper,
@@ -15,6 +17,9 @@ import {
 } from './Product.style';
 
 const Product = ({ originalId: id, image: { fluid }, name, price, discountPrice, slug }) => {
+  const formatedPrice = getFormatCurrency(price);
+  const formatedDiscountPrice = getFormatCurrency(discountPrice);
+
   return (
     <Wrapper key={id}>
       <CTA to={`/products/${slug}`}>
@@ -26,11 +31,11 @@ const Product = ({ originalId: id, image: { fluid }, name, price, discountPrice,
             <Name>{name}</Name>
             {discountPrice ? (
               <Box>
-                <Price isPromotion>{price} zł</Price>
-                <Price as="span">{discountPrice} zł</Price>
+                <Price isPromotion>{formatedPrice}</Price>
+                <Price as="span">{formatedDiscountPrice}</Price>
               </Box>
             ) : (
-              <Price>{price} zł</Price>
+              <Price>{formatedPrice}</Price>
             )}
           </ContentWrapper>
         </InnerWrapper>

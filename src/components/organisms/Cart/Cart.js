@@ -5,6 +5,7 @@ import CTA from 'components/atoms/CTA/CTA';
 import CartItemList from 'components/molecules/CartItemList/CartItemList';
 
 import { useShoppingCart } from 'hooks/useShoppingCart';
+import { getFormatCurrency } from 'helpers/cart';
 import { Wrapper, SummaryBox, Flex, PriceTag, Title, Message } from './Cart.style';
 
 const Cart = () => {
@@ -21,7 +22,7 @@ const Cart = () => {
             <Flex>
               <Flex withMargin="0 0 2rem">
                 <Title>Suma końcowa</Title>
-                <PriceTag>{totalPrice}zł</PriceTag>
+                <PriceTag>{getFormatCurrency(totalPrice)}</PriceTag>
               </Flex>
               <CTA isButton>Przejdź do płatności</CTA>
             </Flex>

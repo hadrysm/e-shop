@@ -22,3 +22,9 @@ export const updateState = (state, cartDetails = []) => {
     cartCount: getTotalCartCount(cartDetails),
   };
 };
+
+export const getFormatCurrency = (value, currency = 'PLN', language = 'pl-PL') => {
+  const number = parseInt(value, 10);
+  const result = new Intl.NumberFormat(language, { style: 'currency', currency }).format(number);
+  return result;
+};
