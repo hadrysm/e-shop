@@ -52,9 +52,19 @@ export const PriceTag = styled.span`
 `;
 
 export const Message = styled.p`
+  margin-top: 5rem;
   font-size: ${({ theme }) => theme.font.size.m};
 
   ::first-letter {
     text-transform: uppercase;
+  }
+
+  ::after {
+    content: '';
+    margin-top: 1.5rem;
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: ${({ theme }) => theme.colors.secondary};
   }
 `;

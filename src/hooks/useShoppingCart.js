@@ -1,6 +1,12 @@
 import { useContext } from 'react';
 
-import { CartContext, cartTypes } from 'providers/CartProvider/CartProvider';
+import { CartContext } from 'providers/CartProvider/CartProvider';
+import {
+  ADD_ITEM_TO_CART,
+  REMOVE_ITEM_FROM_CART,
+  DECREMENT_ITEM,
+  INCREMENT_ITEM,
+} from 'providers/CartProvider/reducer/types';
 
 export const useShoppingCart = () => {
   const [cart, dispatch] = useContext(CartContext);
@@ -9,7 +15,7 @@ export const useShoppingCart = () => {
 
   const addItem = product =>
     dispatch({
-      type: cartTypes.ADD_ITEM_TO_CART,
+      type: ADD_ITEM_TO_CART,
       payload: {
         product,
       },
@@ -17,7 +23,7 @@ export const useShoppingCart = () => {
 
   const removeItem = productId =>
     dispatch({
-      type: cartTypes.REMOVE_ITEM_FROM_CART,
+      type: REMOVE_ITEM_FROM_CART,
       payload: {
         productId,
       },
@@ -25,7 +31,7 @@ export const useShoppingCart = () => {
 
   const decrementItem = (productId, count = 1) =>
     dispatch({
-      type: cartTypes.DECREMENT_ITEM,
+      type: DECREMENT_ITEM,
       payload: {
         productId,
         count,
@@ -34,7 +40,7 @@ export const useShoppingCart = () => {
 
   const incrementItem = (productId, count = 1) =>
     dispatch({
-      type: cartTypes.INCREMENT_ITEM,
+      type: INCREMENT_ITEM,
       payload: {
         productId,
         count,

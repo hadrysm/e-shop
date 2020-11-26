@@ -51,8 +51,11 @@ a {
 }
 
 #gatsby-focus-wrapper {
- 
   height: 100%;
+}
+
+.tl-edges{
+  overflow-x: visible;
 }
 `;
 
