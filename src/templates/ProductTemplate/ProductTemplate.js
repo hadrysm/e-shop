@@ -6,8 +6,6 @@ import Image from 'gatsby-image';
 import Headline from 'components/atoms/Headline/Headline';
 import ProductForm from 'components/organisms/ProductForm/ProductForm';
 
-import { getQuantityOptions, getSizeOptions } from 'helpers';
-
 import {
   Wrapper,
   InnerWrapper,
@@ -25,8 +23,7 @@ const ProductTemplate = ({
       name,
       productDescription,
       price,
-      quantity,
-      size: sizeArr,
+      size: sizes,
       image: { fluid },
     },
   },
@@ -63,8 +60,7 @@ const ProductTemplate = ({
             name,
             productDescription,
             price,
-            quantity: getQuantityOptions(quantity),
-            sizes: getSizeOptions(sizeArr),
+            sizes,
             image: fluid,
           }}
         />
@@ -76,11 +72,10 @@ const ProductTemplate = ({
 export const query = graphql`
   query ProductQuery($id: String!) {
     product: datoCmsProduct(id: { eq: $id }) {
-      id
+      id: originalId
       name
       productDescription
       price
-      quantity
       size {
         size
       }

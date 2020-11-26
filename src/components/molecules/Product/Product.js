@@ -14,13 +14,13 @@ import {
   Box,
 } from './Product.style';
 
-const Product = ({ id, image: { fluid }, name, price, discountPrice, slug }) => {
+const Product = ({ originalId: id, image: { fluid }, name, price, discountPrice, slug }) => {
   return (
     <Wrapper key={id}>
       <CTA to={`/products/${slug}`}>
         <InnerWrapper>
           <ImgWrapper>
-            <StyledImage fluid={fluid} alt={name} title={name} style={{ height: '100%' }} />
+            <StyledImage fluid={fluid} alt={name} title={name} />
           </ImgWrapper>
           <ContentWrapper>
             <Name>{name}</Name>
@@ -40,7 +40,7 @@ const Product = ({ id, image: { fluid }, name, price, discountPrice, slug }) => 
 };
 
 Product.propTypes = {
-  id: PropTypes.string.isRequired,
+  originalId: PropTypes.string.isRequired,
   image: PropTypes.shape({
     fluid: PropTypes.string,
   }).isRequired,

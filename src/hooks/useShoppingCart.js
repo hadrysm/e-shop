@@ -15,10 +15,39 @@ export const useShoppingCart = () => {
       },
     });
 
+  const removeItem = productId =>
+    dispatch({
+      type: cartTypes.REMOVE_ITEM_FROM_CART,
+      payload: {
+        productId,
+      },
+    });
+
+  const decrementItem = (productId, count = 1) =>
+    dispatch({
+      type: cartTypes.DECREMENT_ITEM,
+      payload: {
+        productId,
+        count,
+      },
+    });
+
+  const incrementItem = (productId, count = 1) =>
+    dispatch({
+      type: cartTypes.INCREMENT_ITEM,
+      payload: {
+        productId,
+        count,
+      },
+    });
+
   return {
     cartDetails,
     totalPrice,
     cartCount,
     addItem,
+    removeItem,
+    decrementItem,
+    incrementItem,
   };
 };
