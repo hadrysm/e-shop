@@ -29,6 +29,7 @@ export const InnerWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  max-width: ${({ theme }) => `calc(${theme.layout.maxContainerWidth} + 20rem)`};
 
   ${({ theme }) => theme.mq.bigTablet} {
     padding-top: 1rem;

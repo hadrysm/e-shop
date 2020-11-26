@@ -31,6 +31,10 @@ const pageLinks = [
     id: 5,
     label: 'polityka prywatności',
   },
+  {
+    id: 6,
+    label: 'reklamacje',
+  },
 ];
 
 const Footer = () => {

@@ -9,9 +9,7 @@ import {
 } from 'providers/CartProvider/reducer/types';
 
 export const useShoppingCart = () => {
-  const [cart, dispatch] = useContext(CartContext);
-
-  const { cartDetails, totalPrice, cartCount } = cart;
+  const [{ cartDetails, totalPrice, cartCount }, dispatch] = useContext(CartContext);
 
   const addItem = product =>
     dispatch({

@@ -46,7 +46,10 @@ const CartItem = ({ id, name, price, size, quantity, image: fluid }) => {
           </CTA>
         </Box>
 
-        <Price>{totalPrice} zł</Price>
+        <Box isColumn>
+          <Price>{totalPrice} zł</Price>
+          {quantity > 1 && <Price isSmall>{price} zł x1</Price>}
+        </Box>
       </InnerWrapper>
 
       <CTA isButton as={Button} isRemove onClick={() => removeItem(id)}>

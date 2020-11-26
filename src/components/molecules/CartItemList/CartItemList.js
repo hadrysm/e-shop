@@ -3,7 +3,7 @@ import React from 'react';
 import CartItem from 'components/molecules/CartItem/CartItem';
 
 import { useShoppingCart } from 'hooks/useShoppingCart';
-import { Wrapper } from './CartItem.style';
+import { Wrapper } from './CartItemList.style';
 
 const CartItemList = () => {
   const { cartDetails } = useShoppingCart();

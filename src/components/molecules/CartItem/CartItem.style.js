@@ -31,6 +31,14 @@ export const Box = styled.div`
   justify-content: center;
   align-items: center;
   margin-right: auto;
+
+  ${({ isColumn }) =>
+    isColumn &&
+    css`
+      align-items: flex-end;
+      flex-direction: column;
+      margin: 0;
+    `}
 `;
 
 export const ImageWrapper = styled.div`
@@ -58,6 +66,14 @@ export const Price = styled.p`
   font-size: ${({ theme }) => theme.font.size.m};
   font-weight: ${({ theme }) => theme.font.weight.bold};
   color: ${({ theme }) => theme.colors.secondary};
+
+  ${({ isSmall }) =>
+    isSmall &&
+    css`
+      padding-top: 0.5rem;
+      font-size: ${({ theme }) => theme.font.size.xs};
+      color: ${({ theme }) => theme.colors.grey200};
+    `}
 `;
 
 export const Quantity = styled.span`
