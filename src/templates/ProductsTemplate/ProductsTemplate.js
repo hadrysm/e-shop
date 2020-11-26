@@ -24,7 +24,7 @@ export const query = graphql`
     products: allDatoCmsProduct(filter: { category: { elemMatch: { id: { eq: $id } } } }) {
       nodes {
         slug
-        id
+        originalId
         name
         price
         discountPrice
