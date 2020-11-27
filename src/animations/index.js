@@ -1,4 +1,4 @@
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 
 export const toggleMenuAnimation = ([container, listItems], isOpen) => {
   const tl = gsap.timeline({
@@ -6,14 +6,14 @@ export const toggleMenuAnimation = ([container, listItems], isOpen) => {
   });
 
   if (isOpen) {
-    tl.to(container, { duration: 0.4, x: '98%' }).fromTo(
+    tl.to(container, { duration: 0.4, xPercent: 100 }).fromTo(
       listItems,
-      { x: -10, autoAlpha: 0 },
-      { x: 0, autoAlpha: 1, stagger: 0.15 },
+      { xPercent: -10, autoAlpha: 0 },
+      { xPercent: 0, autoAlpha: 1, stagger: 0.15 },
       '-=0.3',
     );
   } else {
-    tl.to(container, { x: '0' });
+    tl.to(container, { xPercent: 0 });
   }
 };
 

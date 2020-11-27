@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   height: calc(var(--vh, 1vh) * 100);
   z-index: ${({ theme }) => theme.zIndex.level7};
 
-  ${({ theme }) => theme.mq.bigTablet} {
+  ${({ theme }) => theme.mq.desktop} {
     position: static;
     height: auto;
   }
@@ -23,7 +23,7 @@ export const InnerWrapper = styled.div`
   box-shadow: ${({ theme }) => rgba(theme.colors.black, 0.3)} 1px 0px 5px 2px;
   position: relative;
 
-  ${({ theme }) => theme.mq.bigTablet} {
+  ${({ theme }) => theme.mq.desktop} {
     background-color: transparent;
     box-shadow: none;
     width: 100%;
@@ -39,7 +39,7 @@ export const Nav = styled.nav`
   width: 100%;
   display: flex;
 
-  ${({ theme }) => theme.mq.bigTablet} {
+  ${({ theme }) => theme.mq.desktop} {
     position: static;
   }
 `;
@@ -52,7 +52,7 @@ export const List = styled.ul`
   justify-content: center;
   margin-top: 1rem;
 
-  ${({ theme }) => theme.mq.bigTablet} {
+  ${({ theme }) => theme.mq.desktop} {
     flex-direction: row;
     justify-content: center;
     padding: 2rem 0;
@@ -70,7 +70,7 @@ export const Item = styled.li`
   overflow: hidden;
   cursor: pointer;
 
-  ${({ theme }) => theme.mq.bigTablet} {
+  ${({ theme }) => theme.mq.desktop} {
     margin: 0;
   }
 
@@ -85,7 +85,7 @@ export const Item = styled.li`
     transform: translateX(-120%);
     transition: transform 0.25s ease-in-out;
 
-    ${({ theme }) => theme.mq.bigTablet} {
+    ${({ theme }) => theme.mq.desktop} {
       left: 1rem;
       right: 1rem;
     }

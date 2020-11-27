@@ -14,7 +14,7 @@ export const BurgerButton = styled.button`
   justify-content: space-evenly;
   align-items: center;
 
-  ${({ theme }) => theme.mq.bigTablet} {
+  ${({ theme }) => theme.mq.desktop} {
     display: none;
   }
 `;
