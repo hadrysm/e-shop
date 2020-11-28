@@ -1,4 +1,36 @@
 import { gsap } from 'gsap';
+import { createBox } from 'helpers';
+
+// page tansition
+
+export const exitAnimation = color => {
+  const { box, body, vh } = createBox(color);
+
+  const tl = gsap.timeline({ defaults: { ease: 'power3.easeInOut' } });
+
+  tl.fromTo(box, { y: vh }, { duration: 0.3, y: 0 }).to(box, {
+    duration: 0.3,
+    y: 0,
+    onComplete: () => {
+      body.removeChild(box);
+    },
+  });
+};
+
+export const enterAnimation = color => {
+  const { box, body, vh } = createBox(color);
+
+  const tl = gsap.timeline({ defaults: { ease: 'power3.easeInOut' } });
+
+  tl.to(box, {
+    y: -vh,
+    delay: 0.3,
+    duration: 0.4,
+    onComplete: () => {
+      body.removeChild(box);
+    },
+  });
+};
 
 export const toggleMenuAnimation = ([container, listItems], isOpen) => {
   const tl = gsap.timeline({

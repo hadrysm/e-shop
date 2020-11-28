@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const StyledLink = styled.button`
   font-size: inherit;
-  color: inherit;
+  color: ${({ color }) => color || 'inherit'};
 
   ${({ isButton }) =>
     isButton &&

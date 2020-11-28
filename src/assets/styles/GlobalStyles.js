@@ -75,10 +75,10 @@ a {
 }
 ::-webkit-scrollbar-thumb {
         border-radius: 1rem;
-        background: ${({ theme }) => theme.colors.primary};
+        background: ${({ theme }) => theme.colors.grey200};
 }
 ::-webkit-scrollbar-thumb:hover {
-        background: ${({ theme }) => theme.colors.secondary};
+        background: ${({ theme }) => theme.colors.grey100};
 }  
 
 `;

@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
+
+import TLink from 'providers/PageTransitionProvider/PageTransitionProvider';
 
 import { StyledLink } from './CTA.style';
 
-const CTA = ({ children, to, href, isButton, isHyperLink, ...props }) => {
+const CTA = ({ children, to, href, isButton, isHyperLink, color, ...props }) => {
   if (isButton)
     return (
       <StyledLink as="button" type="button" isButton {...props}>
@@ -20,7 +21,7 @@ const CTA = ({ children, to, href, isButton, isHyperLink, ...props }) => {
     );
 
   return (
-    <StyledLink as={Link} to={to} {...props}>
+    <StyledLink as={TLink} to={to} color={color} {...props}>
       {children}
     </StyledLink>
   );
@@ -32,6 +33,7 @@ CTA.propTypes = {
   href: PropTypes.string,
   isButton: PropTypes.bool,
   isHyperLink: PropTypes.bool,
+  color: PropTypes.string,
 };
 
 CTA.defaultProps = {
@@ -40,6 +42,7 @@ CTA.defaultProps = {
   href: '',
   isButton: false,
   isHyperLink: false,
+  color: '#ffffff',
 };
 
 export default CTA;
