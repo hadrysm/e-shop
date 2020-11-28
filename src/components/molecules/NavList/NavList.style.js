@@ -23,6 +23,10 @@ export const InnerWrapper = styled.div`
   box-shadow: ${({ theme }) => rgba(theme.colors.black, 0.3)} 1px 0px 5px 2px;
   position: relative;
 
+  ${({ theme }) => theme.mq.tablet} {
+    width: 50%;
+  }
+
   ${({ theme }) => theme.mq.desktop} {
     background-color: transparent;
     box-shadow: none;

@@ -1,6 +1,4 @@
 import React, { useContext, useRef, useEffect, useState } from 'react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { gsap } from 'gsap';
 
 import Logo from 'components/atoms/Logo/Logo';
 import NavList from 'components/molecules/NavList/NavList';
@@ -8,7 +6,9 @@ import Burger from 'components/atoms/Burger/Burger';
 import ShoppingButton from 'components/atoms/ShoppingButton/ShoppingButton';
 
 import { NavigationStateContext } from 'providers/NavigationStateProvider/NavigationStateProvider';
+import { navigationOnScroll } from 'animations';
 
+import { gsap } from 'gsap';
 import { Wrapper, Header, InnerWrapper } from './Navigation.style';
 
 const Navigation = () => {
@@ -20,33 +20,13 @@ const Navigation = () => {
   useEffect(() => {
     const navigation = navigationRef.current;
 
-    gsap.registerPlugin(ScrollTrigger);
+    navigationOnScroll(navigation, setIsScrolled);
+  }, [navigationRef]);
 
-    if (navigation) {
-      const actionNav = gsap.to(navigation, {
-        yPercent: '-=100',
-        duration: 0.5,
-        ease: 'power3.inOut',
-        paused: true,
-      });
+  useEffect(() => {
+    const navigation = navigationRef.current;
 
-      ScrollTrigger.create({
-        trigger: navigation,
-        start: '50px top',
-        end: 99999,
-        onToggle: ({ isActive }) => setIsScrolled(isActive),
-        onUpdate: ({ direction, isActive }) => {
-          if (direction === -1) {
-            actionNav.reverse();
-          }
-          if (direction === 1) {
-            actionNav.play();
-          } else if (direction === 1 && isActive) {
-            actionNav.play();
-          }
-        },
-      });
-    }
+    gsap.fromTo(navigation, { y: -300 }, { y: 0, ease: 'power3.out', duration: 1.6 });
   }, [navigationRef]);
 
   return (

@@ -8,11 +8,8 @@ export const Wrapper = styled.div`
   max-height: 30rem;
   margin-bottom: 5rem;
   display: flex;
+  flex-direction: ${({ direction }) => direction && 'row-reverse'};
   align-items: center;
-
-  :nth-child(even) {
-    flex-direction: row-reverse;
-  }
 
   :hover h2::after {
     transform: scale(1);
@@ -21,7 +18,6 @@ export const Wrapper = styled.div`
   ${({ theme }) => theme.mq.bigTablet} {
     margin-bottom: 10rem;
     height: 45rem;
-
     align-self: flex-end;
   }
 `;
@@ -35,6 +31,12 @@ export const InnerWrapper = styled.div`
   border-radius: 1rem;
   overflow: hidden;
   cursor: pointer;
+`;
+
+export const Overflow = styled.div`
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
 `;
 
 export const StyledImage = styled(Img)`

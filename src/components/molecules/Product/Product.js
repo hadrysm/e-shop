@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import CTA from 'components/atoms/CTA/CTA';
 
 import { getFormatCurrency } from 'helpers/cart';
 
+import { fadeInStaggerOnScroll, scaleAnimation } from 'animations';
 import {
   Wrapper,
   InnerWrapper,
@@ -20,11 +21,22 @@ const Product = ({ originalId: id, image: { fluid }, name, price, discountPrice,
   const formatedPrice = getFormatCurrency(price);
   const formatedDiscountPrice = getFormatCurrency(discountPrice);
 
+  const containerRef = useRef(null);
+  const imgWrapper = useRef(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const img = imgWrapper.current.children;
+
+    fadeInStaggerOnScroll(container);
+    scaleAnimation(img);
+  }, [containerRef]);
+
   return (
-    <Wrapper key={id}>
+    <Wrapper key={id} ref={containerRef}>
       <CTA to={`/products/${slug}`}>
         <InnerWrapper>
-          <ImgWrapper>
+          <ImgWrapper ref={imgWrapper}>
             <StyledImage fluid={fluid} alt={name} title={name} />
           </ImgWrapper>
           <ContentWrapper>

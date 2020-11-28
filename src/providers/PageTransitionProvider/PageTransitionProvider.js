@@ -30,7 +30,7 @@ PageTransitionProvider.propTypes = {
 };
 
 PageTransitionProvider.defaultProps = {
-  color: '#ffffff',
+  color: '#000f24',
 };
 
 export default PageTransitionProvider;

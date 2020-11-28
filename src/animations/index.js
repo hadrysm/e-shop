@@ -1,5 +1,65 @@
 import { gsap } from 'gsap';
-import { createBox } from 'helpers';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+import { createBox, splitTextToChars } from 'helpers';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const pageTransitionDelay = { delay: 0.8 };
+
+export const fadeInStaggerOnScroll = (node, direction = '-') => {
+  if (!node) return;
+
+  gsap.from(node, {
+    autoAlpha: 0,
+    x: `${direction}=70%`,
+    ease: 'power3.inOut',
+    duration: 0.9,
+    stagger: 0.1,
+    scrollTrigger: {
+      trigger: node,
+      start: 'top 80%',
+    },
+  });
+};
+
+export const staggerText = node => {
+  if (!node) return;
+
+  gsap.from([splitTextToChars(node)], {
+    duration: 0.5,
+    ease: 'power3.out',
+    autoAlpha: 0,
+    y: -30,
+    stagger: 0.1,
+    ...pageTransitionDelay,
+  });
+};
+
+export const scaleX = node => {
+  if (!node) return;
+
+  gsap.from(node, { scaleX: 0, transformOrigin: 'left', ...pageTransitionDelay });
+};
+
+export const scaleAnimation = node => {
+  if (!node) return null;
+
+  return gsap.from(
+    node,
+    {
+      duration: 1.6,
+      scale: 1.2,
+      transformOrigin: 'center',
+      ease: 'power3.inOut',
+      scrollTrigger: {
+        trigger: node,
+        start: 'top 80%',
+      },
+    },
+    '-=0.2',
+  );
+};
 
 // page tansition
 
@@ -31,6 +91,40 @@ export const enterAnimation = color => {
     },
   });
 };
+
+// navigation box
+
+export const navigationOnScroll = (node, setIsScrolled) => {
+  if (!node) return;
+
+  const actionNav = gsap.to(node, {
+    yPercent: '-=100',
+    duration: 0.5,
+    ease: 'power3.inOut',
+    paused: true,
+  });
+
+  ScrollTrigger.create({
+    trigger: node,
+    start: '50px top',
+    end: 99999,
+    onToggle: ({ isActive }) => setIsScrolled(isActive),
+    onUpdate: ({ direction, isActive }) => {
+      if (direction === -1) {
+        actionNav.reverse();
+      }
+      if (direction === 1) {
+        actionNav.play();
+      } else if (direction === 1 && isActive) {
+        actionNav.play();
+      }
+    },
+  });
+};
+
+// navlist
+
+//  change!!
 
 export const toggleMenuAnimation = ([container, listItems], isOpen) => {
   const tl = gsap.timeline({
