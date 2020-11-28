@@ -41,7 +41,7 @@ const Navigation = () => {
           }
           if (direction === 1) {
             actionNav.play();
-          } else if (direction === 1 && isActive === true) {
+          } else if (direction === 1 && isActive) {
             actionNav.play();
           }
         },
