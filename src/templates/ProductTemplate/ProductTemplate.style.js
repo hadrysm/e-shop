@@ -16,6 +16,7 @@ export const Wrapper = styled.section`
 
 export const InnerWrapper = styled.div`
   width: 100%;
+  height: 100%;
   padding: 0 1.5rem;
   margin: 0 auto 1rem;
 
@@ -27,10 +28,14 @@ export const InnerWrapper = styled.div`
 
 export const ImgWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 40rem;
   margin: 0 auto;
   border-radius: 1rem;
   overflow: hidden;
+
+  ${({ theme }) => theme.mq.tablet} {
+    height: 100%;
+  }
 `;
 
 export const Box = styled.div`

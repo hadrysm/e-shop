@@ -6,27 +6,27 @@ import Select from 'components/atoms/Select/Select';
 import CTA from 'components/atoms/CTA/CTA';
 
 import { useShoppingCart } from 'hooks/useShoppingCart';
+import { getQuantityOptions, getSizeOptions } from 'helpers';
 
 import { Form, Box } from './ProductForm.style';
 
-const ProductForm = ({ product: { id, name, price, discountPrice, sizes, quantity, image } }) => {
+const ProductForm = ({ product: { id, name, price, discountPrice, sizes, image } }) => {
   const { addItem } = useShoppingCart();
 
-  const { values, handleChange, handleSubmit } = useFormik({
+  const { values, handleChange, handleSubmit, isSubmitting, setSubmitting } = useFormik({
     initialValues: {
-      size: sizes[0].value,
-      quantity: quantity[0].value,
+      size: sizes[0].size,
+      quantity: 1,
     },
     onSubmit: ({ size, quantity: quant }) => {
-      const product = {
-        id,
+      addItem({
+        id: `${id}${size}`,
         name,
         price: discountPrice || price,
         size,
-        quantity: quant,
+        quantity: parseInt(quant, 10),
         image,
-      };
-      addItem(product);
+      });
     },
   });
 
@@ -37,8 +37,11 @@ const ProductForm = ({ product: { id, name, price, discountPrice, sizes, quantit
           name="size"
           label="rozmiar"
           value={values.size}
-          options={sizes}
-          onChange={handleChange}
+          options={getSizeOptions(sizes)}
+          onChange={e => {
+            handleChange(e);
+            setSubmitting(false);
+          }}
         />
       </Box>
       <Box>
@@ -46,13 +49,16 @@ const ProductForm = ({ product: { id, name, price, discountPrice, sizes, quantit
           name="quantity"
           label="ilość"
           value={values.quantity}
-          options={quantity}
-          onChange={handleChange}
+          options={getQuantityOptions(10)}
+          onChange={e => {
+            handleChange(e);
+            setSubmitting(false);
+          }}
         />
       </Box>
 
       <CTA type="submit" isButton>
-        Dodaj do koszyka
+        {isSubmitting ? <span>Dodano</span> : <span>Dodaj do koszyka</span>}
       </CTA>
     </Form>
   );
@@ -65,7 +71,6 @@ ProductForm.propTypes = {
     price: PropTypes.number,
     discountPrice: PropTypes.number,
     sizes: PropTypes.arrayOf(PropTypes.object),
-    quantity: PropTypes.arrayOf(PropTypes.object),
     image: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   }).isRequired,
 };

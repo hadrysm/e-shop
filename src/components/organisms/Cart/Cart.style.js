@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.section`
-  margin: 10rem auto 0;
+  margin: 10rem auto 4rem;
   padding: 0 1rem;
 
   ${({ theme }) => theme.mq.bigTablet} {
@@ -52,9 +52,19 @@ export const PriceTag = styled.span`
 `;
 
 export const Message = styled.p`
+  margin-top: 5rem;
   font-size: ${({ theme }) => theme.font.size.m};
 
   ::first-letter {
     text-transform: uppercase;
+  }
+
+  ::after {
+    content: '';
+    margin-top: 1.5rem;
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: ${({ theme }) => theme.colors.secondary};
   }
 `;

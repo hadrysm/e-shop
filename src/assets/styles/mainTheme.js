@@ -13,7 +13,7 @@ export const theme = {
     white: '#ffffff',
     background: '#ffffff',
     primary: '#000e22',
-    secondary: '#120078',
+    secondary: '#000f24',
     green100: '#007947',
     grey100: '#313942',
     grey200: '#6a6a6a',

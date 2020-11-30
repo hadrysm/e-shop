@@ -12,15 +12,15 @@ export const InnerWrapper = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 1rem;
-  padding: 3rem 0;
+  padding: 3rem 2rem;
   background-color: ${({ theme }) => theme.colors.grey400};
 `;
 
 export const ImgWrapper = styled.div`
   width: 100%;
   height: 100%;
-  padding: 0 2rem;
-  max-height: 50rem;
+  min-height: 40rem;
+  max-height: 40rem;
   border-radius: 1rem;
   overflow: hidden;
 `;
@@ -29,7 +29,6 @@ export const StyledImage = styled(Image)`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 1rem;
 `;
 
 export const ContentWrapper = styled.div`
@@ -64,6 +63,7 @@ export const Price = styled.p`
 `;
 
 export const Box = styled.div`
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

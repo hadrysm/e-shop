@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const StyledLink = styled.button`
   font-size: inherit;
-  color: inherit;
+  color: 'inherit';
 
   ${({ isButton }) =>
     isButton &&
@@ -16,6 +16,12 @@ export const StyledLink = styled.button`
       border-radius: 1rem;
       color: ${({ theme }) => theme.colors.white};
       background-color: ${({ theme }) => theme.colors.secondary};
+
+      ${({ isSubmitting }) =>
+        isSubmitting &&
+        css`
+          background-color: ${({ theme }) => theme.colors.green100};
+        `}
     `}
 
   ${({ isHyperLink }) => isHyperLink && css``}

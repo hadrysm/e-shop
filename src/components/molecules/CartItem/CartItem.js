@@ -5,6 +5,9 @@ import { faTimes, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import CTA from 'components/atoms/CTA/CTA';
 
+import { useShoppingCart } from 'hooks/useShoppingCart';
+import { getFormatCurrency } from 'helpers/cart';
+
 import {
   Wrapper,
   InnerWrapper,
@@ -18,6 +21,10 @@ import {
 } from './CartItem.style';
 
 const CartItem = ({ id, name, price, size, quantity, image: fluid }) => {
+  const { decrementItem, removeItem, incrementItem } = useShoppingCart();
+  const totalPrice = getFormatCurrency(price * quantity);
+  const formatedPrice = getFormatCurrency(price);
+
   return (
     <Wrapper key={id}>
       <InnerWrapper grow={4}>
@@ -33,19 +40,22 @@ const CartItem = ({ id, name, price, size, quantity, image: fluid }) => {
 
       <InnerWrapper grow={2}>
         <Box>
-          <CTA as={Button} isButton>
+          <CTA as={Button} isButton onClick={() => decrementItem(id)}>
             <FontAwesomeIcon icon={faMinus} />
           </CTA>
           <Quantity>{quantity}</Quantity>
-          <CTA as={Button} isButton>
+          <CTA as={Button} isButton onClick={() => incrementItem(id)}>
             <FontAwesomeIcon icon={faPlus} />
           </CTA>
         </Box>
 
-        <Price>{price} zł</Price>
+        <Box isColumn>
+          <Price>{totalPrice}</Price>
+          {quantity > 1 && <Price isSmall>{formatedPrice} x1</Price>}
+        </Box>
       </InnerWrapper>
 
-      <CTA isButton as={Button} isRemove onClick={() => {}}>
+      <CTA isButton as={Button} isRemove onClick={() => removeItem(id)}>
         <FontAwesomeIcon icon={faTimes} />
       </CTA>
     </Wrapper>
@@ -58,7 +68,7 @@ CartItem.propTypes = {
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   quantity: PropTypes.string.isRequired,
-  size: PropTypes.string.isRequired,
+  size: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default CartItem;
