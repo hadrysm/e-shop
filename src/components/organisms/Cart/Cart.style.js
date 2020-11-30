@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.section`
-  margin: 10rem auto 0;
+  margin: 10rem auto 4rem;
   padding: 0 1rem;
 
   ${({ theme }) => theme.mq.bigTablet} {

@@ -5,6 +5,19 @@ export const Wrapper = styled.footer`
   margin: 1rem auto 0;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.grey100};
+  position: relative;
+  z-index: 10;
+
+  ::before {
+    content: '';
+    position: absolute;
+    top: -2.9rem;
+    left: 0;
+    width: 100%;
+    height: 3rem;
+    background-color: ${({ theme }) => theme.colors.grey100};
+    clip-path: polygon(0 80%, 100% 0, 100% 100%, 0 100%);
+  }
 
   ${({ theme }) => theme.mq.tablet} {
     margin-top: 5rem;

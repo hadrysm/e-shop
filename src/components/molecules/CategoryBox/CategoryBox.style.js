@@ -8,11 +8,8 @@ export const Wrapper = styled.div`
   max-height: 30rem;
   margin-bottom: 5rem;
   display: flex;
+  flex-direction: ${({ direction }) => direction && 'row-reverse'};
   align-items: center;
-
-  :nth-child(even) {
-    flex-direction: row-reverse;
-  }
 
   :hover h2::after {
     transform: scale(1);
@@ -21,7 +18,6 @@ export const Wrapper = styled.div`
   ${({ theme }) => theme.mq.bigTablet} {
     margin-bottom: 10rem;
     height: 45rem;
-
     align-self: flex-end;
   }
 `;
@@ -29,12 +25,19 @@ export const Wrapper = styled.div`
 export const InnerWrapper = styled.div`
   width: 50vw;
   height: 100%;
+  margin: 0 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 1rem;
   overflow: hidden;
   cursor: pointer;
+`;
+
+export const Overflow = styled.div`
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
 `;
 
 export const StyledImage = styled(Img)`
@@ -44,7 +47,6 @@ export const StyledImage = styled(Img)`
 `;
 
 export const CategoryName = styled.h2`
-  padding: 1rem;
   color: ${({ theme }) => theme.colors.primary};
   font-size: ${({ theme }) => theme.font.size.m};
   font-weight: ${({ theme }) => theme.font.weight.bold};
@@ -52,12 +54,13 @@ export const CategoryName = styled.h2`
   letter-spacing: 2px;
   position: relative;
   overflow: hidden;
+  padding-bottom: 0.5rem;
 
   ::after {
     content: '';
     position: absolute;
     height: 1px;
-    bottom: 0px;
+    bottom: 0;
     left: 0;
     right: 0;
     background-color: ${({ theme }) => theme.colors.black};

@@ -22,6 +22,10 @@ body {
   font-size: 1.6rem;
   font-family: ${({ theme }) => theme.font.family.primary};
   background-color: ${({ theme }) => theme.colors.background};
+
+  &.no-scroll {
+    overflow-y: hidden;
+  }
 }
 
 ul {
@@ -57,6 +61,26 @@ a {
 .tl-edges{
   overflow-x: visible;
 }
+
+::-webkit-scrollbar {
+      width: 4px;
+
+      ${({ theme }) => theme.mq.bigTablet} {
+        width: 10px;
+      }
+    }
+
+::-webkit-scrollbar-track {
+        background: transparent;
+}
+::-webkit-scrollbar-thumb {
+        border-radius: 1rem;
+        background: ${({ theme }) => theme.colors.grey200};
+}
+::-webkit-scrollbar-thumb:hover {
+        background: ${({ theme }) => theme.colors.grey100};
+}  
+
 `;
 
 export default GlobalStyled;

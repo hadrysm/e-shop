@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const GridWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: fit-content(40%);
 
   ${({ theme }) => theme.mq.tablet} {
     grid-template-columns: repeat(2, 1fr);

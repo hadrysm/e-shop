@@ -1,19 +1,46 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import CTA from 'components/atoms/CTA/CTA';
-import { Wrapper, StyledImage, CategoryName, InnerWrapper } from './CategoryBox.style';
 
-const CategoryBox = ({ id, slug, displayName, image: { fluid, alt } }) => {
+import { fadeInStagger } from 'animations';
+
+import { Wrapper, StyledImage, Overflow, CategoryName, InnerWrapper } from './CategoryBox.style';
+
+const CategoryBox = ({ id, slug, displayName, image: { fluid, alt } }, index) => {
+  const contentRef = useRef(null);
+  const categoryRef = useRef(null);
+
+  const direction = index % 2;
+
+  useEffect(() => {
+    const { children } = categoryRef.current;
+
+    const from = direction ? '-' : '+';
+
+    const gsapOptions = {
+      scrollTrigger: {
+        trigger: children,
+        start: 'top 80%',
+      },
+    };
+
+    fadeInStagger([...children], gsapOptions, from);
+  }, [categoryRef]);
+
   return (
-    <Wrapper key={id} as={CTA} to={`/categories/${slug}`}>
-      <InnerWrapper>
-        <StyledImage fluid={fluid} alt={alt} title={alt} />
-      </InnerWrapper>
-      <InnerWrapper>
-        <CategoryName>{displayName}</CategoryName>
-      </InnerWrapper>
-    </Wrapper>
+    <CTA key={id} to={`/categories/${slug}`}>
+      <Wrapper ref={categoryRef} direction={direction}>
+        <InnerWrapper>
+          <Overflow>
+            <StyledImage fluid={fluid} alt={alt} title={alt} />
+          </Overflow>
+        </InnerWrapper>
+        <InnerWrapper ref={contentRef}>
+          <CategoryName>{displayName}</CategoryName>
+        </InnerWrapper>
+      </Wrapper>
+    </CTA>
   );
 };
 
