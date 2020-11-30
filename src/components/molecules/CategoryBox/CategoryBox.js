@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import CTA from 'components/atoms/CTA/CTA';
 
-import { fadeInStaggerOnScroll } from 'animations';
+import { fadeInStagger } from 'animations';
 
 import { Wrapper, StyledImage, Overflow, CategoryName, InnerWrapper } from './CategoryBox.style';
 
@@ -18,7 +18,14 @@ const CategoryBox = ({ id, slug, displayName, image: { fluid, alt } }, index) =>
 
     const from = direction ? '-' : '+';
 
-    fadeInStaggerOnScroll([...children], from);
+    const gsapOptions = {
+      scrollTrigger: {
+        trigger: children,
+        start: 'top 80%',
+      },
+    };
+
+    fadeInStagger([...children], gsapOptions, from);
   }, [categoryRef]);
 
   return (

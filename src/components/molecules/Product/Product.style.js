@@ -19,7 +19,8 @@ export const InnerWrapper = styled.div`
 export const ImgWrapper = styled.div`
   width: 100%;
   height: 100%;
-  max-height: 50rem;
+  min-height: 40rem;
+  max-height: 40rem;
   border-radius: 1rem;
   overflow: hidden;
 `;
@@ -62,6 +63,7 @@ export const Price = styled.p`
 `;
 
 export const Box = styled.div`
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

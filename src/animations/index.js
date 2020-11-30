@@ -7,19 +7,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 const pageTransitionDelay = { delay: 0.8 };
 
-export const fadeInStaggerOnScroll = (node, direction = '-') => {
+export const fadeInStagger = (node, gsapOptions, direction = '-') => {
   if (!node) return;
 
   gsap.from(node, {
     autoAlpha: 0,
-    x: `${direction}=70%`,
+    x: `${direction}=30%`,
     ease: 'power3.inOut',
     duration: 0.9,
-    stagger: 0.1,
-    scrollTrigger: {
-      trigger: node,
-      start: 'top 80%',
-    },
+    stagger: 0.15,
+    ...gsapOptions,
   });
 };
 
@@ -55,6 +52,7 @@ export const scaleAnimation = node => {
       scrollTrigger: {
         trigger: node,
         start: 'top 80%',
+        scrub: true,
       },
     },
     '-=0.2',

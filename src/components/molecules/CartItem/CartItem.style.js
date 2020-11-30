@@ -98,5 +98,5 @@ export const Button = styled.button`
       top: -1rem;
       right: 0;
       background-color: ${({ theme }) => theme.colors.grey400};
-    `}
+    `};
 `;

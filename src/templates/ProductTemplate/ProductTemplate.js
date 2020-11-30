@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Image from 'gatsby-image';
@@ -7,6 +7,7 @@ import Headline from 'components/atoms/Headline/Headline';
 import ProductForm from 'components/organisms/ProductForm/ProductForm';
 
 import { getFormatCurrency } from 'helpers/cart';
+import { fadeInStagger } from 'animations';
 
 import {
   Wrapper,
@@ -30,18 +31,32 @@ const ProductTemplate = ({
     },
   },
 }) => {
+  const containerRef = useRef(null);
+
   const formatedPrice = getFormatCurrency(price);
   const formatedDiscountPrice = getFormatCurrency(discountPrice);
+
+  useEffect(() => {
+    const [, , ...children] = [...containerRef.current.children];
+
+    fadeInStagger([children]);
+  }, [containerRef]);
 
   return (
     <Wrapper>
       <InnerWrapper>
         <ImgWrapper>
-          <Image fluid={fluid} alt={name} title={name} style={{ height: '100%' }} />
+          <Image
+            fluid={fluid}
+            alt={name}
+            title={name}
+            style={{ height: '100%', width: '100%' }}
+            imgStyle={{ objectFit: 'cover' }}
+          />
         </ImgWrapper>
       </InnerWrapper>
 
-      <InnerWrapper>
+      <InnerWrapper ref={containerRef}>
         <Headline text={name} />
         <Box>
           {discountPrice ? (

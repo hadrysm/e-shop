@@ -1,8 +1,6 @@
 import styled, { css } from 'styled-components';
 
 export const StyledLink = styled.button`
-  display: block;
-  height: 100%;
   font-size: inherit;
   color: 'inherit';
 

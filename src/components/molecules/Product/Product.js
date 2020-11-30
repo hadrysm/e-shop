@@ -5,7 +5,7 @@ import CTA from 'components/atoms/CTA/CTA';
 
 import { getFormatCurrency } from 'helpers/cart';
 
-import { fadeInStaggerOnScroll, scaleAnimation } from 'animations';
+import { fadeInStagger, scaleAnimation } from 'animations';
 import {
   Wrapper,
   InnerWrapper,
@@ -28,7 +28,14 @@ const Product = ({ originalId: id, image: { fluid }, name, price, discountPrice,
     const container = containerRef.current;
     const img = imgWrapper.current.children;
 
-    fadeInStaggerOnScroll(container);
+    const gsapOptions = {
+      scrollTrigger: {
+        trigger: container,
+        start: 'top 80%',
+      },
+    };
+
+    fadeInStagger(container, gsapOptions);
     scaleAnimation(img);
   }, [containerRef]);
 

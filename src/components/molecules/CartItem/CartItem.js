@@ -7,6 +7,7 @@ import CTA from 'components/atoms/CTA/CTA';
 
 import { useShoppingCart } from 'hooks/useShoppingCart';
 import { getFormatCurrency } from 'helpers/cart';
+
 import {
   Wrapper,
   InnerWrapper,
