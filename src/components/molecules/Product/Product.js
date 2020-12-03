@@ -28,15 +28,24 @@ const Product = ({ originalId: id, image: { fluid }, name, price, discountPrice,
     const container = containerRef.current;
     const img = imgWrapper.current.children;
 
-    const gsapOptions = {
+    const gsapOptionsProduct = {
       scrollTrigger: {
         trigger: container,
         start: 'top 80%',
+        toggleActions: 'play none none reverse',
       },
     };
 
-    fadeInStagger(container, gsapOptions);
-    scaleAnimation(img);
+    const gsapOptionsImage = {
+      scrollTrigger: {
+        trigger: img,
+        start: 'top 80%',
+        scrub: 1,
+      },
+    };
+
+    fadeInStagger(container, gsapOptionsProduct);
+    scaleAnimation(img, gsapOptionsImage);
   }, [containerRef]);
 
   return (
