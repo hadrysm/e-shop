@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 
@@ -7,14 +7,32 @@ import Headline from 'components/atoms/Headline/Headline';
 
 import { Wrapper } from './ProductsTemplate.style';
 
-const ProductsTemplate = ({ data: { products, category } }) => {
-  const { displayName: categoryName } = category;
-  const { nodes: productsItems } = products;
+// import filtersReducer, { filtersInitialState } from './reducer';
+
+const sortOptions = [
+  { value: '', displayValue: 'Proponowane' },
+  { value: 'priceASC', displayValue: 'Cena, od najniższej' },
+  { value: 'priceDESC', displayValue: 'Cena, od najwyższej' },
+  { value: 'alphabetASC', displayValue: 'Alfabetycznie, A-Z' },
+  { value: 'alphabetDESC', displayValue: 'Alfabetycznie, Z-A' },
+];
+
+const ProductsTemplate = ({
+  data: {
+    products: { nodes: products },
+    category: { displayName },
+  },
+}) => {
+  const [sortedProducts, setSortedProducts] = useState(products);
+  // for husky
+  console.log(setSortedProducts);
+
+  // const [filters, dispatch] = useReducer(filtersReducer, filtersInitialState);
 
   return (
     <Wrapper>
-      <Headline text={categoryName} />
-      <ProductGrid products={productsItems} />
+      <Headline text={displayName} />
+      <ProductGrid products={sortedProducts} sortOptions={sortOptions} />
     </Wrapper>
   );
 };
