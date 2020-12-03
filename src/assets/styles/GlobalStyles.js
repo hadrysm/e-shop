@@ -24,7 +24,7 @@ body {
   background-color: ${({ theme }) => theme.colors.background};
 
   &.no-scroll {
-    overflow-y: hidden;
+    overflow: hidden;
   }
 }
 
@@ -61,6 +61,7 @@ a {
 .tl-edges{
   overflow-x: visible;
 }
+
 
 ::-webkit-scrollbar {
       width: 4px;

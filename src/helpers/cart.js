@@ -1,3 +1,11 @@
+import { toast } from 'react-toastify';
+
+export const handleOnItemAdded = () => toast.success('Produkt dodany o koszyka!');
+
+export const handleOnItemUpdated = () => toast.success('Produkt zaktualizowany!');
+
+export const handleOnItemRemoved = () => toast.success('Pomyślnie usunięto produkt z koszyka');
+
 export const productExistInCart = (cartDetails, product) => {
   const result = cartDetails.some(({ id, size }) => id === product.id && size === product.size);
 
