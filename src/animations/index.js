@@ -39,7 +39,7 @@ export const scaleX = node => {
   gsap.from(node, { scaleX: 0, transformOrigin: 'left', ...pageTransitionDelay });
 };
 
-export const scaleAnimation = node => {
+export const scaleAnimation = (node, gsapOptions) => {
   if (!node) return null;
 
   return gsap.from(
@@ -49,11 +49,7 @@ export const scaleAnimation = node => {
       scale: 1.2,
       transformOrigin: 'center',
       ease: 'power3.inOut',
-      scrollTrigger: {
-        trigger: node,
-        start: 'top 80%',
-        scrub: true,
-      },
+      ...gsapOptions,
     },
     '-=0.2',
   );
@@ -70,6 +66,7 @@ export const exitAnimation = color => {
     duration: 0.3,
     y: 0,
     onComplete: () => {
+      window.scrollTo(0, 0);
       body.removeChild(box);
     },
   });
@@ -85,6 +82,7 @@ export const enterAnimation = color => {
     delay: 0.3,
     duration: 0.4,
     onComplete: () => {
+      window.scrollTo(0, 0);
       body.removeChild(box);
     },
   });
