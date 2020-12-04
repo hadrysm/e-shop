@@ -1,13 +1,15 @@
-import { PRICE } from './types';
+import { SORT_BY } from './types';
 
-export const filtersInitialState = {};
+export const filtersInitialState = {
+  sortBy: '',
+};
 
 const filtersReducer = (state, { type, payload }) => {
   switch (type) {
-    case PRICE:
+    case SORT_BY:
       return {
         ...state,
-        priceRange: payload,
+        sortBy: payload.option,
       };
 
     default:

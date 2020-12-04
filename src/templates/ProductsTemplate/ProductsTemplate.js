@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
+
+import FiltersProvider from 'providers/FiltersProvider/FiltersProvider';
 
 import ProductGrid from 'components/organisms/ProductGrid/ProductGrid';
 import Headline from 'components/atoms/Headline/Headline';
 
-import { Wrapper } from './ProductsTemplate.style';
+import { sortProductByAlphabet, sortProductByPrice } from 'helpers';
+import filtersReducer, { filtersInitialState } from './reducer';
+import { SORT_BY } from './reducer/types';
 
-// import filtersReducer, { filtersInitialState } from './reducer';
+import { Wrapper } from './ProductsTemplate.style';
 
 const sortOptions = [
   { value: '', displayValue: 'Proponowane' },
@@ -24,15 +28,46 @@ const ProductsTemplate = ({
   },
 }) => {
   const [sortedProducts, setSortedProducts] = useState(products);
-  // for husky
-  console.log(setSortedProducts);
+  const [filtersState, dispatch] = useReducer(filtersReducer, filtersInitialState);
 
-  // const [filters, dispatch] = useReducer(filtersReducer, filtersInitialState);
+  const sortBy = option =>
+    dispatch({
+      type: SORT_BY,
+      payload: {
+        option,
+      },
+    });
+
+  const applyFilters = () => {
+    if (!products.length) return;
+
+    if (filtersState.sortBy.startsWith('alphabet')) {
+      const arr = sortProductByAlphabet(products, filtersState.sortBy);
+      setSortedProducts(arr);
+    } else if (filtersState.sortBy.startsWith('price')) {
+      const arr = sortProductByPrice(products, filtersState.sortBy);
+      setSortedProducts(arr);
+    } else {
+      setSortedProducts(products);
+    }
+  };
+
+  useEffect(() => {
+    applyFilters();
+  }, [filtersState.sortBy]);
+
+  const catalogFilters = {
+    applyFilters,
+    sortBy,
+    sortOptions,
+  };
 
   return (
     <Wrapper>
       <Headline text={displayName} />
-      <ProductGrid products={sortedProducts} sortOptions={sortOptions} />
+      <FiltersProvider filters={catalogFilters}>
+        <ProductGrid products={sortedProducts} />
+      </FiltersProvider>
     </Wrapper>
   );
 };

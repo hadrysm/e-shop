@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-export const SortWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
 export const GridWrapper = styled.section`
   display: grid;
   grid-template-columns: 1fr;

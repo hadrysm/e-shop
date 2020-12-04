@@ -5,7 +5,7 @@ import CTA from 'components/atoms/CTA/CTA';
 
 import { getFormatCurrency } from 'helpers/cart';
 
-import { fadeInStagger, scaleAnimation } from 'animations';
+import { scaleAnimation } from 'animations';
 import {
   Wrapper,
   InnerWrapper,
@@ -21,35 +21,24 @@ const Product = ({ originalId: id, image: { fluid }, name, price, discountPrice,
   const formatedPrice = getFormatCurrency(price);
   const formatedDiscountPrice = getFormatCurrency(discountPrice);
 
-  const containerRef = useRef(null);
   const imgWrapper = useRef(null);
 
   useEffect(() => {
-    const container = containerRef.current;
     const img = imgWrapper.current.children;
-
-    const gsapOptionsProduct = {
-      scrollTrigger: {
-        trigger: container,
-        start: 'top 80%',
-        toggleActions: 'play none none reverse',
-      },
-    };
 
     const gsapOptionsImage = {
       scrollTrigger: {
         trigger: img,
-        start: 'top 80%',
+        start: 'top bottom',
         scrub: 1,
       },
     };
 
-    fadeInStagger(container, gsapOptionsProduct);
     scaleAnimation(img, gsapOptionsImage);
-  }, [containerRef]);
+  }, [imgWrapper]);
 
   return (
-    <Wrapper key={id} ref={containerRef}>
+    <Wrapper key={id}>
       <CTA to={`/products/${slug}`}>
         <InnerWrapper>
           <ImgWrapper ref={imgWrapper}>
