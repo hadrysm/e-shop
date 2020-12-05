@@ -8,7 +8,7 @@ export const BurgerButton = styled.button`
   border: none;
   cursor: pointer;
   position: relative;
-  z-index: ${({ theme }) => theme.zIndex.level8};
+  z-index: ${({ theme }) => theme.zIndex.level2};
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;

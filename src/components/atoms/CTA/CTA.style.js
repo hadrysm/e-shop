@@ -15,7 +15,7 @@ export const StyledLink = styled.button`
       letter-spacing: 2px;
       border-radius: 1rem;
       color: ${({ theme }) => theme.colors.white};
-      background-color: ${({ theme }) => theme.colors.secondary};
+      background-color: ${({ theme, color }) => color || theme.colors.secondary};
 
       ${({ isSubmitting }) =>
         isSubmitting &&

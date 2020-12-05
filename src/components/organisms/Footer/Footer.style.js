@@ -6,7 +6,6 @@ export const Wrapper = styled.footer`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.grey100};
   position: relative;
-  z-index: 10;
 
   ::before {
     content: '';

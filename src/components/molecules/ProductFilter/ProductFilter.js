@@ -9,11 +9,11 @@ import { FiltersContext } from 'providers/FiltersProvider/FiltersProvider';
 import { Wrapper } from './ProductFilter.style';
 
 const ProductFilter = () => {
-  const { sortBy, sortOptions } = useContext(FiltersContext);
+  const { sortBy, sortOptions, showAside } = useContext(FiltersContext);
 
   return (
     <Wrapper>
-      <CTA isButton onClick={() => {}}>
+      <CTA isButton onClick={showAside}>
         <div>
           <FontAwesomeIcon icon={faTasks} />
           <span> Filtry</span>

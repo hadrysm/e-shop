@@ -9,7 +9,7 @@ const CTA = React.forwardRef(
   ({ children, to, href, isButton, isHyperLink, color, ...props }, ref) => {
     if (isButton)
       return (
-        <StyledLink as="button" type="button" isButton ref={ref} {...props}>
+        <StyledLink as="button" type="button" isButton color={color} ref={ref} {...props}>
           {children}
         </StyledLink>
       );

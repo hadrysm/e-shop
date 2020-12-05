@@ -6,10 +6,11 @@ import FiltersProvider from 'providers/FiltersProvider/FiltersProvider';
 
 import ProductGrid from 'components/organisms/ProductGrid/ProductGrid';
 import Headline from 'components/atoms/Headline/Headline';
+import AsideFilters from 'components/organisms/AsideFilters/AsideFilters';
 
 import { sortProductByAlphabet, sortProductByPrice } from 'helpers';
 import filtersReducer, { filtersInitialState } from './reducer';
-import { SORT_BY } from './reducer/types';
+import { SORT_BY, SHOW_ASIDE_FILTERS, HIDE_ASIDE_FILTERS } from './reducer/types';
 
 import { Wrapper } from './ProductsTemplate.style';
 
@@ -38,7 +39,17 @@ const ProductsTemplate = ({
       },
     });
 
-  const applyFilters = () => {
+  const showAside = () =>
+    dispatch({
+      type: SHOW_ASIDE_FILTERS,
+    });
+
+  const hideAside = () =>
+    dispatch({
+      type: HIDE_ASIDE_FILTERS,
+    });
+
+  const applySorting = () => {
     if (!products.length) return;
 
     if (filtersState.sortBy.startsWith('alphabet')) {
@@ -53,12 +64,13 @@ const ProductsTemplate = ({
   };
 
   useEffect(() => {
-    applyFilters();
+    applySorting();
   }, [filtersState.sortBy]);
 
   const catalogFilters = {
-    applyFilters,
     sortBy,
+    showAside,
+    hideAside,
     sortOptions,
   };
 
@@ -66,6 +78,7 @@ const ProductsTemplate = ({
     <Wrapper>
       <Headline text={displayName} />
       <FiltersProvider filters={catalogFilters}>
+        <AsideFilters isOpen={filtersState.areAsideFiltersVisible} close={hideAside} />
         <ProductGrid products={sortedProducts} />
       </FiltersProvider>
     </Wrapper>

@@ -62,6 +62,10 @@ a {
   overflow-x: visible;
 }
 
+.tl-wrapper{
+  position: static;
+}
+
 
 ::-webkit-scrollbar {
       width: 4px;

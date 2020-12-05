@@ -1,7 +1,8 @@
-import { SORT_BY } from './types';
+import { SORT_BY, SHOW_ASIDE_FILTERS, HIDE_ASIDE_FILTERS } from './types';
 
 export const filtersInitialState = {
   sortBy: '',
+  areAsideFiltersVisible: false,
 };
 
 const filtersReducer = (state, { type, payload }) => {
@@ -10,6 +11,18 @@ const filtersReducer = (state, { type, payload }) => {
       return {
         ...state,
         sortBy: payload.option,
+      };
+
+    case SHOW_ASIDE_FILTERS:
+      return {
+        ...state,
+        areAsideFiltersVisible: true,
+      };
+
+    case HIDE_ASIDE_FILTERS:
+      return {
+        ...state,
+        areAsideFiltersVisible: false,
       };
 
     default:
