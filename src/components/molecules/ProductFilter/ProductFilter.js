@@ -11,6 +11,11 @@ import { Wrapper } from './ProductFilter.style';
 const ProductFilter = () => {
   const { sortBy, sortOptions, showAside } = useContext(FiltersContext);
 
+  const sortByInput = e => {
+    const { value } = e.target;
+    sortBy(value);
+  };
+
   return (
     <Wrapper>
       <CTA isButton onClick={showAside}>
@@ -19,12 +24,7 @@ const ProductFilter = () => {
           <span> Filtry</span>
         </div>
       </CTA>
-      <Select
-        label="sortuj"
-        name="sort"
-        options={sortOptions}
-        onChange={e => sortBy(e.target.value)}
-      />
+      <Select label="sortuj" name="sort" options={sortOptions} onChange={sortByInput} />
     </Wrapper>
   );
 };

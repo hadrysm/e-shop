@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useReducer } from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 
@@ -8,9 +8,8 @@ import ProductGrid from 'components/organisms/ProductGrid/ProductGrid';
 import Headline from 'components/atoms/Headline/Headline';
 import AsideFilters from 'components/organisms/AsideFilters/AsideFilters';
 
-import { sortProductByAlphabet, sortProductByPrice } from 'helpers';
-import filtersReducer, { filtersInitialState } from './reducer';
-import { SORT_BY, SHOW_ASIDE_FILTERS, HIDE_ASIDE_FILTERS } from './reducer/types';
+import filtersReducer from './reducer';
+import { SHOW_ASIDE_FILTERS, HIDE_ASIDE_FILTERS, SORT_BY } from './reducer/types';
 
 import { Wrapper } from './ProductsTemplate.style';
 
@@ -28,7 +27,12 @@ const ProductsTemplate = ({
     category: { displayName },
   },
 }) => {
-  const [sortedProducts, setSortedProducts] = useState(products);
+  const filtersInitialState = {
+    areAsideFiltersVisible: false,
+    products,
+    filteredProducts: [...products],
+  };
+
   const [filtersState, dispatch] = useReducer(filtersReducer, filtersInitialState);
 
   const sortBy = option =>
@@ -49,23 +53,9 @@ const ProductsTemplate = ({
       type: HIDE_ASIDE_FILTERS,
     });
 
-  const applySorting = () => {
-    if (!products.length) return;
-
-    if (filtersState.sortBy.startsWith('alphabet')) {
-      const arr = sortProductByAlphabet(products, filtersState.sortBy);
-      setSortedProducts(arr);
-    } else if (filtersState.sortBy.startsWith('price')) {
-      const arr = sortProductByPrice(products, filtersState.sortBy);
-      setSortedProducts(arr);
-    } else {
-      setSortedProducts(products);
-    }
-  };
-
-  useEffect(() => {
-    applySorting();
-  }, [filtersState.sortBy]);
+  // useEffect(() => {
+  //   applySorting();
+  // }, [filtersState.appliedFilters]);
 
   const catalogFilters = {
     sortBy,
@@ -79,7 +69,7 @@ const ProductsTemplate = ({
       <Headline text={displayName} />
       <FiltersProvider filters={catalogFilters}>
         <AsideFilters isOpen={filtersState.areAsideFiltersVisible} close={hideAside} />
-        <ProductGrid products={sortedProducts} />
+        <ProductGrid products={filtersState.filteredProducts} />
       </FiltersProvider>
     </Wrapper>
   );

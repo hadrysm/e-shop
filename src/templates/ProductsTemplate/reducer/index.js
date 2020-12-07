@@ -1,17 +1,42 @@
+import { sortProductByAlphabet, sortProductByPrice } from 'helpers';
 import { SORT_BY, SHOW_ASIDE_FILTERS, HIDE_ASIDE_FILTERS } from './types';
 
-export const filtersInitialState = {
-  sortBy: '',
-  areAsideFiltersVisible: false,
+// const filtersInitialState = {
+//   areAsideFiltersVisible: false,
+//   products,
+//   filteredProducts: [...products],
+// };
+
+const sortProductsBy = (state, option) => {
+  const sortByState = { ...state };
+
+  if (option.startsWith('alphabet')) {
+    const sortedProcusts = sortProductByAlphabet(sortByState.products, option);
+
+    return {
+      ...sortByState,
+      filteredProducts: [...sortedProcusts],
+    };
+  }
+  if (option.startsWith('price')) {
+    const sortedProcusts = sortProductByPrice(sortByState.products, option);
+
+    return {
+      ...sortByState,
+      filteredProducts: [...sortedProcusts],
+    };
+  }
+
+  return {
+    ...sortByState,
+    filteredProducts: [...sortByState.products],
+  };
 };
 
 const filtersReducer = (state, { type, payload }) => {
   switch (type) {
     case SORT_BY:
-      return {
-        ...state,
-        sortBy: payload.option,
-      };
+      return sortProductsBy(state, payload.option);
 
     case SHOW_ASIDE_FILTERS:
       return {
