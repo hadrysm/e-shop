@@ -60,12 +60,9 @@ const ProductsTemplate = ({
       type: HIDE_ASIDE_FILTERS,
     });
 
-  const filtrBySizes = option =>
+  const filtrBySizes = () =>
     dispatch({
       type: FILTER_BY_SIZES,
-      payload: {
-        option,
-      },
     });
 
   const includeSize = sizeValue => {
@@ -88,16 +85,16 @@ const ProductsTemplate = ({
   };
 
   const apllyFilters = () => {
-    console.log(filtersState);
+    filtrBySizes();
+    // console.log(filtersState);
   };
 
   // useEffect(() => {
-  //   applySorting();
-  // }, [filtersState.appliedFilters]);
+  //   apllyFilters();
+  // }, [filtersState.sizes]);
 
   const catalogFilters = {
     sortBy,
-    filtrBySizes,
     showAside,
     hideAside,
     sortOptions,
@@ -126,6 +123,9 @@ export const query = graphql`
         name
         price
         discountPrice
+        size {
+          size
+        }
         image {
           fluid(maxWidth: 560) {
             ...GatsbyDatoCmsFluid_tracedSVG

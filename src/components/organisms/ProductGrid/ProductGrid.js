@@ -18,7 +18,11 @@ const ProductGrid = ({ products }) => {
   return (
     <main>
       <ProductFilter />
-      <GridWrapper>{products.map(Product)}</GridWrapper>
+      <GridWrapper>
+        {products.map(({ originalId, ...args }) => (
+          <Product key={originalId} {...args} />
+        ))}
+      </GridWrapper>
     </main>
   );
 };

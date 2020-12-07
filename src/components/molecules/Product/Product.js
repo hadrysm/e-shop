@@ -17,7 +17,7 @@ import {
   Box,
 } from './Product.style';
 
-const Product = ({ originalId: id, image: { fluid }, name, price, discountPrice, slug }) => {
+const Product = ({ image: { fluid }, name, price, discountPrice, slug }) => {
   const formatedPrice = getFormatCurrency(price);
   const formatedDiscountPrice = getFormatCurrency(discountPrice);
 
@@ -38,7 +38,7 @@ const Product = ({ originalId: id, image: { fluid }, name, price, discountPrice,
   }, [imgWrapper]);
 
   return (
-    <Wrapper key={id}>
+    <Wrapper>
       <CTA to={`/products/${slug}`}>
         <InnerWrapper>
           <ImgWrapper ref={imgWrapper}>
@@ -62,14 +62,14 @@ const Product = ({ originalId: id, image: { fluid }, name, price, discountPrice,
 };
 
 Product.propTypes = {
-  originalId: PropTypes.string.isRequired,
+  // originalId: PropTypes.string.isRequired,
   image: PropTypes.shape({
-    fluid: PropTypes.string,
+    fluid: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   }).isRequired,
   name: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
   slug: PropTypes.string.isRequired,
-  discountPrice: PropTypes.string,
+  discountPrice: PropTypes.number,
 };
 
 Product.defaultProps = {

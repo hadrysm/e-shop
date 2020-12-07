@@ -7,43 +7,58 @@ import { SORT_BY, SHOW_ASIDE_FILTERS, HIDE_ASIDE_FILTERS, FILTER_BY_SIZES, SIZES
 //   filteredProducts: [...products],
 // };
 
-const sortProductsBy = (state, option) => {
-  const sortByState = { ...state };
-
-  if (option.startsWith('alphabet')) {
-    const sortedProcusts = sortProductByAlphabet(sortByState.products, option);
-
-    return {
-      ...sortByState,
-      filteredProducts: [...sortedProcusts],
-    };
-  }
-  if (option.startsWith('price')) {
-    const sortedProcusts = sortProductByPrice(sortByState.products, option);
-
-    return {
-      ...sortByState,
-      filteredProducts: [...sortedProcusts],
-    };
-  }
-
-  return {
-    ...sortByState,
-    filteredProducts: [...sortByState.products],
-  };
-};
-
-const filterProductsBy = (state, param) => {
-  console.log(param);
-  return {
-    ...state,
-  };
-};
-
 const filtersReducer = (state, { type, payload }) => {
+  const sortProductsBy = option => {
+    const { filteredProducts, sizes, products } = { ...state };
+
+    if (option.startsWith('alphabet')) {
+      const sortedProcusts = sortProductByAlphabet(filteredProducts, option);
+
+      return {
+        ...state,
+        filteredProducts: [...sortedProcusts],
+      };
+    }
+    if (option.startsWith('price')) {
+      const sortedProcusts = sortProductByPrice(filteredProducts, option);
+
+      return {
+        ...state,
+        filteredProducts: [...sortedProcusts],
+      };
+    }
+
+    if (sizes.length) {
+      return {
+        ...state,
+        filteredProducts: [...filteredProducts],
+      };
+    }
+
+    return {
+      ...state,
+      filteredProducts: [...products],
+    };
+  };
+
+  const filterProductsBy = () => {
+    const { sizes, products } = { ...state };
+
+    if (!sizes.length) return { ...state, filteredProducts: products };
+
+    const updatedProducts = [...products].filter(product =>
+      product.size.some(({ size }) => sizes.includes(size)),
+    );
+
+    return {
+      ...state,
+      filteredProducts: [...updatedProducts],
+    };
+  };
+
   switch (type) {
     case SORT_BY:
-      return sortProductsBy(state, payload.option);
+      return sortProductsBy(payload.option);
 
     case SIZES:
       return {
@@ -52,7 +67,8 @@ const filtersReducer = (state, { type, payload }) => {
       };
 
     case FILTER_BY_SIZES:
-      return filterProductsBy(state, { type: 'size' });
+      // { filterBy: 'size' } add as argument letter
+      return filterProductsBy();
 
     case SHOW_ASIDE_FILTERS:
       return {
