@@ -2,11 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Aside from 'components/molecules/Aside/Aside';
+import FiltersContent from 'components/molecules/FiltersContent/FiltersContent';
+
+import { Wrapper } from './AsideFilters.style';
 
 const AsideFilters = ({ isOpen, close }) => {
   return (
     <Aside title="filtry" side="left" close={close} isOpen={isOpen}>
-      child
+      <Wrapper>
+        <FiltersContent />
+      </Wrapper>
     </Aside>
   );
 };

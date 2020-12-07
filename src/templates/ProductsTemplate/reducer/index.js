@@ -1,5 +1,5 @@
 import { sortProductByAlphabet, sortProductByPrice } from 'helpers';
-import { SORT_BY, SHOW_ASIDE_FILTERS, HIDE_ASIDE_FILTERS } from './types';
+import { SORT_BY, SHOW_ASIDE_FILTERS, HIDE_ASIDE_FILTERS, FILTER_BY_SIZES, SIZES } from './types';
 
 // const filtersInitialState = {
 //   areAsideFiltersVisible: false,
@@ -33,10 +33,26 @@ const sortProductsBy = (state, option) => {
   };
 };
 
+const filterProductsBy = (state, param) => {
+  console.log(param);
+  return {
+    ...state,
+  };
+};
+
 const filtersReducer = (state, { type, payload }) => {
   switch (type) {
     case SORT_BY:
       return sortProductsBy(state, payload.option);
+
+    case SIZES:
+      return {
+        ...state,
+        sizes: payload.sizes,
+      };
+
+    case FILTER_BY_SIZES:
+      return filterProductsBy(state, { type: 'size' });
 
     case SHOW_ASIDE_FILTERS:
       return {

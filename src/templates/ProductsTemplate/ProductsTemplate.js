@@ -9,7 +9,13 @@ import Headline from 'components/atoms/Headline/Headline';
 import AsideFilters from 'components/organisms/AsideFilters/AsideFilters';
 
 import filtersReducer from './reducer';
-import { SHOW_ASIDE_FILTERS, HIDE_ASIDE_FILTERS, SORT_BY } from './reducer/types';
+import {
+  SHOW_ASIDE_FILTERS,
+  HIDE_ASIDE_FILTERS,
+  SORT_BY,
+  FILTER_BY_SIZES,
+  SIZES,
+} from './reducer/types';
 
 import { Wrapper } from './ProductsTemplate.style';
 
@@ -29,6 +35,7 @@ const ProductsTemplate = ({
 }) => {
   const filtersInitialState = {
     areAsideFiltersVisible: false,
+    sizes: [],
     products,
     filteredProducts: [...products],
   };
@@ -53,15 +60,50 @@ const ProductsTemplate = ({
       type: HIDE_ASIDE_FILTERS,
     });
 
+  const filtrBySizes = option =>
+    dispatch({
+      type: FILTER_BY_SIZES,
+      payload: {
+        option,
+      },
+    });
+
+  const includeSize = sizeValue => {
+    if (filtersState.sizes.some(size => size === sizeValue)) {
+      const newSizes = filtersState.sizes.filter(size => size !== sizeValue);
+      dispatch({
+        type: SIZES,
+        payload: {
+          sizes: newSizes,
+        },
+      });
+    } else {
+      dispatch({
+        type: SIZES,
+        payload: {
+          sizes: [...filtersState.sizes, sizeValue],
+        },
+      });
+    }
+  };
+
+  const apllyFilters = () => {
+    console.log(filtersState);
+  };
+
   // useEffect(() => {
   //   applySorting();
   // }, [filtersState.appliedFilters]);
 
   const catalogFilters = {
     sortBy,
+    filtrBySizes,
     showAside,
     hideAside,
     sortOptions,
+    includeSize,
+    markedSize: filtersState.sizes,
+    apllyFilters,
   };
 
   return (

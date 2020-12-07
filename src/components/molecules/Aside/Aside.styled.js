@@ -7,6 +7,7 @@ export const Wrapper = styled.aside`
   width: 100%;
   max-width: 34rem;
   height: 100vh;
+  padding: 2rem 1rem;
   visibility: hidden;
   transform: translateX(-100%);
   background-color: ${({ theme }) => theme.colors.white};
@@ -27,7 +28,6 @@ export const HeadingWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem 1rem;
   position: relative;
 
   ::after {
