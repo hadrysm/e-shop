@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 
@@ -14,7 +14,10 @@ import {
   HIDE_ASIDE_FILTERS,
   SORT_BY,
   FILTER_BY_SIZES,
+  FILTER_BY_SEARCH,
+  SEARCH,
   SIZES,
+  CLEAR_FILTERS,
 } from './reducer/types';
 
 import { Wrapper } from './ProductsTemplate.style';
@@ -36,6 +39,7 @@ const ProductsTemplate = ({
   const filtersInitialState = {
     areAsideFiltersVisible: false,
     sizes: [],
+    searchInputValue: '',
     products,
     filteredProducts: [...products],
   };
@@ -84,14 +88,31 @@ const ProductsTemplate = ({
     }
   };
 
+  const handleSearch = searchInputValue =>
+    dispatch({
+      type: SEARCH,
+      payload: {
+        searchInputValue,
+      },
+    });
+
+  const filtrBySearch = () =>
+    dispatch({
+      type: FILTER_BY_SEARCH,
+    });
+
+  const clearFilters = () =>
+    dispatch({
+      type: CLEAR_FILTERS,
+    });
+
   const apllyFilters = () => {
     filtrBySizes();
-    // console.log(filtersState);
   };
 
-  // useEffect(() => {
-  //   apllyFilters();
-  // }, [filtersState.sizes]);
+  useEffect(() => {
+    filtrBySearch();
+  }, [filtersState.searchInputValue]);
 
   const catalogFilters = {
     sortBy,
@@ -101,6 +122,8 @@ const ProductsTemplate = ({
     includeSize,
     markedSize: filtersState.sizes,
     apllyFilters,
+    handleSearch,
+    clearFilters,
   };
 
   return (
