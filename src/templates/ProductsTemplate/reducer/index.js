@@ -1,12 +1,6 @@
 import { sortProductByAlphabet, sortProductByPrice } from 'helpers';
 import { SORT_BY, SHOW_ASIDE_FILTERS, HIDE_ASIDE_FILTERS, FILTER_BY_SIZES, SIZES } from './types';
 
-// const filtersInitialState = {
-//   areAsideFiltersVisible: false,
-//   products,
-//   filteredProducts: [...products],
-// };
-
 const filtersReducer = (state, { type, payload }) => {
   const sortProductsBy = option => {
     const { filteredProducts, sizes, products } = { ...state };

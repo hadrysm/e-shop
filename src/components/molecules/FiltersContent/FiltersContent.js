@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 
 import { FiltersContext } from 'providers/FiltersProvider/FiltersProvider';
 import SizesFilters from 'components/molecules/SizesFilters/SizesFilters';
+import Input from 'components/atoms/Input/Input';
 
 import { Button, Heading, ButtonsWrapper } from './FiltersContent.style';
 
@@ -15,7 +16,7 @@ const FiltersContent = () => {
 
   return (
     <>
-      <input />
+      <Input placeholder="Wyszukaj..." icon="search" />
       <Heading>Rozmiary</Heading>
       <SizesFilters />
       <Heading>Cena</Heading>
