@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import InputRange from 'react-input-range';
 
-import { FiltersContext } from 'providers/FiltersProvider/FiltersProvider';
 import SizesFilters from 'components/molecules/SizesFilters/SizesFilters';
 import Input from 'components/atoms/Input/Input';
+
+import { useFilterAndSort } from 'hooks/useFilterAndSort';
 
 import { Button, Heading, ButtonsWrapper, InputRangeWrapper } from './FiltersContent.style';
 
@@ -15,7 +16,7 @@ const FiltersContent = () => {
     handleSearch,
     priceRange,
     priceHandler,
-  } = useContext(FiltersContext);
+  } = useFilterAndSort();
 
   const handleApply = () => {
     apllyFilters();

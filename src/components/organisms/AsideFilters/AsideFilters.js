@@ -1,14 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Aside from 'components/molecules/Aside/Aside';
 import FiltersContent from 'components/molecules/FiltersContent/FiltersContent';
 
+import { useFilterAndSort } from 'hooks/useFilterAndSort';
 import { Wrapper } from './AsideFilters.style';
 
-const AsideFilters = ({ isOpen, close }) => {
+const AsideFilters = () => {
+  const { isFiltersVisible, hideAside } = useFilterAndSort();
+
   return (
-    <Aside title="filtry" side="left" close={close} isOpen={isOpen}>
+    <Aside title="filtry" side="left" close={hideAside} isOpen={isFiltersVisible}>
       <Wrapper>
         <FiltersContent />
       </Wrapper>
@@ -16,12 +18,4 @@ const AsideFilters = ({ isOpen, close }) => {
   );
 };
 
-AsideFilters.propTypes = {
-  isOpen: PropTypes.bool,
-  close: PropTypes.func.isRequired,
-};
-
-AsideFilters.defaultProps = {
-  isOpen: false,
-};
 export default AsideFilters;

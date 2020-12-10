@@ -6,20 +6,24 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Product from 'components/molecules/Product/Product';
 import ProductFilter from 'components/molecules/ProductFilter/ProductFilter';
 
+import { useFilterAndSort } from 'hooks/useFilterAndSort';
+
 import { GridWrapper } from './ProductGrid.style';
 
-const ProductGrid = ({ products }) => {
-  if (!products) return null;
+const ProductGrid = () => {
+  const { filteredProducts } = useFilterAndSort();
+
+  if (!filteredProducts) return null;
 
   useEffect(() => {
     ScrollTrigger.refresh();
-  }, [products]);
+  }, [filteredProducts]);
 
   return (
     <main>
       <ProductFilter />
       <GridWrapper>
-        {products.map(({ originalId, ...args }) => (
+        {filteredProducts.map(({ originalId, ...args }) => (
           <Product key={originalId} {...args} />
         ))}
       </GridWrapper>

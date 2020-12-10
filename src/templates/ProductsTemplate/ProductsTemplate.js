@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 
@@ -8,28 +8,7 @@ import ProductGrid from 'components/organisms/ProductGrid/ProductGrid';
 import Headline from 'components/atoms/Headline/Headline';
 import AsideFilters from 'components/organisms/AsideFilters/AsideFilters';
 
-import filtersReducer from './reducer';
-import {
-  SHOW_ASIDE_FILTERS,
-  HIDE_ASIDE_FILTERS,
-  SORT_BY,
-  FILTER_BY_SEARCH,
-  SEARCH,
-  SIZES,
-  CLEAR_FILTERS,
-  PRICE,
-  APPLY_FILTERS,
-} from './reducer/types';
-
 import { Wrapper } from './ProductsTemplate.style';
-
-const sortOptions = [
-  { value: '', displayValue: 'Proponowane' },
-  { value: 'priceASC', displayValue: 'Cena, od najniższej' },
-  { value: 'priceDESC', displayValue: 'Cena, od najwyższej' },
-  { value: 'alphabetASC', displayValue: 'Alfabetycznie, A-Z' },
-  { value: 'alphabetDESC', displayValue: 'Alfabetycznie, Z-A' },
-];
 
 const ProductsTemplate = ({
   data: {
@@ -37,114 +16,12 @@ const ProductsTemplate = ({
     category: { displayName },
   },
 }) => {
-  const filtersInitialState = {
-    areAsideFiltersVisible: false,
-    priceRange: { min: 0, max: 150 },
-    sizes: [],
-    searchInputValue: '',
-    products,
-    filteredProducts: [...products],
-  };
-
-  const [filtersState, dispatch] = useReducer(filtersReducer, filtersInitialState);
-
-  const sortBy = option =>
-    dispatch({
-      type: SORT_BY,
-      payload: {
-        option,
-      },
-    });
-
-  const includePrice = value =>
-    dispatch({
-      type: PRICE,
-      payload: {
-        value,
-      },
-    });
-
-  const showAside = () =>
-    dispatch({
-      type: SHOW_ASIDE_FILTERS,
-    });
-
-  const hideAside = () =>
-    dispatch({
-      type: HIDE_ASIDE_FILTERS,
-    });
-
-  // const filtrBySizes = () =>
-  //   dispatch({
-  //     type: FILTER_BY_SIZES,
-  //   });
-
-  const includeSize = sizeValue => {
-    if (filtersState.sizes.some(size => size === sizeValue)) {
-      const newSizes = filtersState.sizes.filter(size => size !== sizeValue);
-      dispatch({
-        type: SIZES,
-        payload: {
-          sizes: newSizes,
-        },
-      });
-    } else {
-      dispatch({
-        type: SIZES,
-        payload: {
-          sizes: [...filtersState.sizes, sizeValue],
-        },
-      });
-    }
-  };
-
-  const handleSearch = searchInputValue =>
-    dispatch({
-      type: SEARCH,
-      payload: {
-        searchInputValue,
-      },
-    });
-
-  const filtrBySearch = () =>
-    dispatch({
-      type: FILTER_BY_SEARCH,
-    });
-
-  const clearFilters = () =>
-    dispatch({
-      type: CLEAR_FILTERS,
-    });
-
-  const apllyFilters = () =>
-    dispatch({
-      type: APPLY_FILTERS,
-    });
-
-  useEffect(() => {
-    filtrBySearch();
-  }, [filtersState.searchInputValue]);
-
-  const catalogFilters = {
-    sortBy,
-    showAside,
-    hideAside,
-    sortOptions,
-    includeSize,
-    markedSize: filtersState.sizes,
-    apllyFilters,
-    handleSearch,
-    clearFilters,
-    priceRange: filtersState.priceRange,
-    priceHandler: includePrice,
-  };
-
   return (
     <Wrapper>
       <Headline text={displayName} />
-      <FiltersProvider filters={catalogFilters}>
-        <AsideFilters isOpen={filtersState.areAsideFiltersVisible} close={hideAside} />
-        <ProductGrid products={filtersState.filteredProducts} />
+      <FiltersProvider products={products}>
+        <AsideFilters />
+        <ProductGrid />
       </FiltersProvider>
     </Wrapper>
   );

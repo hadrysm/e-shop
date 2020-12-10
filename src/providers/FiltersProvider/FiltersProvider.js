@@ -1,25 +1,31 @@
-import React, { createContext } from 'react';
+import React, { createContext, useReducer } from 'react';
 import PropTypes from 'prop-types';
+
+import filtersReducer from './reducer';
 
 export const FiltersContext = createContext({
   sortBy: () => {},
 });
 
-const FiltersProvider = ({ children, filters }) => {
-  return <FiltersContext.Provider value={filters}>{children}</FiltersContext.Provider>;
+const FiltersProvider = ({ children, products }) => {
+  const filtersInitialState = {
+    areAsideFiltersVisible: false,
+    priceRange: { min: 0, max: 150 },
+    sizes: [],
+    searchInputValue: '',
+    products,
+    filteredProducts: [...products],
+  };
+
+  const [filtersState, dispatch] = useReducer(filtersReducer, filtersInitialState);
+
+  return (
+    <FiltersContext.Provider value={[filtersState, dispatch]}>{children}</FiltersContext.Provider>
+  );
 };
 
 FiltersProvider.propTypes = {
-  filters: PropTypes.objectOf(
-    PropTypes.oneOfType([
-      PropTypes.arrayOf(
-        PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object]),
-      ),
-      PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-      PropTypes.string,
-      PropTypes.func,
-    ]),
-  ).isRequired,
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 };
 export default FiltersProvider;

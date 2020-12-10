@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
-import { FiltersContext } from 'providers/FiltersProvider/FiltersProvider';
+import { useFilterAndSort } from 'hooks/useFilterAndSort';
 
 import { Wrapper, Size, Checkmark, Name } from './SizesFilters.style';
 
 const SizesFilters = () => {
-  const { includeSize, markedSize } = useContext(FiltersContext);
+  const { markedSize, includeSize } = useFilterAndSort();
 
   const {
     allDatoCmsSize: { sizes },
