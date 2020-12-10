@@ -101,7 +101,7 @@ export const query = graphql`
       }
       discountPrice
       image {
-        fluid(maxWidth: 560) {
+        fluid(maxWidth: 560, maxHeight: 500) {
           ...GatsbyDatoCmsFluid_tracedSVG
         }
       }

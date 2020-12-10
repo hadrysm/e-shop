@@ -12,6 +12,7 @@ const FiltersProvider = ({ children, products }) => {
     areAsideFiltersVisible: false,
     priceRange: { min: 0, max: 150 },
     sizes: [],
+    sortBy: '',
     searchInputValue: '',
     products,
     filteredProducts: [...products],

@@ -111,5 +111,6 @@ export const useFilterAndSort = () => {
     priceRange: filtersState.priceRange,
     filteredProducts: filtersState.filteredProducts,
     searchInputValue: filtersState.searchInputValue,
+    sortByValue: filtersState.sortBy,
   };
 };

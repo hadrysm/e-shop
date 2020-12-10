@@ -19,8 +19,8 @@ const filtersReducer = (state, { type, payload }) => {
       priceRange: { min, max },
     } = { ...state };
 
-    const filteredProducts = [...products].filter(product => {
-      const price = product.discountPrice ? product.discountPrice : product.price;
+    const filteredProducts = products.filter(product => {
+      const price = product.discountPrice || product.price;
 
       if (!sizes.length) return price >= min && price <= max;
 
@@ -40,7 +40,7 @@ const filtersReducer = (state, { type, payload }) => {
     if (!searchInputValue) return { ...state, filteredProducts: products };
 
     const value = searchInputValue.toLowerCase();
-    const result = [...filteredProducts].filter(({ name }) => name.toLowerCase().includes(value));
+    const result = filteredProducts.filter(({ name }) => name.toLowerCase().includes(value));
 
     return {
       ...state,
@@ -56,7 +56,8 @@ const filtersReducer = (state, { type, payload }) => {
 
       return {
         ...state,
-        filteredProducts: [...sortedProcusts],
+        sortBy: option,
+        filteredProducts: sortedProcusts,
       };
     }
     if (option.startsWith('price')) {
@@ -64,19 +65,22 @@ const filtersReducer = (state, { type, payload }) => {
 
       return {
         ...state,
-        filteredProducts: [...sortedProcusts],
+        sortBy: option,
+        filteredProducts: sortedProcusts,
       };
     }
 
     if (sizes.length) {
       return {
         ...state,
+        sortBy: option,
         filteredProducts: [...filteredProducts],
       };
     }
 
     return {
       ...state,
+      sortBy: option,
       filteredProducts: [...products],
     };
   };
@@ -115,6 +119,7 @@ const filtersReducer = (state, { type, payload }) => {
         sizes: [],
         priceRange: { min: 0, max: 150 },
         searchInputValue: '',
+        sortBy: '',
         products: [...state.products],
         filteredProducts: [...state.products],
       };

@@ -40,7 +40,7 @@ export const query = graphql`
           size
         }
         image {
-          fluid(maxWidth: 560) {
+          fluid(maxWidth: 560, maxHeight: 500) {
             ...GatsbyDatoCmsFluid_tracedSVG
           }
         }

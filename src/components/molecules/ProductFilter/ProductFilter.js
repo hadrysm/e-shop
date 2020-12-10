@@ -10,7 +10,7 @@ import { useFilterAndSort } from 'hooks/useFilterAndSort';
 import { Wrapper } from './ProductFilter.style';
 
 const ProductFilter = () => {
-  const { sortBy, sortOptions, showAside } = useFilterAndSort();
+  const { sortBy, sortOptions, showAside, sortByValue } = useFilterAndSort();
 
   const sortByInput = e => {
     const { value } = e.target;
@@ -25,7 +25,13 @@ const ProductFilter = () => {
           <span> Filtry</span>
         </div>
       </CTA>
-      <Select label="sortuj" name="sort" options={sortOptions} onChange={sortByInput} />
+      <Select
+        label="sortuj"
+        name="sort"
+        options={sortOptions}
+        onChange={sortByInput}
+        value={sortByValue}
+      />
     </Wrapper>
   );
 };
