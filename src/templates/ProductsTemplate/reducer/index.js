@@ -7,14 +7,52 @@ import {
   SORT_BY,
   SHOW_ASIDE_FILTERS,
   HIDE_ASIDE_FILTERS,
-  FILTER_BY_SIZES,
   FILTER_BY_SEARCH,
   SIZES,
   SEARCH,
   CLEAR_FILTERS,
+  PRICE,
+  APPLY_FILTERS,
 } from './types';
 
 const filtersReducer = (state, { type, payload }) => {
+  const applyFilters = () => {
+    const {
+      sizes,
+      products,
+      priceRange: { min, max },
+    } = { ...state };
+
+    const filteredProducts = [...products].filter(product => {
+      const price = product.discountPrice ? product.discountPrice : product.price;
+
+      if (!sizes.length) return price >= min && price <= max;
+
+      return product.size.some(({ size }) => sizes.includes(size)) && price >= min && price <= max;
+    });
+    handleOnFilterProducts('Pomyślnie przefiltrowano produkty!');
+
+    return {
+      ...state,
+      filteredProducts,
+      searchInputValue: '',
+    };
+  };
+
+  const filterProductsBySearch = () => {
+    const { products, searchInputValue, filteredProducts } = { ...state };
+
+    if (!searchInputValue) return { ...state, filteredProducts: products };
+
+    const value = searchInputValue.toLowerCase();
+    const result = [...filteredProducts].filter(({ name }) => name.toLowerCase().includes(value));
+
+    return {
+      ...state,
+      filteredProducts: result,
+    };
+  };
+
   const sortProductsBy = option => {
     const { filteredProducts, sizes, products } = { ...state };
 
@@ -48,41 +86,6 @@ const filtersReducer = (state, { type, payload }) => {
     };
   };
 
-  const filterProductsBy = ({ filterBy }) => {
-    const { sizes, products, searchInputValue } = { ...state };
-
-    if (filterBy === 'sizes') {
-      if (!sizes.length) return { ...state, filteredProducts: products };
-
-      const filteredProducts = [...products].filter(product =>
-        product.size.some(({ size }) => sizes.includes(size)),
-      );
-      handleOnFilterProducts('Pomyślnie przefiltrowano produkty!');
-
-      return {
-        ...state,
-        filteredProducts: [...filteredProducts],
-      };
-    }
-    if (filterBy === 'search') {
-      if (!searchInputValue) return { ...state, filteredProducts: products };
-
-      const value = searchInputValue.toLowerCase();
-      const filteredProducts = [...products].filter(({ name }) =>
-        name.toLowerCase().includes(value),
-      );
-
-      return {
-        ...state,
-        filteredProducts: [...filteredProducts],
-      };
-    }
-
-    return {
-      ...state,
-    };
-  };
-
   switch (type) {
     case SORT_BY:
       return sortProductsBy(payload.option);
@@ -99,11 +102,29 @@ const filtersReducer = (state, { type, payload }) => {
         searchInputValue: payload.searchInputValue,
       };
 
-    case FILTER_BY_SIZES:
-      return filterProductsBy({ filterBy: 'sizes' });
+    case PRICE:
+      return {
+        ...state,
+        priceRange: payload.value,
+      };
+
+    case APPLY_FILTERS:
+      return applyFilters();
 
     case FILTER_BY_SEARCH:
-      return filterProductsBy({ filterBy: 'search' });
+      return filterProductsBySearch();
+
+    case CLEAR_FILTERS:
+      handleOnFilterProducts('Pomyślnie wyczyszczono filtry!');
+
+      return {
+        ...state,
+        sizes: [],
+        priceRange: { min: 0, max: 150 },
+        searchInputValue: '',
+        products: [...state.products],
+        filteredProducts: [...state.products],
+      };
 
     case SHOW_ASIDE_FILTERS:
       return {
@@ -115,17 +136,6 @@ const filtersReducer = (state, { type, payload }) => {
       return {
         ...state,
         areAsideFiltersVisible: false,
-      };
-
-    case CLEAR_FILTERS:
-      handleOnFilterProducts('Pomyślnie wyczyszczono filtry!');
-
-      return {
-        ...state,
-        sizes: [],
-        searchInputValue: '',
-        products: [...state.products],
-        filteredProducts: [...state.products],
       };
 
     default:

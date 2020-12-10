@@ -1,13 +1,21 @@
 import React, { useContext } from 'react';
+import InputRange from 'react-input-range';
 
 import { FiltersContext } from 'providers/FiltersProvider/FiltersProvider';
 import SizesFilters from 'components/molecules/SizesFilters/SizesFilters';
 import Input from 'components/atoms/Input/Input';
 
-import { Button, Heading, ButtonsWrapper } from './FiltersContent.style';
+import { Button, Heading, ButtonsWrapper, InputRangeWrapper } from './FiltersContent.style';
 
 const FiltersContent = () => {
-  const { hideAside, apllyFilters, clearFilters, handleSearch } = useContext(FiltersContext);
+  const {
+    hideAside,
+    apllyFilters,
+    clearFilters,
+    handleSearch,
+    priceRange,
+    priceHandler,
+  } = useContext(FiltersContext);
 
   const handleApply = () => {
     apllyFilters();
@@ -20,7 +28,15 @@ const FiltersContent = () => {
       <Heading>Rozmiary</Heading>
       <SizesFilters />
       <Heading>Cena</Heading>
-      input ragne
+      <InputRangeWrapper>
+        <InputRange
+          step={25}
+          maxValue={250}
+          minValue={0}
+          value={priceRange}
+          onChange={value => priceHandler(value)}
+        />
+      </InputRangeWrapper>
       <ButtonsWrapper>
         <Button isButton onClick={handleApply}>
           Filtruj

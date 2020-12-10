@@ -13,11 +13,12 @@ import {
   SHOW_ASIDE_FILTERS,
   HIDE_ASIDE_FILTERS,
   SORT_BY,
-  FILTER_BY_SIZES,
   FILTER_BY_SEARCH,
   SEARCH,
   SIZES,
   CLEAR_FILTERS,
+  PRICE,
+  APPLY_FILTERS,
 } from './reducer/types';
 
 import { Wrapper } from './ProductsTemplate.style';
@@ -38,6 +39,7 @@ const ProductsTemplate = ({
 }) => {
   const filtersInitialState = {
     areAsideFiltersVisible: false,
+    priceRange: { min: 0, max: 150 },
     sizes: [],
     searchInputValue: '',
     products,
@@ -54,6 +56,14 @@ const ProductsTemplate = ({
       },
     });
 
+  const includePrice = value =>
+    dispatch({
+      type: PRICE,
+      payload: {
+        value,
+      },
+    });
+
   const showAside = () =>
     dispatch({
       type: SHOW_ASIDE_FILTERS,
@@ -64,10 +74,10 @@ const ProductsTemplate = ({
       type: HIDE_ASIDE_FILTERS,
     });
 
-  const filtrBySizes = () =>
-    dispatch({
-      type: FILTER_BY_SIZES,
-    });
+  // const filtrBySizes = () =>
+  //   dispatch({
+  //     type: FILTER_BY_SIZES,
+  //   });
 
   const includeSize = sizeValue => {
     if (filtersState.sizes.some(size => size === sizeValue)) {
@@ -106,9 +116,10 @@ const ProductsTemplate = ({
       type: CLEAR_FILTERS,
     });
 
-  const apllyFilters = () => {
-    filtrBySizes();
-  };
+  const apllyFilters = () =>
+    dispatch({
+      type: APPLY_FILTERS,
+    });
 
   useEffect(() => {
     filtrBySearch();
@@ -124,6 +135,8 @@ const ProductsTemplate = ({
     apllyFilters,
     handleSearch,
     clearFilters,
+    priceRange: filtersState.priceRange,
+    priceHandler: includePrice,
   };
 
   return (
