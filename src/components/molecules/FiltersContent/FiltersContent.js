@@ -1,5 +1,6 @@
 import React from 'react';
 import InputRange from 'react-input-range';
+import { handleOnFilterProducts } from 'helpers/sortAndFilters';
 
 import SizesFilters from 'components/molecules/SizesFilters/SizesFilters';
 import Input from 'components/atoms/Input/Input';
@@ -16,16 +17,28 @@ const FiltersContent = () => {
     handleSearch,
     priceRange,
     priceHandler,
+    searchInputValue,
   } = useFilterAndSort();
 
   const handleApply = () => {
     apllyFilters();
     hideAside();
+    handleOnFilterProducts('Pomyślnie przefiltrowano produkty!');
+  };
+
+  const handleClear = () => {
+    clearFilters();
+    handleOnFilterProducts('Pomyślnie wyczyszczono filtry!');
   };
 
   return (
     <>
-      <Input placeholder="Wyszukaj..." icon="search" onChange={e => handleSearch(e.target.value)} />
+      <Input
+        placeholder="Wyszukaj..."
+        icon="search"
+        value={searchInputValue}
+        onChange={e => handleSearch(e.target.value)}
+      />
       <Heading>Rozmiary</Heading>
       <SizesFilters />
       <Heading>Cena</Heading>
@@ -42,7 +55,7 @@ const FiltersContent = () => {
         <Button isButton onClick={handleApply}>
           Filtruj
         </Button>
-        <Button isButton secondary onClick={clearFilters}>
+        <Button isButton secondary onClick={handleClear}>
           Wyczyść filtry
         </Button>
       </ButtonsWrapper>

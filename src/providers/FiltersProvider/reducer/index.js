@@ -1,8 +1,4 @@
-import {
-  sortProductByAlphabet,
-  sortProductByPrice,
-  handleOnFilterProducts,
-} from 'helpers/sortAndFilters';
+import { sortProductByAlphabet, sortProductByPrice } from 'helpers/sortAndFilters';
 import {
   SORT_BY,
   SHOW_ASIDE_FILTERS,
@@ -30,7 +26,6 @@ const filtersReducer = (state, { type, payload }) => {
 
       return product.size.some(({ size }) => sizes.includes(size)) && price >= min && price <= max;
     });
-    handleOnFilterProducts('Pomyślnie przefiltrowano produkty!');
 
     return {
       ...state,
@@ -115,8 +110,6 @@ const filtersReducer = (state, { type, payload }) => {
       return filterProductsBySearch();
 
     case CLEAR_FILTERS:
-      handleOnFilterProducts('Pomyślnie wyczyszczono filtry!');
-
       return {
         ...state,
         sizes: [],

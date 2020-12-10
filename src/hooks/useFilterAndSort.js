@@ -39,16 +39,6 @@ export const useFilterAndSort = () => {
       },
     });
 
-  const showAside = () =>
-    dispatch({
-      type: SHOW_ASIDE_FILTERS,
-    });
-
-  const hideAside = () =>
-    dispatch({
-      type: HIDE_ASIDE_FILTERS,
-    });
-
   const includeSize = sizeValue => {
     if (filtersState.sizes.some(size => size === sizeValue)) {
       const newSizes = filtersState.sizes.filter(size => size !== sizeValue);
@@ -91,6 +81,16 @@ export const useFilterAndSort = () => {
       type: APPLY_FILTERS,
     });
 
+  const showAside = () =>
+    dispatch({
+      type: SHOW_ASIDE_FILTERS,
+    });
+
+  const hideAside = () =>
+    dispatch({
+      type: HIDE_ASIDE_FILTERS,
+    });
+
   useEffect(() => {
     filtrBySearch();
   }, [filtersState.searchInputValue]);
@@ -110,5 +110,6 @@ export const useFilterAndSort = () => {
     markedSize: filtersState.sizes,
     priceRange: filtersState.priceRange,
     filteredProducts: filtersState.filteredProducts,
+    searchInputValue: filtersState.searchInputValue,
   };
 };
