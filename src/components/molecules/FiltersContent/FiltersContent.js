@@ -1,6 +1,5 @@
 import React from 'react';
 import InputRange from 'react-input-range';
-import { handleOnFilterProducts } from 'helpers/sortAndFilters';
 
 import SizesFilters from 'components/molecules/SizesFilters/SizesFilters';
 import Input from 'components/atoms/Input/Input';
@@ -23,12 +22,6 @@ const FiltersContent = () => {
   const handleApply = () => {
     apllyFilters();
     hideAside();
-    handleOnFilterProducts('Pomyślnie przefiltrowano produkty!');
-  };
-
-  const handleClear = () => {
-    clearFilters();
-    handleOnFilterProducts('Pomyślnie wyczyszczono filtry!');
   };
 
   return (
@@ -55,7 +48,7 @@ const FiltersContent = () => {
         <Button isButton onClick={handleApply}>
           Filtruj
         </Button>
-        <Button isButton secondary onClick={handleClear}>
+        <Button isButton secondary onClick={clearFilters}>
           Wyczyść filtry
         </Button>
       </ButtonsWrapper>

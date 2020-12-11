@@ -1,4 +1,11 @@
-import { sortProductByAlphabet, sortProductByPrice } from 'helpers/sortAndFilters';
+import {
+  sortProductByAlphabet,
+  sortProductByPrice,
+  handleOnFilterProducts,
+  handleOnClearFilterProducts,
+  handleOnSortProducts,
+  updateState,
+} from 'helpers/sortAndFilters';
 import {
   SORT_BY,
   SHOW_ASIDE_FILTERS,
@@ -19,6 +26,8 @@ const filtersReducer = (state, { type, payload }) => {
       priceRange: { min, max },
     } = { ...state };
 
+    handleOnFilterProducts();
+
     const filteredProducts = products.filter(product => {
       const price = product.discountPrice || product.price;
 
@@ -27,11 +36,7 @@ const filtersReducer = (state, { type, payload }) => {
       return product.size.some(({ size }) => sizes.includes(size)) && price >= min && price <= max;
     });
 
-    return {
-      ...state,
-      filteredProducts,
-      searchInputValue: '',
-    };
+    return updateState(state, { filteredProducts, searchInputValue: '' });
   };
 
   const filterProductsBySearch = () => {
@@ -42,47 +47,42 @@ const filtersReducer = (state, { type, payload }) => {
     const value = searchInputValue.toLowerCase();
     const result = filteredProducts.filter(({ name }) => name.toLowerCase().includes(value));
 
-    return {
-      ...state,
-      filteredProducts: result,
-    };
+    return updateState(state, { filteredProducts: result });
   };
 
   const sortProductsBy = option => {
     const { filteredProducts, sizes, products } = { ...state };
 
+    handleOnSortProducts();
+
     if (option.startsWith('alphabet')) {
       const sortedProcusts = sortProductByAlphabet(filteredProducts, option);
 
-      return {
-        ...state,
-        sortBy: option,
-        filteredProducts: sortedProcusts,
-      };
+      return updateState(state, { sortBy: option, filteredProducts: sortedProcusts });
     }
     if (option.startsWith('price')) {
       const sortedProcusts = sortProductByPrice(filteredProducts, option);
 
-      return {
-        ...state,
-        sortBy: option,
-        filteredProducts: sortedProcusts,
-      };
+      return updateState(state, { sortBy: option, filteredProducts: sortedProcusts });
     }
 
     if (sizes.length) {
-      return {
-        ...state,
-        sortBy: option,
-        filteredProducts: [...filteredProducts],
-      };
+      return updateState(state, { sortBy: option, filteredProducts });
     }
 
-    return {
-      ...state,
-      sortBy: option,
-      filteredProducts: [...products],
-    };
+    return updateState(state, { sortBy: option, filteredProducts: products });
+  };
+
+  const clearFilters = () => {
+    handleOnClearFilterProducts();
+    return updateState(state, {
+      sizes: [],
+      priceRange: { min: 0, max: 150 },
+      searchInputValue: '',
+      sortBy: '',
+      products: [...state.products],
+      filteredProducts: [...state.products],
+    });
   };
 
   switch (type) {
@@ -114,15 +114,7 @@ const filtersReducer = (state, { type, payload }) => {
       return filterProductsBySearch();
 
     case CLEAR_FILTERS:
-      return {
-        ...state,
-        sizes: [],
-        priceRange: { min: 0, max: 150 },
-        searchInputValue: '',
-        sortBy: '',
-        products: [...state.products],
-        filteredProducts: [...state.products],
-      };
+      return clearFilters();
 
     case SHOW_ASIDE_FILTERS:
       return {

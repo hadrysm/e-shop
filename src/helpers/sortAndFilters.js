@@ -1,6 +1,10 @@
 import { toast } from 'react-toastify';
 
-export const handleOnFilterProducts = text => toast.success(text);
+export const handleOnFilterProducts = () => toast.success('Pomyślnie przefiltrowano produkty!');
+
+export const handleOnSortProducts = () => toast.success('Pomyślnie posortowano produkty!');
+
+export const handleOnClearFilterProducts = () => toast.success('Pomyślnie wyczyszczono filtry!');
 
 export const sortProductByAlphabet = (products, val) => {
   if (!val) return products;
@@ -28,3 +32,5 @@ export const sortProductByPrice = (products, val) => {
     return varA > varB ? -1 : 1;
   });
 };
+
+export const updateState = (state, updatedProperties) => ({ ...state, ...updatedProperties });
