@@ -41,7 +41,6 @@ export const InnerWrapper = styled.div`
   }
 
   h1 {
-    position: relative;
     margin: 0;
     text-align: center;
     font-family: ${({ theme }) => theme.font.family.secondary};
@@ -50,7 +49,6 @@ export const InnerWrapper = styled.div`
     letter-spacing: 5px;
     line-height: 1.3;
     color: ${({ theme }) => theme.colors.white};
-    z-index: ${({ theme }) => theme.zIndex.level3};
 
     ${({ theme }) => theme.mq.bigTablet} {
       font-size: ${({ theme }) => theme.font.size.xl};

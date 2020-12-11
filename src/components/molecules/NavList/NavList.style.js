@@ -8,7 +8,6 @@ export const Wrapper = styled.div`
   width: 100vw;
   height: 100vh; /* Fallback for browsers that do not support Custom Properties */
   height: calc(var(--vh, 1vh) * 100);
-  z-index: ${({ theme }) => theme.zIndex.level7};
 
   ${({ theme }) => theme.mq.desktop} {
     position: static;
