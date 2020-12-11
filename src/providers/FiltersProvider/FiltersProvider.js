@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import filtersReducer from './reducer';
 
 export const FiltersContext = createContext({
-  sortBy: () => {},
+  value: [],
 });
 
 const FiltersProvider = ({ children, products }) => {
@@ -14,7 +14,7 @@ const FiltersProvider = ({ children, products }) => {
     sizes: [],
     sortBy: '',
     searchInputValue: '',
-    products,
+    products: [...products],
     filteredProducts: [...products],
   };
 

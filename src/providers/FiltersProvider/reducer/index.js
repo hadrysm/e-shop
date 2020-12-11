@@ -36,7 +36,11 @@ const filtersReducer = (state, { type, payload }) => {
       return product.size.some(({ size }) => sizes.includes(size)) && price >= min && price <= max;
     });
 
-    return updateState(state, { filteredProducts, searchInputValue: '' });
+    return updateState(state, {
+      filteredProducts,
+      searchInputValue: '',
+      areAsideFiltersVisible: false,
+    });
   };
 
   const filterProductsBySearch = () => {
@@ -66,11 +70,10 @@ const filtersReducer = (state, { type, payload }) => {
       return updateState(state, { sortBy: option, filteredProducts: sortedProcusts });
     }
 
-    if (sizes.length) {
-      return updateState(state, { sortBy: option, filteredProducts });
-    }
+    if (sizes.length > 0) return updateState(state, { sortBy: option, filteredProducts });
 
-    return updateState(state, { sortBy: option, filteredProducts: products });
+    // check this
+    return updateState(state, { sortBy: option, filteredProducts: [...products] });
   };
 
   const clearFilters = () => {
@@ -80,7 +83,6 @@ const filtersReducer = (state, { type, payload }) => {
       priceRange: { min: 0, max: 150 },
       searchInputValue: '',
       sortBy: '',
-      products: [...state.products],
       filteredProducts: [...state.products],
     });
   };

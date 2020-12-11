@@ -7,10 +7,10 @@ import { useFilterAndSort } from 'hooks/useFilterAndSort';
 import { Wrapper } from './AsideFilters.style';
 
 const AsideFilters = () => {
-  const { isFiltersVisible, hideAside } = useFilterAndSort();
+  const { isFiltersVisible, handleHideAside } = useFilterAndSort();
 
   return (
-    <Aside title="filtry" side="left" close={hideAside} isOpen={isFiltersVisible}>
+    <Aside title="filtry" side="left" close={handleHideAside} isOpen={isFiltersVisible}>
       <Wrapper>
         <FiltersContent />
       </Wrapper>

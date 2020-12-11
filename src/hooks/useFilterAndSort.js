@@ -13,7 +13,7 @@ import {
 } from 'providers/FiltersProvider/reducer/types';
 
 const sortOptions = [
-  { value: '', displayValue: 'Proponowane' },
+  { value: '', displayValue: 'Wybierz...' },
   { value: 'priceASC', displayValue: 'Cena, od najniższej' },
   { value: 'priceDESC', displayValue: 'Cena, od najwyższej' },
   { value: 'alphabetASC', displayValue: 'Alfabetycznie, A-Z' },
@@ -21,9 +21,12 @@ const sortOptions = [
 ];
 
 export const useFilterAndSort = () => {
-  const [filtersState, dispatch] = useContext(FiltersContext);
+  const [
+    { areAsideFiltersVisible, sizes, searchInputValue, priceRange, filteredProducts, sortBy },
+    dispatch,
+  ] = useContext(FiltersContext);
 
-  const sortBy = option =>
+  const handleSortBy = option =>
     dispatch({
       type: SORT_BY,
       payload: {
@@ -31,7 +34,7 @@ export const useFilterAndSort = () => {
       },
     });
 
-  const includePrice = value =>
+  const handleIncludePrice = value =>
     dispatch({
       type: PRICE,
       payload: {
@@ -39,9 +42,9 @@ export const useFilterAndSort = () => {
       },
     });
 
-  const includeSize = sizeValue => {
-    if (filtersState.sizes.some(size => size === sizeValue)) {
-      const newSizes = filtersState.sizes.filter(size => size !== sizeValue);
+  const handleIncludeSize = sizeValue => {
+    if (sizes.some(size => size === sizeValue)) {
+      const newSizes = sizes.filter(size => size !== sizeValue);
       dispatch({
         type: SIZES,
         payload: {
@@ -52,65 +55,65 @@ export const useFilterAndSort = () => {
       dispatch({
         type: SIZES,
         payload: {
-          sizes: [...filtersState.sizes, sizeValue],
+          sizes: [...sizes, sizeValue],
         },
       });
     }
   };
 
-  const handleSearch = searchInputValue =>
+  const handleSearch = value =>
     dispatch({
       type: SEARCH,
       payload: {
-        searchInputValue,
+        searchInputValue: value,
       },
     });
 
-  const filtrBySearch = () =>
+  const handleFiltrBySearch = () =>
     dispatch({
       type: FILTER_BY_SEARCH,
     });
 
-  const clearFilters = () =>
+  const handleClearFilters = () =>
     dispatch({
       type: CLEAR_FILTERS,
     });
 
-  const apllyFilters = () =>
+  const handleApllyFilters = () =>
     dispatch({
       type: APPLY_FILTERS,
     });
 
-  const showAside = () =>
+  const handleShowAside = () =>
     dispatch({
       type: SHOW_ASIDE_FILTERS,
     });
 
-  const hideAside = () =>
+  const handleHideAside = () =>
     dispatch({
       type: HIDE_ASIDE_FILTERS,
     });
 
   useEffect(() => {
-    filtrBySearch();
-  }, [filtersState.searchInputValue]);
+    handleFiltrBySearch();
+  }, [searchInputValue]);
 
   return {
-    showAside,
-    hideAside,
-    sortBy,
-    includeSize,
+    handleShowAside,
+    handleHideAside,
+    handleSortBy,
+    handleIncludeSize,
     handleSearch,
-    clearFilters,
-    apllyFilters,
-    priceHandler: includePrice,
+    handleClearFilters,
+    handleApllyFilters,
+    handleIncludePrice,
     sortOptions,
 
-    isFiltersVisible: filtersState.areAsideFiltersVisible,
-    markedSize: filtersState.sizes,
-    priceRange: filtersState.priceRange,
-    filteredProducts: filtersState.filteredProducts,
-    searchInputValue: filtersState.searchInputValue,
-    sortByValue: filtersState.sortBy,
+    isFiltersVisible: areAsideFiltersVisible,
+    markedSize: sizes,
+    priceRange,
+    filteredProducts,
+    searchInputValue,
+    sortByValue: sortBy,
   };
 };

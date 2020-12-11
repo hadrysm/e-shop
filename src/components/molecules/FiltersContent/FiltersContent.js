@@ -10,18 +10,16 @@ import { Button, Heading, ButtonsWrapper, InputRangeWrapper } from './FiltersCon
 
 const FiltersContent = () => {
   const {
-    hideAside,
-    apllyFilters,
-    clearFilters,
+    handleApllyFilters,
+    handleClearFilters,
     handleSearch,
     priceRange,
-    priceHandler,
+    handleIncludePrice,
     searchInputValue,
   } = useFilterAndSort();
 
   const handleApply = () => {
-    apllyFilters();
-    hideAside();
+    handleApllyFilters();
   };
 
   return (
@@ -41,14 +39,14 @@ const FiltersContent = () => {
           maxValue={250}
           minValue={0}
           value={priceRange}
-          onChange={value => priceHandler(value)}
+          onChange={value => handleIncludePrice(value)}
         />
       </InputRangeWrapper>
       <ButtonsWrapper>
         <Button isButton onClick={handleApply}>
           Filtruj
         </Button>
-        <Button isButton secondary onClick={clearFilters}>
+        <Button isButton secondary onClick={handleClearFilters}>
           Wyczyść filtry
         </Button>
       </ButtonsWrapper>
