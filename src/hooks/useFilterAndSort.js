@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { FiltersContext } from 'providers/FiltersProvider/FiltersProvider';
 import {
   SORT_BY,
@@ -14,7 +14,7 @@ import {
 } from 'providers/FiltersProvider/reducer/types';
 
 const sortOptions = [
-  { value: '', displayValue: 'Wybierz...' },
+  { value: '', displayValue: 'Proponowane' },
   { value: 'priceASC', displayValue: 'Cena, od najniższej' },
   { value: 'priceDESC', displayValue: 'Cena, od najwyższej' },
   { value: 'alphabetASC', displayValue: 'Alfabetycznie, A-Z' },
@@ -100,14 +100,6 @@ export const useFilterAndSort = () => {
       type: HIDE_ASIDE_FILTERS,
     });
 
-  useEffect(() => {
-    handleFiltrBySearch();
-  }, [searchInputValue]);
-
-  useEffect(() => {
-    handleSortProducts();
-  }, [sortBy]);
-
   return {
     handleShowAside,
     handleHideAside,
@@ -117,6 +109,8 @@ export const useFilterAndSort = () => {
     handleClearFilters,
     handleApllyFilters,
     handleIncludePrice,
+    handleFiltrBySearch,
+    handleSortProducts,
     sortOptions,
 
     isFiltersVisible: areAsideFiltersVisible,
@@ -124,6 +118,6 @@ export const useFilterAndSort = () => {
     priceRange,
     filteredProducts,
     searchInputValue,
-    sortByValue: sortBy,
+    sortBy,
   };
 };

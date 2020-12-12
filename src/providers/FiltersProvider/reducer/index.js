@@ -41,6 +41,7 @@ const filtersReducer = (state, { type, payload }) => {
     return updateState(state, {
       filteredProducts,
       searchInputValue: '',
+      sortBy: '',
       areAsideFiltersVisible: false,
     });
   };
@@ -61,14 +62,14 @@ const filtersReducer = (state, { type, payload }) => {
 
     const dataProducts = sizes.length > 0 ? [...filteredProducts] : [...products];
 
-    handleOnSortProducts();
-
     if (sortBy.startsWith('alphabet')) {
+      handleOnSortProducts();
       const sortedProcusts = sortProductByAlphabet(dataProducts, sortBy);
 
       return updateState(state, { sortBy, filteredProducts: sortedProcusts });
     }
     if (sortBy.startsWith('price')) {
+      handleOnSortProducts();
       const sortedProcusts = sortProductByPrice(dataProducts, sortBy);
 
       return updateState(state, { sortBy, filteredProducts: sortedProcusts });
