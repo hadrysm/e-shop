@@ -66,16 +66,16 @@ const filtersReducer = (state, { type, payload }) => {
       handleOnSortProducts();
       const sortedProcusts = sortProductByAlphabet(dataProducts, sortBy);
 
-      return updateState(state, { sortBy, filteredProducts: sortedProcusts });
+      return updateState(state, { filteredProducts: sortedProcusts });
     }
     if (sortBy.startsWith('price')) {
       handleOnSortProducts();
       const sortedProcusts = sortProductByPrice(dataProducts, sortBy);
 
-      return updateState(state, { sortBy, filteredProducts: sortedProcusts });
+      return updateState(state, { filteredProducts: sortedProcusts });
     }
 
-    return updateState(state, { sortBy, filteredProducts: dataProducts });
+    return updateState(state, { filteredProducts: dataProducts });
   };
 
   const clearFilters = () => {

@@ -17,8 +17,11 @@ const ProductGrid = () => {
 
   useEffect(() => {
     handleSortProducts();
-    ScrollTrigger.refresh();
   }, [sortBy]);
+
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, [filteredProducts]);
 
   return (
     <main>
