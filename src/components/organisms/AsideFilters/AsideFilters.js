@@ -19,7 +19,7 @@ const AsideFilters = () => {
   }, [searchInputValue]);
 
   return (
-    <Aside title="filtry" side="left" close={handleHideAside} isOpen={isFiltersVisible}>
+    <Aside title="filtry" close={handleHideAside} isOpen={isFiltersVisible}>
       <Wrapper>
         <FiltersContent />
       </Wrapper>

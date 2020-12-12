@@ -1,13 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import CTA from 'components/atoms/CTA/CTA';
+import Aside from 'components/molecules/Aside/Aside';
 
-import { toggleMenuAnimation } from 'animations';
-import { Wrapper, InnerWrapper, Nav, List, Item } from './NavList.style';
+import { Nav, List, Item } from './NavList.style';
 
-const NavList = ({ isMenuOpen }) => {
+const NavList = ({ isMenuOpen, close }) => {
   const {
     allDatoCmsCategory: { nodes: categoryItems },
   } = useStaticQuery(graphql`
@@ -22,35 +22,24 @@ const NavList = ({ isMenuOpen }) => {
     }
   `);
 
-  const wrapper = useRef(null);
-  const listContainer = useRef(null);
-
-  useEffect(() => {
-    const container = wrapper.current;
-    const listItems = listContainer.current.children;
-
-    toggleMenuAnimation([container, listItems], isMenuOpen);
-  }, [wrapper, listContainer, isMenuOpen]);
-
   return (
-    <Wrapper ref={wrapper}>
-      <InnerWrapper>
-        <Nav>
-          <List ref={listContainer}>
-            {categoryItems.map(({ id, slug, displayName }) => (
-              <Item key={id}>
-                <CTA to={`/categories/${slug}`}>{displayName}</CTA>
-              </Item>
-            ))}
-          </List>
-        </Nav>
-      </InnerWrapper>
-    </Wrapper>
+    <Aside title="navigacja" close={close} isOpen={isMenuOpen} isNav>
+      <Nav>
+        <List>
+          {categoryItems.map(({ id, slug, displayName }) => (
+            <Item key={id}>
+              <CTA to={`/categories/${slug}`}>{displayName}</CTA>
+            </Item>
+          ))}
+        </List>
+      </Nav>
+    </Aside>
   );
 };
 
 NavList.propTypes = {
   isMenuOpen: PropTypes.bool,
+  close: PropTypes.func.isRequired,
 };
 
 NavList.defaultProps = {
