@@ -10,6 +10,7 @@ import {
   SEARCH,
   SHOW_ASIDE_FILTERS,
   SIZES,
+  SORT_PRODUCTS,
 } from 'providers/FiltersProvider/reducer/types';
 
 const sortOptions = [
@@ -74,6 +75,11 @@ export const useFilterAndSort = () => {
       type: FILTER_BY_SEARCH,
     });
 
+  const handleSortProducts = () =>
+    dispatch({
+      type: SORT_PRODUCTS,
+    });
+
   const handleClearFilters = () =>
     dispatch({
       type: CLEAR_FILTERS,
@@ -97,6 +103,10 @@ export const useFilterAndSort = () => {
   useEffect(() => {
     handleFiltrBySearch();
   }, [searchInputValue]);
+
+  useEffect(() => {
+    handleSortProducts();
+  }, [sortBy]);
 
   return {
     handleShowAside,

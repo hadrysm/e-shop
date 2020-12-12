@@ -6,6 +6,7 @@ import {
   handleOnSortProducts,
   updateState,
 } from 'helpers/sortAndFilters';
+
 import {
   SORT_BY,
   SHOW_ASIDE_FILTERS,
@@ -16,6 +17,7 @@ import {
   CLEAR_FILTERS,
   PRICE,
   APPLY_FILTERS,
+  SORT_PRODUCTS,
 } from './types';
 
 const filtersReducer = (state, { type, payload }) => {
@@ -54,26 +56,25 @@ const filtersReducer = (state, { type, payload }) => {
     return updateState(state, { filteredProducts: result });
   };
 
-  const sortProductsBy = option => {
-    const { filteredProducts, sizes, products } = { ...state };
+  const sortProducts = () => {
+    const { filteredProducts, sizes, products, sortBy } = { ...state };
+
+    const dataProducts = sizes.length > 0 ? [...filteredProducts] : [...products];
 
     handleOnSortProducts();
 
-    if (option.startsWith('alphabet')) {
-      const sortedProcusts = sortProductByAlphabet(filteredProducts, option);
+    if (sortBy.startsWith('alphabet')) {
+      const sortedProcusts = sortProductByAlphabet(dataProducts, sortBy);
 
-      return updateState(state, { sortBy: option, filteredProducts: sortedProcusts });
+      return updateState(state, { sortBy, filteredProducts: sortedProcusts });
     }
-    if (option.startsWith('price')) {
-      const sortedProcusts = sortProductByPrice(filteredProducts, option);
+    if (sortBy.startsWith('price')) {
+      const sortedProcusts = sortProductByPrice(dataProducts, sortBy);
 
-      return updateState(state, { sortBy: option, filteredProducts: sortedProcusts });
+      return updateState(state, { sortBy, filteredProducts: sortedProcusts });
     }
 
-    if (sizes.length > 0) return updateState(state, { sortBy: option, filteredProducts });
-
-    // check this
-    return updateState(state, { sortBy: option, filteredProducts: [...products] });
+    return updateState(state, { sortBy, filteredProducts: dataProducts });
   };
 
   const clearFilters = () => {
@@ -89,7 +90,10 @@ const filtersReducer = (state, { type, payload }) => {
 
   switch (type) {
     case SORT_BY:
-      return sortProductsBy(payload.option);
+      return {
+        ...state,
+        sortBy: payload.option,
+      };
 
     case SIZES:
       return {
@@ -114,6 +118,9 @@ const filtersReducer = (state, { type, payload }) => {
 
     case FILTER_BY_SEARCH:
       return filterProductsBySearch();
+
+    case SORT_PRODUCTS:
+      return sortProducts();
 
     case CLEAR_FILTERS:
       return clearFilters();
