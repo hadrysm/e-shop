@@ -11,9 +11,13 @@ import { useFilterAndSort } from 'hooks/useFilterAndSort';
 import { GridWrapper } from './ProductGrid.style';
 
 const ProductGrid = () => {
-  const { filteredProducts } = useFilterAndSort();
+  const { filteredProducts, sortBy, handleSortProducts } = useFilterAndSort();
 
   if (!filteredProducts) return null;
+
+  useEffect(() => {
+    handleSortProducts();
+  }, [sortBy]);
 
   useEffect(() => {
     ScrollTrigger.refresh();

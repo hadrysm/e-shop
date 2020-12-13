@@ -6,7 +6,7 @@ import { useFilterAndSort } from 'hooks/useFilterAndSort';
 import { Wrapper, Size, Checkmark, Name } from './SizesFilters.style';
 
 const SizesFilters = () => {
-  const { markedSize, includeSize } = useFilterAndSort();
+  const { markedSize, handleIncludeSize } = useFilterAndSort();
 
   const {
     allDatoCmsSize: { sizes },
@@ -24,7 +24,7 @@ const SizesFilters = () => {
   return (
     <Wrapper>
       {sizes.map(({ size, id }) => (
-        <Size key={id} onClick={() => includeSize(size)}>
+        <Size key={id} onClick={() => handleIncludeSize(size)}>
           <Checkmark isActive={markedSize.some(sizeValue => sizeValue === size)} />
           <Name>{size}</Name>
         </Size>

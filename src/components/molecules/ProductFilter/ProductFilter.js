@@ -10,16 +10,16 @@ import { useFilterAndSort } from 'hooks/useFilterAndSort';
 import { Wrapper } from './ProductFilter.style';
 
 const ProductFilter = () => {
-  const { sortBy, sortOptions, showAside, sortByValue } = useFilterAndSort();
+  const { handleSortBy, sortOptions, handleShowAside, sortBy } = useFilterAndSort();
 
   const sortByInput = e => {
     const { value } = e.target;
-    sortBy(value);
+    handleSortBy(value);
   };
 
   return (
     <Wrapper>
-      <CTA isButton onClick={showAside}>
+      <CTA isButton onClick={handleShowAside}>
         <div>
           <FontAwesomeIcon icon={faTasks} />
           <span> Filtry</span>
@@ -30,7 +30,7 @@ const ProductFilter = () => {
         name="sort"
         options={sortOptions}
         onChange={sortByInput}
-        value={sortByValue}
+        value={sortBy}
       />
     </Wrapper>
   );
