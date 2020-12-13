@@ -12,6 +12,14 @@ export const productExistInCart = (cartDetails, product) => {
   return result;
 };
 
+export const getProductFromCart = (cartDetails, productID) => {
+  const product = cartDetails.find(({ id }) => id === productID);
+
+  if (!product) return false;
+
+  return product;
+};
+
 export const updateState = (state, cartDetails = []) => {
   const getTotalPrice = arr =>
     arr.reduce((acc, { price, quantity }) => {
