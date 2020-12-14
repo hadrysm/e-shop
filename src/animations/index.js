@@ -82,7 +82,6 @@ export const enterAnimation = color => {
     delay: 0.3,
     duration: 0.4,
     onComplete: () => {
-      window.scrollTo(0, 0);
       body.removeChild(box);
     },
   });

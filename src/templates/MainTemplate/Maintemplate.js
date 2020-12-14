@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,11 +11,17 @@ import ToastContainer from 'components/organisms/ToastContainer/ToastContainer';
 
 import GlobalStyled from 'assets/styles/GlobalStyles';
 import { theme } from 'assets/styles/mainTheme';
+import { useWindowSize } from 'hooks/useWindowSize';
 
 const MainTemplate = ({ children, location }) => {
-  // change this
-  const vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
+  const { height } = useWindowSize();
+
+  console.log(height);
+
+  useEffect(() => {
+    const vh = height * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }, [height]);
 
   return (
     <CartProvider>

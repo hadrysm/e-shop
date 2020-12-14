@@ -28,8 +28,9 @@ export const createBox = bgColor => {
   const { body } = document;
 
   const box = document.createElement('div');
-  const vw = window.innerWidth;
-  const vh = window.innerHeight;
+
+  const vw = typeof window !== 'undefined' && window.innerWidth;
+  const vh = typeof window !== 'undefined' && window.innerHeight;
 
   box.style.zIndex = '999999';
   box.style.position = 'fixed';
