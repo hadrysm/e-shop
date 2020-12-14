@@ -4,15 +4,10 @@ import {
   handleOnItemRemoved,
   productExistInCart,
   updateState,
+  getProductFromCart,
 } from 'helpers/cart';
 
 import { ADD_ITEM_TO_CART, REMOVE_ITEM_FROM_CART, DECREMENT_ITEM, INCREMENT_ITEM } from './types';
-
-export const cartInitialState = {
-  cartDetails: [],
-  totalPrice: 0,
-  cartCount: 0,
-};
 
 const cartReducer = (state, { type, payload }) => {
   const createProduct = product => {
@@ -41,7 +36,7 @@ const cartReducer = (state, { type, payload }) => {
   };
 
   const updateCurrentProduct = (productId, count) => {
-    const currentProduct = [...state.cartDetails].find(({ id }) => id === productId);
+    const currentProduct = getProductFromCart([...state.cartDetails], productId);
 
     const updatedProduct = {
       ...currentProduct,
