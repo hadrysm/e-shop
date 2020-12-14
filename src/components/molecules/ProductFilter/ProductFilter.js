@@ -1,6 +1,6 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTasks } from '@fortawesome/free-solid-svg-icons';
+
+import Icons from 'assets/icons';
 
 import CTA from 'components/atoms/CTA/CTA';
 import Select from 'components/atoms/Select/Select';
@@ -20,10 +20,8 @@ const ProductFilter = () => {
   return (
     <Wrapper>
       <CTA isButton onClick={handleShowAside}>
-        <div>
-          <FontAwesomeIcon icon={faTasks} />
-          <span> Filtry</span>
-        </div>
+        <Icons.FaTasks style={{ marginRight: '1rem' }} />
+        <span> Filtry</span>
       </CTA>
       <Select
         label="sortuj"

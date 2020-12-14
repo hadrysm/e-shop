@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
+import Icons from 'assets/icons';
 
 import PageOverlay from 'components/atoms/PageOverlay/PageOverlay';
 import CTA from 'components/atoms/CTA/CTA';
@@ -25,10 +25,9 @@ const Aside = ({ title, children, isOpen, close, isNav }) => {
         <Wrapper isOpen={isOpen} ref={asideRef} isNav>
           <HeadingWrapper isNav>
             <CTA isButton onClick={close} color="transparent">
-              <FontAwesomeIcon icon={faTimes} color="white" />
+              <Icons.FaTimes />
             </CTA>
           </HeadingWrapper>
-
           <InnerWrapper>{children}</InnerWrapper>
         </Wrapper>
       </PageOverlay>
@@ -40,7 +39,7 @@ const Aside = ({ title, children, isOpen, close, isNav }) => {
         <HeadingWrapper>
           <Heading>{title}</Heading>
           <CTA isButton onClick={close} color="white">
-            <FontAwesomeIcon icon={faTimes} color="black" />
+            <Icons.FaTimes color="black" />
           </CTA>
         </HeadingWrapper>
         {children}

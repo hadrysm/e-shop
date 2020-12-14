@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import seatchIcon from 'assets/icons/search.svg';
+import searchIcon from 'assets/icons/search.svg';
 
 const Input = styled.input`
   width: 100%;
@@ -34,7 +34,7 @@ const Input = styled.input`
     icon === 'search' &&
     css`
       background-position: 1.5rem 50%;
-      background-image: url(${seatchIcon});
+      background-image: url(${searchIcon});
       padding: 1rem 2rem 1rem 4rem;
       border-radius: 5px;
     `}

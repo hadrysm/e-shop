@@ -7,6 +7,9 @@ export const StyledLink = styled.button`
   ${({ isButton }) =>
     isButton &&
     css`
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 1.5rem 2rem;
       font-family: ${({ theme }) => theme.font.family.primary};
       font-weight: ${({ theme }) => theme.font.weight.bold};

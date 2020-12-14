@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import checkIcon from 'assets/icons/checkmark.svg';
+
+import checkmarkIcon from 'assets/icons/checkmark.svg';
 
 export const Wrapper = styled.ul`
   display: flex;
@@ -35,7 +36,8 @@ export const Checkmark = styled.span`
     left: 0;
     width: 20px;
     height: 20px;
-    background: url(${checkIcon}) center no-repeat;
+
+    background: url(${checkmarkIcon}) center no-repeat;
     background-size: 70%;
     background-color: ${({ theme }) => theme.colors.green100};
   }
