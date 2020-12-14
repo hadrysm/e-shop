@@ -22,6 +22,7 @@ const CategoryBox = ({ id, slug, displayName, image: { fluid, alt } }, index) =>
       scrollTrigger: {
         trigger: children,
         start: 'top 80%',
+        toggleActions: 'play none none reverse',
       },
     };
 

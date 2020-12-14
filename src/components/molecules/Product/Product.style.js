@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import Image from 'gatsby-image';
 
 export const Wrapper = styled.article`
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 0;
   width: 100%;
   height: 100%;
 `;
@@ -12,7 +12,7 @@ export const InnerWrapper = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 1rem;
-  padding: 3rem 2rem;
+  padding: 1rem 1rem;
   background-color: ${({ theme }) => theme.colors.grey400};
 `;
 

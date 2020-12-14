@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import Image from 'gatsby-image';
 
 import Headline from 'components/atoms/Headline/Headline';
-import ProductForm from 'components/organisms/ProductForm/ProductForm';
+import ProductVariants from 'components/organisms/ProductVariants/ProductVariants';
 
 import { getFormatCurrency } from 'helpers/cart';
 import { fadeInStagger } from 'animations';
@@ -73,7 +73,7 @@ const ProductTemplate = ({
           <Description>{productDescription}</Description>
         </Box>
 
-        <ProductForm
+        <ProductVariants
           product={{
             id,
             discountPrice,
@@ -101,7 +101,7 @@ export const query = graphql`
       }
       discountPrice
       image {
-        fluid(maxWidth: 560) {
+        fluid(maxWidth: 560, maxHeight: 500) {
           ...GatsbyDatoCmsFluid_tracedSVG
         }
       }

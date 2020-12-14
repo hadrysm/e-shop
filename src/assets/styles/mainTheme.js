@@ -62,5 +62,6 @@ export const theme = {
     level8: '8000',
     level9: '9000',
     level10: '10000',
+    level11: '11000',
   },
 };
