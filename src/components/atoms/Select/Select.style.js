@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import Icons from 'assets/icons';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -37,7 +38,7 @@ export const Option = styled.option`
   background-color: ${({ theme }) => theme.colors.grey400};
 `;
 
-export const Icon = styled(FontAwesomeIcon)`
+export const Icon = styled(Icons.FaCaretDown)`
   position: absolute;
   top: 50%;
   right: 1rem;

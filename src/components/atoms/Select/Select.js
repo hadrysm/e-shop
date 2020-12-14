@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
-
 import { Wrapper, InnerWrapper, Label, StyledSelect, Option, Icon } from './Select.style';
 
 const Select = ({ name, label, options, ...props }) => {
@@ -18,7 +16,7 @@ const Select = ({ name, label, options, ...props }) => {
               </Option>
             ))}
           </StyledSelect>
-          <Icon icon={faCaretDown} />
+          <Icon />
         </InnerWrapper>
       </Label>
     </Wrapper>

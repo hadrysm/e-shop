@@ -24,7 +24,7 @@ body {
   background-color: ${({ theme }) => theme.colors.background};
 
   &.no-scroll {
-    overflow-y: hidden;
+    overflow: hidden;
   }
 }
 
@@ -62,6 +62,11 @@ a {
   overflow-x: visible;
 }
 
+.tl-wrapper{
+  position: static;
+}
+
+
 ::-webkit-scrollbar {
       width: 4px;
 
@@ -74,7 +79,6 @@ a {
         background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-        border-radius: 1rem;
         background: ${({ theme }) => theme.colors.grey200};
 }
 ::-webkit-scrollbar-thumb:hover {

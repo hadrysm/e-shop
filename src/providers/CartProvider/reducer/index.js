@@ -1,23 +1,31 @@
-import { productExistInCart, updateState } from 'helpers/cart';
+import {
+  handleOnItemAdded,
+  handleOnItemUpdated,
+  handleOnItemRemoved,
+  productExistInCart,
+  updateState,
+  getProductFromCart,
+} from 'helpers/cart';
+
 import { ADD_ITEM_TO_CART, REMOVE_ITEM_FROM_CART, DECREMENT_ITEM, INCREMENT_ITEM } from './types';
 
-export const cartInitialState = {
-  cartDetails: [],
-  totalPrice: 0,
-  cartCount: 0,
-};
-
 const cartReducer = (state, { type, payload }) => {
-  const createProduct = product => updateState(state, [...state.cartDetails, product]);
+  const createProduct = product => {
+    handleOnItemAdded();
+
+    return updateState(state, [...state.cartDetails, product]);
+  };
 
   const removeProductFromCart = productId => {
     const cartDetails = [...state.cartDetails].filter(({ id }) => id !== productId);
+    handleOnItemRemoved();
 
     return updateState(state, cartDetails);
   };
 
   const updateCart = product => {
     if (!product.quantity) return removeProductFromCart(product.id);
+    handleOnItemUpdated();
 
     const cartDetails = [...state.cartDetails];
     const currItemIndex = cartDetails.findIndex(({ id }) => id === product.id);
@@ -28,7 +36,7 @@ const cartReducer = (state, { type, payload }) => {
   };
 
   const updateCurrentProduct = (productId, count) => {
-    const currentProduct = [...state.cartDetails].find(({ id }) => id === productId);
+    const currentProduct = getProductFromCart([...state.cartDetails], productId);
 
     const updatedProduct = {
       ...currentProduct,

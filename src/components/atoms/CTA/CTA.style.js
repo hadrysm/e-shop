@@ -7,6 +7,9 @@ export const StyledLink = styled.button`
   ${({ isButton }) =>
     isButton &&
     css`
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 1.5rem 2rem;
       font-family: ${({ theme }) => theme.font.family.primary};
       font-weight: ${({ theme }) => theme.font.weight.bold};
@@ -15,13 +18,14 @@ export const StyledLink = styled.button`
       letter-spacing: 2px;
       border-radius: 1rem;
       color: ${({ theme }) => theme.colors.white};
-      background-color: ${({ theme }) => theme.colors.secondary};
+      background-color: ${({ theme, color }) => color || theme.colors.secondary};
+      transition: background-color 0.25s ease-in;
 
-      ${({ isSubmitting }) =>
-        isSubmitting &&
-        css`
-          background-color: ${({ theme }) => theme.colors.green100};
-        `}
+      :disabled {
+        background-color: ${({ theme }) => theme.colors.green100};
+
+        cursor: not-allowed;
+      }
     `}
 
   ${({ isHyperLink }) => isHyperLink && css``}

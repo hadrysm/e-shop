@@ -1,6 +1,6 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithubSquare, faLinkedin, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
+
+import Icons from 'assets/Icons';
 
 import CTA from 'components/atoms/CTA/CTA';
 
@@ -59,7 +59,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faGithubSquare} />
+                <Icons.FaGithub />
               </CTA>
             </ListItem>
             <ListItem isSocial>
@@ -69,7 +69,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faLinkedin} />
+                <Icons.FaLinkedin />
               </CTA>
             </ListItem>
             <ListItem isSocial>
@@ -79,7 +79,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faTwitterSquare} />
+                <Icons.FaTwitter />
               </CTA>
             </ListItem>
           </List>

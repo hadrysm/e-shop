@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+
+import Icons from 'assets/icons';
 
 import CTA from 'components/atoms/CTA/CTA';
 
@@ -41,11 +41,11 @@ const CartItem = ({ id, name, price, size, quantity, image: fluid }) => {
       <InnerWrapper grow={2}>
         <Box>
           <CTA as={Button} isButton onClick={() => decrementItem(id)}>
-            <FontAwesomeIcon icon={faMinus} />
+            <Icons.FaMinus />
           </CTA>
           <Quantity>{quantity}</Quantity>
           <CTA as={Button} isButton onClick={() => incrementItem(id)}>
-            <FontAwesomeIcon icon={faPlus} />
+            <Icons.FaPlus />
           </CTA>
         </Box>
 
@@ -56,7 +56,7 @@ const CartItem = ({ id, name, price, size, quantity, image: fluid }) => {
       </InnerWrapper>
 
       <CTA isButton as={Button} isRemove onClick={() => removeItem(id)}>
-        <FontAwesomeIcon icon={faTimes} />
+        <Icons.FaTimes />
       </CTA>
     </Wrapper>
   );

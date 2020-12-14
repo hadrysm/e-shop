@@ -14,7 +14,7 @@ import { Wrapper, Header, InnerWrapper } from './Navigation.style';
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const { toggleMenuVisibility, isMenuOpen } = useContext(NavigationStateContext);
+  const { handleCloseMenu, isMenuOpen } = useContext(NavigationStateContext);
   const navigationRef = useRef(null);
 
   useEffect(() => {
@@ -33,11 +33,11 @@ const Navigation = () => {
     <Wrapper ref={navigationRef} isScrolled={isScrolled}>
       <Header>
         <InnerWrapper>
-          <Burger onClick={toggleMenuVisibility} isMenuOpen={isMenuOpen} />
+          <Burger />
           <Logo />
           <ShoppingButton />
         </InnerWrapper>
-        <NavList isMenuOpen={isMenuOpen} />
+        <NavList isMenuOpen={isMenuOpen} close={handleCloseMenu} />
       </Header>
     </Wrapper>
   );

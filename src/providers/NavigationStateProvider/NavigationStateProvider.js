@@ -8,10 +8,12 @@ export const NavigationStateContext = createContext({
 
 const NavigationStateProvider = ({ children, location }) => {
   const [isMenuOpen, setMenuVisibility] = useState(false);
-  const toggleMenuVisibility = () => setMenuVisibility(prevState => !prevState);
+
+  const handleCloseMenu = () => setMenuVisibility(false);
+  const handleOpenMenu = () => setMenuVisibility(true);
 
   useEffect(() => {
-    setMenuVisibility(false);
+    handleCloseMenu();
   }, [location]);
 
   useEffect(() => {
@@ -25,7 +27,8 @@ const NavigationStateProvider = ({ children, location }) => {
   return (
     <NavigationStateContext.Provider
       value={{
-        toggleMenuVisibility,
+        handleCloseMenu,
+        handleOpenMenu,
         isMenuOpen,
       }}
     >

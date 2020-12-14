@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import Icons from 'assets/icons';
 
 import CTA from 'components/atoms/CTA/CTA';
 
@@ -14,7 +13,7 @@ const ShoppingButton = () => {
   return (
     <CTA to="/cart">
       <Box>
-        <FontAwesomeIcon icon={faShoppingCart} />
+        <Icons.FaShoppingCart />
         {!!cartCount && <Counter>{cartCount}</Counter>}
       </Box>
     </CTA>
