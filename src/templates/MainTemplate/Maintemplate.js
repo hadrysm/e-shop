@@ -16,8 +16,6 @@ import { useWindowSize } from 'hooks/useWindowSize';
 const MainTemplate = ({ children, location }) => {
   const { height } = useWindowSize();
 
-  console.log(height);
-
   useEffect(() => {
     const vh = height * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
