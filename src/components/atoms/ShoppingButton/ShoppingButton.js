@@ -1,6 +1,5 @@
 import React from 'react';
-
-import Icons from 'assets/icons';
+import { FaShoppingCart } from 'react-icons/fa';
 
 import CTA from 'components/atoms/CTA/CTA';
 
@@ -13,7 +12,7 @@ const ShoppingButton = () => {
   return (
     <CTA to="/cart">
       <Box>
-        <Icons.FaShoppingCart />
+        <FaShoppingCart />
         {!!cartCount && <Counter>{cartCount}</Counter>}
       </Box>
     </CTA>

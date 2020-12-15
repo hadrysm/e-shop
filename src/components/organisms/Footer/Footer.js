@@ -1,6 +1,5 @@
 import React from 'react';
-
-import Icons from 'assets/Icons';
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 import CTA from 'components/atoms/CTA/CTA';
 
@@ -59,7 +58,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Icons.FaGithub />
+                <FaGithub />
               </CTA>
             </ListItem>
             <ListItem isSocial>
@@ -69,7 +68,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Icons.FaLinkedin />
+                <FaLinkedin />
               </CTA>
             </ListItem>
             <ListItem isSocial>
@@ -79,7 +78,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Icons.FaTwitter />
+                <FaTwitter />
               </CTA>
             </ListItem>
           </List>

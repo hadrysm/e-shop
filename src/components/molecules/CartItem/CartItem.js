@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import Icons from 'assets/icons';
+import { FaTimes, FaPlus, FaMinus } from 'react-icons/fa';
 
 import CTA from 'components/atoms/CTA/CTA';
 
@@ -41,11 +40,11 @@ const CartItem = ({ id, name, price, size, quantity, image: fluid }) => {
       <InnerWrapper grow={2}>
         <Box>
           <CTA as={Button} isButton onClick={() => decrementItem(id)}>
-            <Icons.FaMinus />
+            <FaMinus />
           </CTA>
           <Quantity>{quantity}</Quantity>
           <CTA as={Button} isButton onClick={() => incrementItem(id)}>
-            <Icons.FaPlus />
+            <FaPlus />
           </CTA>
         </Box>
 
@@ -56,7 +55,7 @@ const CartItem = ({ id, name, price, size, quantity, image: fluid }) => {
       </InnerWrapper>
 
       <CTA isButton as={Button} isRemove onClick={() => removeItem(id)}>
-        <Icons.FaTimes />
+        <FaTimes />
       </CTA>
     </Wrapper>
   );

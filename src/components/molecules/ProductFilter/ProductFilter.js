@@ -1,6 +1,5 @@
 import React from 'react';
-
-import Icons from 'assets/icons';
+import { FaTasks } from 'react-icons/fa';
 
 import CTA from 'components/atoms/CTA/CTA';
 import Select from 'components/atoms/Select/Select';
@@ -20,7 +19,7 @@ const ProductFilter = () => {
   return (
     <Wrapper>
       <CTA isButton onClick={handleShowAside}>
-        <Icons.FaTasks style={{ marginRight: '1rem' }} />
+        <FaTasks style={{ marginRight: '1rem' }} />
         <span> Filtry</span>
       </CTA>
       <Select

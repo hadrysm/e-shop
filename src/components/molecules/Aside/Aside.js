@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-
-import Icons from 'assets/icons';
+import { FaTimes } from 'react-icons/fa';
 
 import PageOverlay from 'components/atoms/PageOverlay/PageOverlay';
 import CTA from 'components/atoms/CTA/CTA';
@@ -25,7 +24,7 @@ const Aside = ({ title, children, isOpen, close, isNav }) => {
         <Wrapper isOpen={isOpen} ref={asideRef} isNav>
           <HeadingWrapper isNav>
             <CTA isButton onClick={close} color="transparent">
-              <Icons.FaTimes />
+              <FaTimes />
             </CTA>
           </HeadingWrapper>
           <InnerWrapper>{children}</InnerWrapper>
@@ -39,7 +38,7 @@ const Aside = ({ title, children, isOpen, close, isNav }) => {
         <HeadingWrapper>
           <Heading>{title}</Heading>
           <CTA isButton onClick={close} color="white">
-            <Icons.FaTimes color="black" />
+            <FaTimes color="black" />
           </CTA>
         </HeadingWrapper>
         {children}

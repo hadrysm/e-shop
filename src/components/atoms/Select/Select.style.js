@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-
-import Icons from 'assets/icons';
+import { FaCaretDown } from 'react-icons/fa';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -38,7 +37,7 @@ export const Option = styled.option`
   background-color: ${({ theme }) => theme.colors.grey400};
 `;
 
-export const Icon = styled(Icons.FaCaretDown)`
+export const Icon = styled(FaCaretDown)`
   position: absolute;
   top: 50%;
   right: 1rem;
