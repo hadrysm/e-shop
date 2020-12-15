@@ -29,11 +29,10 @@ const filtersReducer = (state, { type, payload }) => {
     } = { ...state };
 
     handleOnFilterProducts();
-
-    const filteredProducts = products.filter(product => {
+    const filteredProducts = [...products].filter(product => {
       const price = product.discountPrice || product.price;
 
-      if (!sizes.length) return price >= min && price <= max;
+      if (!sizes.length > 0) return price >= min && price <= max;
 
       return product.size.some(({ size }) => sizes.includes(size)) && price >= min && price <= max;
     });
@@ -58,9 +57,10 @@ const filtersReducer = (state, { type, payload }) => {
   };
 
   const sortProducts = () => {
-    const { filteredProducts, sizes, products, sortBy } = { ...state };
+    const { filteredProducts, sizes, products, sortBy, priceRange } = { ...state };
 
-    const dataProducts = sizes.length > 0 ? [...filteredProducts] : [...products];
+    const dataProducts =
+      sizes.length > 0 || priceRange.min !== 0 ? [...filteredProducts] : [...products];
 
     if (sortBy.startsWith('alphabet')) {
       handleOnSortProducts();
