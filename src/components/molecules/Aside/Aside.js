@@ -23,6 +23,7 @@ const Aside = ({ title, children, isOpen, close, isNav }) => {
       <PageOverlay isActive={isOpen} isNav>
         <Wrapper isOpen={isOpen} ref={asideRef} isNav>
           <HeadingWrapper isNav>
+            <Heading isNav>{title}</Heading>
             <CTA isButton onClick={close} color="transparent">
               <FaTimes />
             </CTA>

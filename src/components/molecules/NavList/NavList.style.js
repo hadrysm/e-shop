@@ -3,11 +3,6 @@ import styled from 'styled-components';
 export const Nav = styled.nav`
   height: 100%;
   width: 100%;
-  padding: 3rem 0;
-
-  ${({ theme }) => theme.mq.desktop} {
-    padding: 0;
-  }
 `;
 
 export const List = styled.ul`

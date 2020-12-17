@@ -23,7 +23,7 @@ const NavList = ({ isMenuOpen, close }) => {
   `);
 
   return (
-    <Aside title="navigacja" close={close} isOpen={isMenuOpen} isNav>
+    <Aside title="Kategorie" close={close} isOpen={isMenuOpen} isNav>
       <Nav>
         <List>
           {categoryItems.map(({ id, slug, displayName }) => (

@@ -21,9 +21,6 @@ export const Wrapper = styled.aside`
   ${({ isNav }) =>
     isNav &&
     css`
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
       padding: 0 1rem;
       background-color: ${({ theme }) => rgba(theme.colors.primary, 0.9)};
 
@@ -48,13 +45,12 @@ export const Wrapper = styled.aside`
 
 export const InnerWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: calc(100% - 55px);
   position: relative;
 
   ${({ theme }) => theme.mq.desktop} {
     background-color: transparent;
     box-shadow: none;
-    width: 100%;
     height: auto;
   }
 `;
@@ -79,12 +75,11 @@ export const HeadingWrapper = styled.div`
     isNav &&
     css`
       width: 100%;
-      justify-content: flex-end;
       padding-top: 1rem;
 
       ::after {
         height: 0.5px;
-        background-color: ${({ theme }) => theme.colors.white};
+        background-color: ${({ theme }) => theme.colors.grey300};
       }
 
       ${({ theme }) => theme.mq.desktop} {
@@ -97,7 +92,7 @@ export const Heading = styled.h3`
   font-family: ${({ theme }) => theme.font.family.primary};
   font-size: ${({ theme }) => theme.font.size.m};
   font-weight: ${({ theme }) => theme.font.weight.semiBold};
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme, isNav }) => (isNav ? theme.colors.grey300 : theme.colors.primary)};
 `;
