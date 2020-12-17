@@ -7,7 +7,7 @@ import { StyledLogo } from './Logo.styles';
 const Logo = () => {
   return (
     <StyledLogo>
-      <CTA to="/">sepia</CTA>
+      <CTA to="/">e-shop</CTA>
     </StyledLogo>
   );
 };
