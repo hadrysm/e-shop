@@ -1,24 +1,21 @@
 import styled from 'styled-components';
 
 export const Nav = styled.nav`
-  position: absolute;
-  top: 0;
-  left: 0;
   height: 100%;
   width: 100%;
-  display: flex;
+  padding: 3rem 0;
 
   ${({ theme }) => theme.mq.desktop} {
-    position: static;
+    padding: 0;
   }
 `;
 
 export const List = styled.ul`
-  flex: 1;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 
   ${({ theme }) => theme.mq.desktop} {
     flex-direction: row;
@@ -29,7 +26,6 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li`
-  margin-bottom: 3rem;
   padding: 1rem 2rem;
   font-size: ${({ theme }) => theme.font.size.xs};
   color: ${({ theme }) => theme.colors.white};
