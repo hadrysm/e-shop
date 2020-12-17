@@ -6,6 +6,7 @@ import CTA from 'components/atoms/CTA/CTA';
 export const Button = styled(CTA)`
   transition: 0.3s;
   border: 2px solid ${({ theme }) => theme.colors.primary};
+  margin-bottom: 1rem;
 
   :hover {
     background-color: ${({ theme }) => lighten(0.2, theme.colors.secondary)};
@@ -36,6 +37,7 @@ export const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   margin-top: 4rem;
 `;
 
