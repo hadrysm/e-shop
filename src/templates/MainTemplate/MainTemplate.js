@@ -13,13 +13,22 @@ import GlobalStyled from 'assets/styles/GlobalStyles';
 import { theme } from 'assets/styles/mainTheme';
 import { useWindowSize } from 'hooks/useWindowSize';
 
+const DELAY_PAGE_TRANSITION = 1000;
+const INITIAL_CONTAINING_BLOCK = 0.01;
+
 const MainTemplate = ({ children, location }) => {
   const { height } = useWindowSize();
 
   useEffect(() => {
-    const vh = height * 0.01;
+    const vh = height * INITIAL_CONTAINING_BLOCK;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
   }, [height]);
+
+  useEffect(() => {
+    const idTimeout = setTimeout(() => window.scrollTo(0, 0), DELAY_PAGE_TRANSITION);
+
+    return clearTimeout(idTimeout);
+  }, [location]);
 
   return (
     <CartProvider>

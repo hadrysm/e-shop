@@ -14,6 +14,11 @@ export const InnerWrapper = styled.div`
   border-radius: 1rem;
   padding: 1rem 1rem;
   background-color: ${({ theme }) => theme.colors.grey400};
+  transition: transform 0.15s ease-in;
+
+  :hover {
+    transform: scale(1.05);
+  }
 `;
 
 export const ImgWrapper = styled.div`

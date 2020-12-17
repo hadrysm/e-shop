@@ -46,7 +46,7 @@ export const InnerWrapper = styled.div`
     font-family: ${({ theme }) => theme.font.family.secondary};
     font-weight: ${({ theme }) => theme.font.weight.regular};
     font-size: ${({ theme }) => theme.font.size.l};
-    letter-spacing: 5px;
+    letter-spacing: 1px;
     line-height: 1.3;
     color: ${({ theme }) => theme.colors.white};
 
