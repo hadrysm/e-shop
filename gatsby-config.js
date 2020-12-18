@@ -68,10 +68,12 @@ module.exports = {
             {
               family: 'Source Sans Pro',
               variants: ['300', '400', '500'],
+              subsets: ['latin-ext'],
             },
             {
               family: 'ZCOOL QingKe HuangYou',
               variants: ['400'],
+              subsets: ['latin-ext'],
             },
           ],
         },
