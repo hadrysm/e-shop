@@ -12,7 +12,7 @@ const SizesFilters = () => {
     allDatoCmsSize: { sizes },
   } = useStaticQuery(graphql`
     {
-      allDatoCmsSize(sort: { fields: [size], order: ASC }) {
+      allDatoCmsSize(sort: { fields: [order], order: ASC }) {
         sizes: nodes {
           id: originalId
           size
