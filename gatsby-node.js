@@ -23,6 +23,9 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
+  const ProductsTemplate = path.resolve(`src/templates/ProductsTemplate/ProductsTemplate.js`);
+  const ProductTemplate = path.resolve(`src/templates/ProductTemplate/ProductTemplate.js`);
+
   const {
     data: { categories, products },
   } = await graphql(
@@ -48,7 +51,7 @@ exports.createPages = async ({ graphql, actions }) => {
     categories.nodes.forEach(({ slug, id }) => {
       createPage({
         path: `/categories/${slug}`,
-        component: path.resolve(`src/templates/ProductsTemplate/ProductsTemplate.js`),
+        component: ProductsTemplate,
         context: {
           id,
         },
@@ -60,7 +63,7 @@ exports.createPages = async ({ graphql, actions }) => {
     products.nodes.forEach(({ slug, id }) => {
       createPage({
         path: `/products/${slug}`,
-        component: path.resolve(`src/templates/ProductTemplate/ProductTemplate.js`),
+        component: ProductTemplate,
         context: {
           id,
         },
