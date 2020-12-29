@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.article`
   position: relative;
   width: 100%;
   height: 25rem;

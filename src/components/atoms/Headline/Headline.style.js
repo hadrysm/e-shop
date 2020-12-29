@@ -7,10 +7,11 @@ export const H1 = styled.h1`
   color: ${({ theme }) => theme.colors.secondary};
 `;
 
-export const Hr = styled.hr`
+export const Line = styled.span`
+  display: block;
   width: 10%;
-  margin-bottom: 2rem;
   height: 3px;
+  margin-bottom: 2rem;
   border: none;
   background-color: ${({ theme }) => theme.colors.secondary};
 `;
