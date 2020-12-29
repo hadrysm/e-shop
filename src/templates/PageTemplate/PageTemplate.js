@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Navigation from 'components/organisms/Navigation/Navigation';
@@ -7,14 +7,14 @@ import Footer from 'components/organisms/Footer/Footer';
 import { Wrapper, Main } from './PageTemplate.style';
 
 const PageTemplate = ({ children }) => {
-  const containerRef = useRef(null);
+  const [isVisible, setVisibility] = useState(false);
 
   useEffect(() => {
-    containerRef.current.style.visibility = 'visible';
-  }, [containerRef]);
+    setVisibility(true);
+  }, [isVisible]);
 
   return (
-    <Wrapper ref={containerRef}>
+    <Wrapper isVisible={isVisible}>
       <Navigation />
       <Main>{children}</Main>
       <Footer />

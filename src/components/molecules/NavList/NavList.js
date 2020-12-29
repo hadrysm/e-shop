@@ -7,20 +7,22 @@ import Aside from 'components/molecules/Aside/Aside';
 
 import { Nav, List, Item } from './NavList.style';
 
+const query = graphql`
+  query CATEGORY_ITEMS {
+    allDatoCmsCategory {
+      nodes {
+        id
+        slug
+        displayName
+      }
+    }
+  }
+`;
+
 const NavList = ({ isMenuOpen, close }) => {
   const {
     allDatoCmsCategory: { nodes: categoryItems },
-  } = useStaticQuery(graphql`
-    query CATEGORY_ITEMS {
-      allDatoCmsCategory {
-        nodes {
-          id
-          slug
-          displayName
-        }
-      }
-    }
-  `);
+  } = useStaticQuery(query);
 
   return (
     <Aside title="Kategorie" close={close} isOpen={isMenuOpen} isNav>

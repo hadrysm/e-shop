@@ -3,7 +3,9 @@ import { useEffect } from 'react';
 const useClickOutsite = (ref, callback) => {
   useEffect(() => {
     const listener = e => {
-      if (!ref.current || ref.current.contains(e.target)) return;
+      if (!ref.current || ref.current.contains(e.target)) {
+        return;
+      }
       callback(false);
     };
 

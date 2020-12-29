@@ -1,16 +1,18 @@
 import styled from 'styled-components';
 
-export const H1 = styled.h1`
+export const H2 = styled.h2`
   text-transform: uppercase;
   font-size: ${({ theme }) => theme.font.size.m};
   letter-spacing: 3px;
   color: ${({ theme }) => theme.colors.secondary};
 `;
 
-export const Hr = styled.hr`
+export const Line = styled.span`
+  display: block;
   width: 10%;
-  margin-bottom: 2rem;
   height: 3px;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
   border: none;
   background-color: ${({ theme }) => theme.colors.secondary};
 `;

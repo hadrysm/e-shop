@@ -61,6 +61,8 @@ public
 # Mac files
 .DS_Store
 
+fix.md
+
 # Yarn
 yarn-error.log
 .pnp/

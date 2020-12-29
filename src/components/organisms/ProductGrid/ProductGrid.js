@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -13,7 +12,9 @@ import { GridWrapper } from './ProductGrid.style';
 const ProductGrid = () => {
   const { filteredProducts, sortBy, handleSortProducts } = useFilterAndSort();
 
-  if (!filteredProducts) return null;
+  if (!filteredProducts) {
+    return null;
+  }
 
   useEffect(() => {
     handleSortProducts();
@@ -33,14 +34,6 @@ const ProductGrid = () => {
       </GridWrapper>
     </main>
   );
-};
-
-ProductGrid.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.object),
-};
-
-ProductGrid.defaultProps = {
-  products: [],
 };
 
 export default ProductGrid;

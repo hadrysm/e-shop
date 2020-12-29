@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledLogo = styled.span`
+export const StyledLogo = styled.h1`
   padding: 1rem;
   text-transform: uppercase;
   font-size: ${({ theme }) => theme.font.size.xs};

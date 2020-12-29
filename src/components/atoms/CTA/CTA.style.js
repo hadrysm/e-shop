@@ -20,6 +20,11 @@ export const StyledLink = styled.button`
       color: ${({ theme }) => theme.colors.white};
       background-color: ${({ theme, color }) => color || theme.colors.secondary};
       transition: background-color 0.25s ease-in;
+      border: 2px solid transparent;
+
+      :focus {
+        border-color: ${({ theme }) => theme.colors.green200};
+      }
 
       :disabled {
         background-color: ${({ theme }) => theme.colors.green100};

@@ -62,7 +62,6 @@ const Product = ({ image: { fluid }, name, price, discountPrice, slug }) => {
 };
 
 Product.propTypes = {
-  // originalId: PropTypes.string.isRequired,
   image: PropTypes.shape({
     fluid: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   }).isRequired,

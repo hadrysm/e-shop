@@ -7,14 +7,20 @@ export const handleOnSortProducts = () => toast.success('Pomyślnie posortowano 
 export const handleOnClearFilterProducts = () => toast.success('Pomyślnie wyczyszczono filtry!');
 
 export const sortProductByAlphabet = (products, val) => {
-  if (!val) return products;
+  if (!val) {
+    return products;
+  }
 
-  if (val.endsWith('ASC')) return products.sort((a, b) => (a.name > b.name ? 1 : -1));
+  if (val.endsWith('ASC')) {
+    return products.sort((a, b) => (a.name > b.name ? 1 : -1));
+  }
   return products.sort((a, b) => (a.name > b.name ? -1 : 1));
 };
 
 export const sortProductByPrice = (products, val) => {
-  if (!val) return products;
+  if (!val) {
+    return products;
+  }
 
   if (val.endsWith('ASC')) {
     return products.sort((a, b) => {

@@ -15,7 +15,9 @@ export const productExistInCart = (cartDetails, product) => {
 export const getProductFromCart = (cartDetails, productID) => {
   const product = cartDetails.find(({ id }) => id === productID);
 
-  if (!product) return false;
+  if (!product) {
+    return false;
+  }
 
   return product;
 };

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import FocusLock from 'react-focus-lock';
 import PropTypes from 'prop-types';
 import { FaTimes } from 'react-icons/fa';
 
@@ -14,14 +15,17 @@ const Aside = ({ title, children, isOpen, close, isNav }) => {
   useClickOutsite(asideRef, close);
 
   useEffect(() => {
-    if (isOpen) document.body.classList.add('no-scroll');
-    else document.body.classList.remove('no-scroll');
+    if (isOpen) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
   }, [isOpen]);
 
-  if (isNav)
+  if (isNav) {
     return (
       <PageOverlay isActive={isOpen} isNav>
-        <Wrapper isOpen={isOpen} ref={asideRef} isNav>
+        <Wrapper isOpen={isOpen} ref={asideRef} isNav as="div">
           <HeadingWrapper isNav>
             <Heading isNav>{title}</Heading>
             <CTA isButton onClick={close} color="transparent">
@@ -32,18 +36,21 @@ const Aside = ({ title, children, isOpen, close, isNav }) => {
         </Wrapper>
       </PageOverlay>
     );
+  }
 
   return (
     <PageOverlay isActive={isOpen}>
-      <Wrapper isOpen={isOpen} ref={asideRef}>
-        <HeadingWrapper>
-          <Heading>{title}</Heading>
-          <CTA isButton onClick={close} color="white">
-            <FaTimes color="black" />
-          </CTA>
-        </HeadingWrapper>
-        {children}
-      </Wrapper>
+      <FocusLock>
+        <Wrapper isOpen={isOpen} ref={asideRef}>
+          <HeadingWrapper>
+            <Heading>{title}</Heading>
+            <CTA isButton onClick={close} color="white">
+              <FaTimes color="black" />
+            </CTA>
+          </HeadingWrapper>
+          {children}
+        </Wrapper>
+      </FocusLock>
     </PageOverlay>
   );
 };

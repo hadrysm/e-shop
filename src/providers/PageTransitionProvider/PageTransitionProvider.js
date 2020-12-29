@@ -11,10 +11,10 @@ const PageTransitionProvider = ({ children, to, color, ...props }) => {
       to={to}
       exit={{
         trigger: ({ exit, node }) => exitAnimation(color, exit, node),
-        length: 0.5,
+        length: 0.4,
       }}
       entry={{
-        delay: 0.5,
+        delay: 0.4,
         trigger: ({ exit, node }) => enterAnimation(color, exit, node),
       }}
     >

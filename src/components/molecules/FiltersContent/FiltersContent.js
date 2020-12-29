@@ -25,6 +25,7 @@ const FiltersContent = () => {
   return (
     <>
       <Input
+        type="search"
         placeholder="Wyszukaj..."
         icon="search"
         value={searchInputValue}
