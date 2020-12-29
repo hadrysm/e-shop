@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import Image from 'gatsby-image';
 
 import Headline from 'components/atoms/Headline/Headline';
 import ProductVariants from 'components/organisms/ProductVariants/ProductVariants';
@@ -16,6 +15,7 @@ import {
   Box,
   Price,
   Description,
+  StyledImage,
 } from './ProductTemplate.style';
 
 const ProductTemplate = ({
@@ -46,13 +46,7 @@ const ProductTemplate = ({
     <Wrapper>
       <InnerWrapper>
         <ImgWrapper>
-          <Image
-            fluid={fluid}
-            alt={name}
-            title={name}
-            style={{ height: '100%', width: '100%' }}
-            imgStyle={{ objectFit: 'cover' }}
-          />
+          <StyledImage fluid={fluid} alt={name} title={name} />
         </ImgWrapper>
       </InnerWrapper>
 
