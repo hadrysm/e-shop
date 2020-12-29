@@ -55,8 +55,6 @@ export const scaleAnimation = (node, gsapOptions) => {
   );
 };
 
-// page tansition
-
 export const exitAnimation = color => {
   const { box, body, vh } = createBox(color);
 
@@ -85,8 +83,6 @@ export const enterAnimation = color => {
     },
   });
 };
-
-// navigation box
 
 export const navigationOnScroll = (node, setIsScrolled) => {
   if (!node) return;
