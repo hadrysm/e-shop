@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,10 +18,10 @@ const INITIAL_CONTAINING_BLOCK = 0.01;
 
 const MainTemplate = ({ children, location }) => {
   const { height } = useWindowSize();
+  const [vh, setVh] = useState(height * INITIAL_CONTAINING_BLOCK);
 
   useEffect(() => {
-    const vh = height * INITIAL_CONTAINING_BLOCK;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    setVh(height * INITIAL_CONTAINING_BLOCK);
   }, [height]);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const MainTemplate = ({ children, location }) => {
   return (
     <CartProvider>
       <NavigationStateProvider location={location}>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={{ ...theme, vh }}>
           <GlobalStyled />
           <PageTemplate>{children}</PageTemplate>
           <ToastContainer />

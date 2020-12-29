@@ -11,6 +11,7 @@ export const Line = styled.span`
   display: block;
   width: 10%;
   height: 3px;
+  margin-top: 1rem;
   margin-bottom: 2rem;
   border: none;
   background-color: ${({ theme }) => theme.colors.secondary};

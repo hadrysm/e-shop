@@ -8,7 +8,7 @@ export const Wrapper = styled.aside`
   width: 100%;
   max-width: 34rem;
   height: 100vh; /* Fallback for browsers that do not support Custom Properties */
-  height: calc(var(--vh, 1vh) * 100);
+  height: ${({ theme }) => `calc((${theme.vh}, 1vh) * 100)`};
   padding: 2rem 1rem;
   visibility: hidden;
   transform: translateX(-100%);
