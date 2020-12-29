@@ -9,6 +9,12 @@ import {
 
 import { ADD_ITEM_TO_CART, REMOVE_ITEM_FROM_CART, DECREMENT_ITEM, INCREMENT_ITEM } from './types';
 
+export const cartInitialState = {
+  cartDetails: [],
+  totalPrice: 0,
+  cartCount: 0,
+};
+
 const cartReducer = (state, { type, payload }) => {
   const createProduct = product => {
     handleOnItemAdded();
