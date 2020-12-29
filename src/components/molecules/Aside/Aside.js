@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import FocusLock from 'react-focus-lock';
 import PropTypes from 'prop-types';
 import { FaTimes } from 'react-icons/fa';
 
@@ -24,30 +25,34 @@ const Aside = ({ title, children, isOpen, close, isNav }) => {
   if (isNav) {
     return (
       <PageOverlay isActive={isOpen} isNav>
-        <Wrapper isOpen={isOpen} ref={asideRef} isNav as="div">
-          <HeadingWrapper isNav>
-            <Heading isNav>{title}</Heading>
-            <CTA isButton onClick={close} color="transparent">
-              <FaTimes />
-            </CTA>
-          </HeadingWrapper>
-          <InnerWrapper>{children}</InnerWrapper>
-        </Wrapper>
+        <FocusLock>
+          <Wrapper isOpen={isOpen} ref={asideRef} isNav as="div">
+            <HeadingWrapper isNav>
+              <Heading isNav>{title}</Heading>
+              <CTA isButton onClick={close} color="transparent">
+                <FaTimes />
+              </CTA>
+            </HeadingWrapper>
+            <InnerWrapper>{children}</InnerWrapper>
+          </Wrapper>
+        </FocusLock>
       </PageOverlay>
     );
   }
 
   return (
     <PageOverlay isActive={isOpen}>
-      <Wrapper isOpen={isOpen} ref={asideRef}>
-        <HeadingWrapper>
-          <Heading>{title}</Heading>
-          <CTA isButton onClick={close} color="white">
-            <FaTimes color="black" />
-          </CTA>
-        </HeadingWrapper>
-        {children}
-      </Wrapper>
+      <FocusLock>
+        <Wrapper isOpen={isOpen} ref={asideRef}>
+          <HeadingWrapper>
+            <Heading>{title}</Heading>
+            <CTA isButton onClick={close} color="white">
+              <FaTimes color="black" />
+            </CTA>
+          </HeadingWrapper>
+          {children}
+        </Wrapper>
+      </FocusLock>
     </PageOverlay>
   );
 };
