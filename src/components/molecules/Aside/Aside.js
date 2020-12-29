@@ -21,7 +21,7 @@ const Aside = ({ title, children, isOpen, close, isNav }) => {
   if (isNav)
     return (
       <PageOverlay isActive={isOpen} isNav>
-        <Wrapper isOpen={isOpen} ref={asideRef} isNav>
+        <Wrapper isOpen={isOpen} ref={asideRef} isNav as="div">
           <HeadingWrapper isNav>
             <Heading isNav>{title}</Heading>
             <CTA isButton onClick={close} color="transparent">
