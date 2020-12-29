@@ -4,22 +4,24 @@ import { useStaticQuery, graphql } from 'gatsby';
 import BackgroundSection from 'components/atoms/BackgroundSection/BackgroundSection';
 import { Wrapper, InnerWrapper } from './Hero.style';
 
+const query = graphql`
+  {
+    file(name: { eq: "hero" }) {
+      childImageSharp {
+        fluid(maxWidth: 1920) {
+          ...GatsbyImageSharpFluid_noBase64
+        }
+      }
+    }
+  }
+`;
+
 const Hero = () => {
   const {
     file: {
       childImageSharp: { fluid },
     },
-  } = useStaticQuery(graphql`
-    {
-      file(name: { eq: "hero" }) {
-        childImageSharp {
-          fluid(maxWidth: 1920) {
-            ...GatsbyImageSharpFluid_noBase64
-          }
-        }
-      }
-    }
-  `);
+  } = useStaticQuery(query);
 
   return (
     <Wrapper>

@@ -5,21 +5,23 @@ import { useFilterAndSort } from 'hooks/useFilterAndSort';
 
 import { Wrapper, Size, Checkmark, Name } from './SizesFilters.style';
 
+const query = graphql`
+  {
+    allDatoCmsSize(sort: { fields: [order], order: ASC }) {
+      sizes: nodes {
+        id: originalId
+        size
+      }
+    }
+  }
+`;
+
 const SizesFilters = () => {
   const { markedSize, handleIncludeSize } = useFilterAndSort();
 
   const {
     allDatoCmsSize: { sizes },
-  } = useStaticQuery(graphql`
-    {
-      allDatoCmsSize(sort: { fields: [order], order: ASC }) {
-        sizes: nodes {
-          id: originalId
-          size
-        }
-      }
-    }
-  `);
+  } = useStaticQuery(query);
 
   return (
     <Wrapper>
