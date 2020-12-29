@@ -30,7 +30,10 @@ const cartReducer = (state, { type, payload }) => {
   };
 
   const updateCart = product => {
-    if (!product.quantity) return removeProductFromCart(product.id);
+    if (!product.quantity) {
+      return removeProductFromCart(product.id);
+    }
+
     handleOnItemUpdated();
 
     const cartDetails = [...state.cartDetails];
@@ -54,8 +57,9 @@ const cartReducer = (state, { type, payload }) => {
 
   switch (type) {
     case ADD_ITEM_TO_CART:
-      if (productExistInCart(state.cartDetails, payload.product))
+      if (productExistInCart(state.cartDetails, payload.product)) {
         return updateCart(payload.product);
+      }
       return createProduct(payload.product);
 
     case REMOVE_ITEM_FROM_CART:

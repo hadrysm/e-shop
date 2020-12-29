@@ -8,7 +8,9 @@ gsap.registerPlugin(ScrollTrigger);
 const pageTransitionDelay = { delay: 0.8 };
 
 export const fadeInStagger = (node, gsapOptions, direction = '-') => {
-  if (!node) return;
+  if (!node) {
+    return;
+  }
 
   gsap.from(node, {
     autoAlpha: 0,
@@ -21,7 +23,9 @@ export const fadeInStagger = (node, gsapOptions, direction = '-') => {
 };
 
 export const staggerText = node => {
-  if (!node) return;
+  if (!node) {
+    return;
+  }
 
   gsap.from([splitTextToChars(node)], {
     duration: 0.5,
@@ -34,13 +38,17 @@ export const staggerText = node => {
 };
 
 export const scaleX = node => {
-  if (!node) return;
+  if (!node) {
+    return;
+  }
 
   gsap.from(node, { scaleX: 0, transformOrigin: 'left', ...pageTransitionDelay });
 };
 
 export const scaleAnimation = (node, gsapOptions) => {
-  if (!node) return null;
+  if (!node) {
+    return null;
+  }
 
   return gsap.from(
     node,
@@ -85,7 +93,9 @@ export const enterAnimation = color => {
 };
 
 export const navigationOnScroll = (node, setIsScrolled) => {
-  if (!node) return;
+  if (!node) {
+    return;
+  }
 
   const actionNav = gsap.to(node, {
     yPercent: '-=100',

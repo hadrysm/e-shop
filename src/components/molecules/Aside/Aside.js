@@ -14,11 +14,14 @@ const Aside = ({ title, children, isOpen, close, isNav }) => {
   useClickOutsite(asideRef, close);
 
   useEffect(() => {
-    if (isOpen) document.body.classList.add('no-scroll');
-    else document.body.classList.remove('no-scroll');
+    if (isOpen) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
   }, [isOpen]);
 
-  if (isNav)
+  if (isNav) {
     return (
       <PageOverlay isActive={isOpen} isNav>
         <Wrapper isOpen={isOpen} ref={asideRef} isNav as="div">
@@ -32,6 +35,7 @@ const Aside = ({ title, children, isOpen, close, isNav }) => {
         </Wrapper>
       </PageOverlay>
     );
+  }
 
   return (
     <PageOverlay isActive={isOpen}>

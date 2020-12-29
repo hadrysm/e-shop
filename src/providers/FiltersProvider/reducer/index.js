@@ -32,7 +32,9 @@ const filtersReducer = (state, { type, payload }) => {
     const filteredProducts = [...products].filter(product => {
       const price = product.discountPrice || product.price;
 
-      if (!sizes.length > 0) return price >= min && price <= max;
+      if (!sizes.length > 0) {
+        return price >= min && price <= max;
+      }
 
       return product.size.some(({ size }) => sizes.includes(size)) && price >= min && price <= max;
     });
@@ -48,7 +50,9 @@ const filtersReducer = (state, { type, payload }) => {
   const filterProductsBySearch = () => {
     const { products, searchInputValue, filteredProducts } = { ...state };
 
-    if (!searchInputValue) return { ...state, filteredProducts: products };
+    if (!searchInputValue) {
+      return { ...state, filteredProducts: products };
+    }
 
     const value = searchInputValue.toLowerCase();
     const result = filteredProducts.filter(({ name }) => name.toLowerCase().includes(value));

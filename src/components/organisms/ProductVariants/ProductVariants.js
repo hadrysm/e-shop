@@ -31,8 +31,11 @@ const ProductVariants = ({ product: { id, name, price, discountPrice, sizes, ima
   // check products exits in cart, if true => set button to disabled
   useEffect(() => {
     const { quantity } = getProductFromCart(cartDetails, `${id}${sizeValue}`);
-    if (quantity === parseInt(quantityValue, 10)) setIsProuctInCart(true);
-    else setIsProuctInCart(false);
+    if (quantity === parseInt(quantityValue, 10)) {
+      setIsProuctInCart(true);
+    } else {
+      setIsProuctInCart(false);
+    }
   }, [handleAddItem, quantityValue]);
 
   return (

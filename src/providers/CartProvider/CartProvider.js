@@ -14,8 +14,11 @@ const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, storedCartInitialState);
 
   useEffect(() => {
-    if (state.cartDetails.length > 0) setStoredCart(state);
-    else setStoredCart(cartInitialState);
+    if (state.cartDetails.length > 0) {
+      setStoredCart(state);
+    } else {
+      setStoredCart(cartInitialState);
+    }
   }, [state]);
 
   return <CartContext.Provider value={[state, dispatch]}>{children}</CartContext.Provider>;

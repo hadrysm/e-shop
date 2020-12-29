@@ -7,19 +7,21 @@ import { StyledLink } from './CTA.style';
 
 const CTA = React.forwardRef(
   ({ children, to, href, isButton, isHyperLink, color, ...props }, ref) => {
-    if (isButton)
+    if (isButton) {
       return (
         <StyledLink as="button" type="button" isButton color={color} ref={ref} {...props}>
           {children}
         </StyledLink>
       );
+    }
 
-    if (isHyperLink)
+    if (isHyperLink) {
       return (
         <StyledLink as="a" isHyperLink href={href} ref={ref} {...props}>
           {children}
         </StyledLink>
       );
+    }
 
     return (
       <StyledLink as={TLink} to={to} color={color} ref={ref} {...props}>
