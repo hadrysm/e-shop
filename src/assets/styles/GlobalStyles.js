@@ -66,6 +66,10 @@ a {
   position: static;
 }
 
+.isVisible {
+  visibility: visible;
+}
+
 
 ::-webkit-scrollbar {
       width: 4px;

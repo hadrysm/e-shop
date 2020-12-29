@@ -37,6 +37,7 @@ const ProductTemplate = ({
   const formatedDiscountPrice = getFormatCurrency(discountPrice);
 
   useEffect(() => {
+    // get third elements from InnerWrapper
     const [, , ...children] = [...containerRef.current.children];
 
     fadeInStagger([children]);
