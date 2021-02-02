@@ -57,6 +57,7 @@ const Footer = () => {
                 href="https://github.com/hadrysm"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="github"
               >
                 <FaGithub />
               </CTA>
@@ -67,6 +68,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/in/mateusz-hadry%C5%9B-02a4951a2/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="linkedin"
               >
                 <FaLinkedin />
               </CTA>
@@ -77,6 +79,7 @@ const Footer = () => {
                 href="https://twitter.com/hadrys_m"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="twitter"
               >
                 <FaTwitter />
               </CTA>

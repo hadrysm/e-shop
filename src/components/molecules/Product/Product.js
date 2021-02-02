@@ -39,7 +39,7 @@ const Product = ({ image: { fluid }, name, price, discountPrice, slug }) => {
 
   return (
     <Wrapper>
-      <CTA to={`/products/${slug}`}>
+      <CTA to={`/products/${slug}`} aria-label={`product - ${name}`}>
         <InnerWrapper>
           <ImgWrapper ref={imgWrapper}>
             <StyledImage fluid={fluid} alt={name} title={name} />

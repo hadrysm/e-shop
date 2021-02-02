@@ -10,7 +10,7 @@ const ShoppingButton = () => {
   const { cartCount } = useShoppingCart();
 
   return (
-    <CTA to="/cart">
+    <CTA to="/cart" aria-label="shoping cart">
       <Box>
         <FaShoppingCart />
         {!!cartCount && <Counter>{cartCount}</Counter>}

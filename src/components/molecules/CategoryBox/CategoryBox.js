@@ -30,7 +30,7 @@ const CategoryBox = ({ id, slug, displayName, image: { fluid, alt } }, index) =>
   }, [categoryRef]);
 
   return (
-    <CTA key={id} to={`/categories/${slug}`}>
+    <CTA key={id} to={`/categories/${slug}`} aria-label={displayName}>
       <Wrapper ref={categoryRef} direction={direction}>
         <InnerWrapper>
           <Overflow>
